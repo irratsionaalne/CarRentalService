@@ -16,6 +16,7 @@ public class OfficeServiceImpl implements OfficeService {
         if (office == null) {
             return false;
         }
+
         office.setActive(true);
         officeRepo.save(office);
         return true;
@@ -26,6 +27,7 @@ public class OfficeServiceImpl implements OfficeService {
         if (office == null || !officeRepo.existsById(office.getId())) {
             return false;
         }
+
         officeRepo.saveAndFlush(office);
         return true;
     }
