@@ -12,9 +12,9 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepo bookingRepo;
 
     @Override
-    public boolean createBooking(Booking booking) {
+    public boolean createBooking(Booking booking) throws Exception {
         if (booking == null) {
-            return false;
+            throw new Exception("Invalid booking");
         }
 
         booking.setActive(true);
@@ -33,10 +33,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public boolean cancelBooking(Long bookingId) {
+    public boolean cancelBooking(Long bookingId) throws Exception {
         Booking booking = getById(bookingId);
         if (booking == null) {
-            return false;
+            throw new Exception("Booking does not exist");
         }
         booking.setActive(false);
         updateBooking(booking);
@@ -44,10 +44,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public boolean restoreBooking(Long bookingId) {
+    public boolean restoreBooking(Long bookingId) throws Exception{
         Booking booking = getById(bookingId);
         if (booking == null) {
-            return false;
+            throw new Exception("Booking does not exist");
         }
 
         booking.setActive(true);
