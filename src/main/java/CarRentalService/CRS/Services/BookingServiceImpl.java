@@ -24,26 +24,44 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public boolean updateBooking(Booking booking) {
-        return false;
+        if (booking == null || !bookingRepo.existsById(booking.getId())) {
+            return false;
+        }
+
+        bookingRepo.saveAndFlush(booking);
+        return true;
     }
 
     @Override
     public boolean cancelBooking(Long bookingId) {
-        return false;
+        Booking booking = getById(bookingId);
+        if (booking == null) {
+            return false;
+        }
+        booking.setActive(false);
+        updateBooking(booking);
+        return true;
     }
 
     @Override
     public boolean restoreBooking(Long bookingId) {
-        return false;
+        Booking booking = getById(bookingId);
+        if (booking == null) {
+            return false;
+        }
+
+        booking.setActive(true);
+        updateBooking(booking);
+        return true;
     }
 
     @Override
     public List<Booking> getAllBookings() {
-        return null;
+        return bookingRepo.findAll();
     }
 
     @Override
     public Booking getById(Long bookingId) {
-        return null;
+        return bookingRepo.getOne(bookingId);
     }
 }
