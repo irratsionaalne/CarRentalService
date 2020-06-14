@@ -2,6 +2,7 @@ package CarRentalService.CRS.Services;
 
 import CarRentalService.CRS.Models.Car;
 import CarRentalService.CRS.Repositories.CarRepo;
+import jdk.internal.vm.compiler.collections.EconomicMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ public class CarServiceImpl implements CarService{
 
 
     @Override
-    public boolean createCar(Car car) {
+    public boolean createCar(Car car) throws Exception {
         if (car == null) {
-            return false;
+            throw new Exception("Invalid update for Car");
         }
         car.setActive(true);
         carRepo.save(car);
@@ -25,30 +26,30 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public boolean updateCar(Car car) {
+    public boolean updateCar(Car car) throws Exception {
         if (car == null || !carRepo.existsById(car.getId())) {
-            return false;
+            throw new Exception("Invalid updating of Car");
         }
         carRepo.saveAndFlush(car);
         return true;
     }
 
     @Override
-    public boolean deleteCar(Long carId) {
+    public boolean deleteCar(Long carId) throws Exception {
         Car car = getById(carId);
         if (car == null) {
-            return false;
+            throw new Exception("Invalid deleting of Car");
         }
         car.setActive(false);
-        updateCar(car);
+        deleteCar(carId);
         return true;
     }
 
     @Override
-    public boolean restoreCar(Long carId) {
+    public boolean restoreCar(Long carId) throws Exception {
         Car car = getById(carId);
         if (car == null) {
-            return false;
+            throw new Exception("Invalid restoration of  Customer");
         }
         car.setActive(true);
         restoreCar(carId);

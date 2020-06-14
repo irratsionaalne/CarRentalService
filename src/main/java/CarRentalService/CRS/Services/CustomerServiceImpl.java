@@ -1,6 +1,5 @@
 package CarRentalService.CRS.Services;
 
-import CarRentalService.CRS.Models.Car;
 import CarRentalService.CRS.Models.Customer;
 import CarRentalService.CRS.Repositories.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,9 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerRepo customerRepo;
 
     @Override
-    public boolean createCustomer(Customer customer) {
+    public boolean createCustomer(Customer customer) throws Exception {
         if (customer == null) {
-            return false;
+            throw new Exception("Invalid creation of Customer");
         }
         customer.setActive(true);
         customerRepo.save(customer);
@@ -25,20 +24,19 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean updateCustomer(Customer customer) {
-
+    public boolean updateCustomer(Customer customer) throws Exception {
         if (customer == null || !customerRepo.existsById(customer.getId())) {
-            return false;
+            throw new Exception("Invalid updating for Customer");
         }
         customerRepo.saveAndFlush(customer);
         return true;
     }
 
     @Override
-    public boolean deleteCustomer(Long customerId) {
+    public boolean deleteCustomer(Long customerId) throws Exception {
         Customer customer = getById(customerId);
         if (customer == null) {
-            return false;
+            throw new Exception("Invalid deleting of Customer");
         }
         customer.setActive(false);
         deleteCustomer(customerId);
@@ -46,10 +44,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean restoreCustomer(Long customerId) {
+    public boolean restoreCustomer(Long customerId) throws Exception {
         Customer customer = getById(customerId);
         if (customer == null) {
-            return false;
+            throw new Exception("Invalid restoration of Customer");
         }
         customer.setActive(true);
         restoreCustomer(customerId);
