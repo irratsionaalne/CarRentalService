@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CarRentalService {
 
-    boolean createCarRental();
+    boolean createCarRental(CarRental carRental);
 
     boolean updateCarRental(CarRental carRental);
 

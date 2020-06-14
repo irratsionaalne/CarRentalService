@@ -21,4 +21,5 @@ public class CarRental {
     @OneToOne
     private Booking booking;
     private String comment;
+    private boolean isActive;
 }

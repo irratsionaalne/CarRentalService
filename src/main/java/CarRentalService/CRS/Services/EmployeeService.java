@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    boolean createEmployee();
+    boolean createEmployee(Employee employee);
 
     boolean updateEmployee(Employee employee);
 

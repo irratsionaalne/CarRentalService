@@ -20,4 +20,5 @@ public class Office {
     @OneToMany
     private List<Branch> branches;
     private String logotype;
+    private boolean isActive;
 }

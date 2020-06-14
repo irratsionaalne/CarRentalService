@@ -1,12 +1,14 @@
 package CarRentalService.CRS.Services;
 
+import CarRentalService.CRS.Models.Customer;
+
 import java.util.List;
 
 public interface CustomerService {
 
-    boolean createCustomer();
+    boolean createCustomer(Customer customer);
 
-    boolean updateCustomer(CustomerService customerService);
+    boolean updateCustomer(Customer customer);
 
     boolean deleteCustomer(Long customerId);
 

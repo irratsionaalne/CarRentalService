@@ -21,4 +21,5 @@ public class CarReturn {
     private Booking booking;
     private String additionalPayment;
     private String comment;
+    private boolean isActive;
 }
