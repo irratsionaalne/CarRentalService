@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface CarRentalService {
 
-    boolean createCarRental(CarRental carRental);
+    boolean createCarRental(CarRental carRental) throws Exception;
 
-    boolean updateCarRental(CarRental carRental);
+    boolean updateCarRental(CarRental carRental) throws Exception;
 
-    boolean deleteCarRental(Long carRentalId);
+    boolean deleteCarRental(Long carRentalId) throws Exception;
 
-    boolean restoreCarRental(Long carRentalId);
+    boolean restoreCarRental(Long carRentalId) throws Exception;
 
     CarRental getById(Long carRentalId);
 
-    boolean addComment();
+    boolean addComment(Long carRentalId,String carRentalComment);
 }
