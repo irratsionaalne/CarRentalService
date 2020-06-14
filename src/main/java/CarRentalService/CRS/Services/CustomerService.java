@@ -14,7 +14,7 @@ public interface CustomerService {
 
     boolean restoreCustomer(Long customerId);
 
-    List<CustomerService> getAllCustomers();
+    List<Customer> getAllCustomers();
 
-    CustomerService getById(Long customerId);
+    Customer getById(Long customerId);
 }
