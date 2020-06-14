@@ -4,6 +4,7 @@ package CarRentalService.CRS.Models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,4 +17,6 @@ public class Employee {
     private String jobPosition;
     @ManyToOne
     private Branch branch;
+    @OneToMany
+    private List<Booking> bookings;
 }

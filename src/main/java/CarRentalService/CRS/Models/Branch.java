@@ -13,7 +13,8 @@ public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String address;
+    private String streetAddress;
+    private String city;
     @OneToMany
     private List<Employee> employees;
     @OneToMany

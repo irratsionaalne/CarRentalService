@@ -22,5 +22,5 @@ public class Car {
     private String color;
     private String mileage;
     private String status;
-
+    private String pricePerDay;
 }

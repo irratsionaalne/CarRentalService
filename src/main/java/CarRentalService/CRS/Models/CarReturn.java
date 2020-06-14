@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Return {
+public class CarReturn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +15,8 @@ public class Return {
     @OneToOne
     private Employee employee;
     private String dateOfReturn;
+    @OneToOne
+    private Branch returnBranch;
     @OneToOne
     private Booking booking;
     private String additionalPayment;
