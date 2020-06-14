@@ -12,9 +12,9 @@ public class OfficeServiceImpl implements OfficeService {
     private OfficeRepo officeRepo;
 
     @Override
-    public boolean createOffice(Office office) {
+    public boolean createOffice(Office office) throws Exception {
         if (office == null) {
-            return false;
+            throw new Exception("Invalid office");
         }
 
         office.setActive(true);

@@ -14,9 +14,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepo employeeRepo;
 
     @Override
-    public boolean createEmployee(Employee employee) {
+    public boolean createEmployee(Employee employee) throws Exception {
         if (employee == null) {
-            return false;
+            throw new Exception("Invalid employee");
         }
 
         employee.setActive(true);
@@ -35,10 +35,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean deleteEmployee(Long employeeId) {
+    public boolean deleteEmployee(Long employeeId) throws Exception {
         Employee employee = getById(employeeId);
         if (employee == null) {
-            return false;
+            throw new Exception("Employee does not exist");
         }
 
         employee.setActive(false);
@@ -46,11 +46,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean restoreEmployee(Long employeeId) {
+    public boolean restoreEmployee(Long employeeId) throws Exception {
         Employee employee = getById(employeeId);
-
         if (employee == null) {
-            return false;
+            throw new Exception("Employee does not exist");
         }
 
         employee.setActive(true);
