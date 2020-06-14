@@ -13,9 +13,9 @@ public class BranchServiceImpl implements BranchService {
     private BranchRepo branchRepo;
 
     @Override
-    public boolean createBranch(Branch branch) {
+    public boolean createBranch(Branch branch) throws Exception {
         if (branch == null) {
-            return false;
+            throw new Exception("Invalid branch");
         }
 
         branch.setActive(true);
@@ -34,10 +34,10 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public boolean deleteBranch(Long branchId) {
+    public boolean deleteBranch(Long branchId) throws Exception {
         Branch branch = getById(branchId);
         if (branch == null) {
-            return false;
+            throw new Exception("Branch does not exist");
         }
         branch.setActive(false);
         updateBranch(branch);
@@ -45,10 +45,10 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public boolean restoreBranch(Long branchId) {
+    public boolean restoreBranch(Long branchId) throws Exception {
         Branch branch= getById(branchId);
         if (branch == null) {
-            return false;
+            throw new Exception("Branch does not exist");
         }
 
         branch.setActive(true);
