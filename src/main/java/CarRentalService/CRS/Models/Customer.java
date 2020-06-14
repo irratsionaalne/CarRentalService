@@ -21,4 +21,5 @@ public class Customer {
     private String email;
     private String address;
     private Date dob;
+    private boolean isActive;
 }

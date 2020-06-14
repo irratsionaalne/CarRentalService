@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookingService {
 
-    boolean createBooking();
+    boolean createBooking(Booking booking);
 
     boolean updateBooking(Booking booking);
 

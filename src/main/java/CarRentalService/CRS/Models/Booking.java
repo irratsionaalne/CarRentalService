@@ -25,4 +25,5 @@ public class Booking {
     @OneToOne
     private CarReturn carReturn;
     private String totalPrice;
+    private boolean isActive;
 }

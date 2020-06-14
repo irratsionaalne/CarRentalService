@@ -23,4 +23,5 @@ public class Car {
     private String mileage;
     private String status;
     private String pricePerDay;
+    private boolean isActive;
 }

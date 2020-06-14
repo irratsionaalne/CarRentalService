@@ -19,4 +19,5 @@ public class Employee {
     private Branch branch;
     @OneToMany
     private List<Booking> bookings;
+    private boolean isActive;
 }

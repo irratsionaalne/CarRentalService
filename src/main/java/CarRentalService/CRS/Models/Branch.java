@@ -19,4 +19,5 @@ public class Branch {
     private List<Employee> employees;
     @OneToMany
     private List<Car> cars;
+    private boolean isActive;
 }

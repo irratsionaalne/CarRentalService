@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BranchService {
 
-    boolean createBranch();
+    boolean createBranch(Branch branch);
 
     boolean updateBranch(Branch branch);
 

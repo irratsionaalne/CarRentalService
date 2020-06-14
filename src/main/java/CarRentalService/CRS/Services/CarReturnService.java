@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CarReturnService {
 
-    boolean createCarReturn();
+    boolean createCarReturn(CarReturn carReturn);
 
     boolean updateCarReturn(CarReturn carReturn);
 

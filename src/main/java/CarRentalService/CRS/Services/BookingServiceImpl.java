@@ -1,14 +1,25 @@
 package CarRentalService.CRS.Services;
 
 import CarRentalService.CRS.Models.Booking;
+import CarRentalService.CRS.Repositories.BookingRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class BookingServiceImpl implements BookingService {
 
+    @Autowired
+    private BookingRepo bookingRepo;
+
     @Override
-    public boolean createBooking() {
-        return false;
+    public boolean createBooking(Booking booking) {
+        if (booking == null) {
+            return false;
+        }
+
+        booking.setActive(true);
+        bookingRepo.save(booking);
+        return true;
     }
 
     @Override
