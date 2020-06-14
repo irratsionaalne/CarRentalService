@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class RentalOffice {
+public class Office {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
