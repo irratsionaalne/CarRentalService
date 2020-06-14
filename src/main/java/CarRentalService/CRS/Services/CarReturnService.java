@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface CarReturnService {
 
-    boolean createCarReturn(CarReturn carReturn) throws Exception;
+    boolean createCarReturn(CarReturn carReturn);
 
-    boolean updateCarReturn(CarReturn carReturn) throws Exception;
+    boolean updateCarReturn(CarReturn carReturn);
 
-    boolean deleteCarReturn(Long carReturnId) throws Exception;
+    boolean deleteCarReturn(Long carReturnId);
 
-    boolean restoreCarReturn(Long carReturnId) throws Exception;
+    boolean restoreCarReturn(Long carReturnId);
 
     CarReturn getById(Long carReturnId);
 
-    boolean addComment(Long carReturnId,String carRentalComment);
+    boolean addComment();
 
-    boolean addAdditionalPayment(Long carReturnId,String carAdditionalPayment);
+    boolean addAdditionalPayment();
 }
