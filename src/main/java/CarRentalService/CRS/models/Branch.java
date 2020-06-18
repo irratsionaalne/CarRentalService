@@ -16,8 +16,8 @@ public class Branch {
     private String streetAddress;
     private String city;
     @OneToMany
-    private List<CarRentalService.crs.models.Employee> employees;
+    private List<Employee> employees;
     @OneToMany
-    private List<CarRentalService.crs.models.Car> cars;
+    private List<Car> cars;
     private boolean isActive;
 }

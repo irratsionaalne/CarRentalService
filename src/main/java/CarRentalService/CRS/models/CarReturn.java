@@ -13,7 +13,7 @@ public class CarReturn {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    private CarRentalService.crs.models.Employee employee;
+    private Employee employee;
     private String dateOfReturn;
     @OneToOne
     private Branch returnBranch;

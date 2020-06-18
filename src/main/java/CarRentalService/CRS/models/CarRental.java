@@ -14,7 +14,7 @@ public class CarRental {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    private CarRentalService.crs.models.Employee employee;
+    private Employee employee;
     private Date rentalDate;
     @OneToOne
     private Branch rentalBranch;
