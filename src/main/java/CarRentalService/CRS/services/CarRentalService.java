@@ -1,6 +1,6 @@
-package CarRentalService.crs.services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.crs.models.CarRental;
+import CarRentalService.CRS.models.CarRental;
 
 public interface CarRentalService {
 

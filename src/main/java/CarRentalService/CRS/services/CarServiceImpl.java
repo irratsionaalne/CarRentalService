@@ -1,7 +1,7 @@
-package CarRentalService.crs.services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.crs.models.Car;
-import CarRentalService.crs.repositories.CarRepo;
+import CarRentalService.CRS.models.Car;
+import CarRentalService.CRS.repositories.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package CarRentalService.crs.models;
+package CarRentalService.CRS.models;
 
 
 import lombok.Data;
@@ -14,7 +14,7 @@ public class CarRental {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    private Employee employee;
+    private CarRentalService.crs.models.Employee employee;
     private Date rentalDate;
     @OneToOne
     private Branch rentalBranch;

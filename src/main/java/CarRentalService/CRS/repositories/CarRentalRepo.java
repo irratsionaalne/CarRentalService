@@ -1,6 +1,6 @@
-package CarRentalService.crs.repositories;
+package CarRentalService.CRS.repositories;
 
-import CarRentalService.crs.models.CarRental;
+import CarRentalService.CRS.models.CarRental;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

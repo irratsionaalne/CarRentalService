@@ -1,6 +1,6 @@
-package CarRentalService.crs.services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.crs.models.Office;
+import CarRentalService.CRS.models.Office;
 
 public interface OfficeService {
 

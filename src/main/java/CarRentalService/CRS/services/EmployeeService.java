@@ -1,6 +1,6 @@
-package CarRentalService.crs.services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.crs.models.Employee;
+import CarRentalService.CRS.models.Employee;
 
 import java.util.List;
 

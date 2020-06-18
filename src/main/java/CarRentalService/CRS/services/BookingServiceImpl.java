@@ -1,22 +1,20 @@
-package CarRentalService.crs.services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.crs.models.Booking;
-import CarRentalService.crs.repositories.BookingRepo;
+import CarRentalService.CRS.models.Booking;
+import CarRentalService.CRS.repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private BookingRepo bookingRepo;
 
     @Override
-    public boolean createBooking(Booking booking) {
+    public boolean createBooking(Booking booking) throws Exception {
         if (booking == null) {
-            return false;
+            throw new Exception("Invalid booking");
         }
 
         booking.setActive(true);
@@ -26,26 +24,44 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public boolean updateBooking(Booking booking) {
-        return false;
+        if (booking == null || !bookingRepo.existsById(booking.getId())) {
+            return false;
+        }
+
+        bookingRepo.saveAndFlush(booking);
+        return true;
     }
 
     @Override
-    public boolean cancelBooking(Long bookingId) {
-        return false;
+    public boolean cancelBooking(Long bookingId) throws Exception {
+        Booking booking = getById(bookingId);
+        if (booking == null) {
+            throw new Exception("Booking does not exist");
+        }
+        booking.setActive(false);
+        updateBooking(booking);
+        return true;
     }
 
     @Override
-    public boolean restoreBooking(Long bookingId) {
-        return false;
+    public boolean restoreBooking(Long bookingId) throws Exception{
+        Booking booking = getById(bookingId);
+        if (booking == null) {
+            throw new Exception("Booking does not exist");
+        }
+
+        booking.setActive(true);
+        updateBooking(booking);
+        return true;
     }
 
     @Override
     public List<Booking> getAllBookings() {
-        return null;
+        return bookingRepo.findAll();
     }
 
     @Override
     public Booking getById(Long bookingId) {
-        return null;
+        return bookingRepo.getOne(bookingId);
     }
 }

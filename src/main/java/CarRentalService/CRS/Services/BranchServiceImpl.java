@@ -1,8 +1,7 @@
-package CarRentalService.CRS.Services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.CRS.Models.Booking;
-import CarRentalService.CRS.Models.Branch;
-import CarRentalService.CRS.Repositories.BranchRepo;
+import CarRentalService.CRS.models.Branch;
+import CarRentalService.CRS.repositories.BranchRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package CarRentalService.crs.models;
+package CarRentalService.CRS.models;
 
 
 import lombok.Data;

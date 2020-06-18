@@ -1,4 +1,4 @@
-package CarRentalService.crs.models;
+package CarRentalService.CRS.models;
 
 
 import lombok.Data;
@@ -16,8 +16,8 @@ public class Branch {
     private String streetAddress;
     private String city;
     @OneToMany
-    private List<Employee> employees;
+    private List<CarRentalService.crs.models.Employee> employees;
     @OneToMany
-    private List<Car> cars;
+    private List<CarRentalService.crs.models.Car> cars;
     private boolean isActive;
 }

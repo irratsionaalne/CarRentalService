@@ -1,7 +1,7 @@
-package CarRentalService.crs.controllers;
+package CarRentalService.CRS.controllers;
 
-import CarRentalService.crs.models.Car;
-import CarRentalService.crs.services.CarService;
+import CarRentalService.CRS.models.Car;
+import CarRentalService.CRS.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
