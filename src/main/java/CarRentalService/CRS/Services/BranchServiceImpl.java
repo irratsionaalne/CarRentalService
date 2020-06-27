@@ -3,9 +3,11 @@ package CarRentalService.CRS.Services;
 import CarRentalService.CRS.Models.Branch;
 import CarRentalService.CRS.Repositories.BranchRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BranchServiceImpl implements BranchService {
 
     @Autowired

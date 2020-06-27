@@ -3,9 +3,11 @@ package CarRentalService.CRS.Services;
 import CarRentalService.CRS.Models.Booking;
 import CarRentalService.CRS.Repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
