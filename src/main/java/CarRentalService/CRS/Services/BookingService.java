@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface BookingService {
 
-    boolean createBooking(Booking booking);
+    boolean createBooking(Booking booking) throws Exception;
 
     boolean updateBooking(Booking booking);
 
-    boolean cancelBooking(Long bookingId);
+    boolean cancelBooking(Long bookingId) throws Exception;
 
-    boolean restoreBooking(Long bookingId);
+    boolean restoreBooking(Long bookingId) throws Exception;
 
     List<Booking> getAllBookings();
 
