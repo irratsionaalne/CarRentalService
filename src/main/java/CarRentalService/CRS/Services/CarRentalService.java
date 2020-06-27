@@ -17,4 +17,6 @@ public interface CarRentalService {
     CarRental getById(Long carRentalId);
 
     boolean addComment(Long carRentalId,String carRentalComment);
+
+    List<CarRental> getAllCarRentals();
 }

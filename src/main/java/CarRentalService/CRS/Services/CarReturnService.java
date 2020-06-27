@@ -1,5 +1,6 @@
 package CarRentalService.CRS.Services;
 
+import CarRentalService.CRS.Models.CarRental;
 import CarRentalService.CRS.Models.CarReturn;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface CarReturnService {
     boolean addComment(Long carReturnId,String carRentalComment);
 
     boolean addAdditionalPayment(Long carReturnId,String carAdditionalPayment);
+
+    List<CarReturn> getAllCarReturns();
 }
