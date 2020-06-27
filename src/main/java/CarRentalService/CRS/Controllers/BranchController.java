@@ -3,12 +3,13 @@ package CarRentalService.CRS.Controllers;
 import CarRentalService.CRS.Models.Branch;
 import CarRentalService.CRS.Services.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/branch")
 public class BranchController {
 
