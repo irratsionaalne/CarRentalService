@@ -5,6 +5,8 @@ import CarRentalService.CRS.Repositories.OfficeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OfficeServiceImpl implements OfficeService {
 
@@ -30,6 +32,16 @@ public class OfficeServiceImpl implements OfficeService {
 
         officeRepo.saveAndFlush(office);
         return true;
+    }
+
+    @Override
+    public List<Office> getAllOffices() {
+        return officeRepo.findAll();
+    }
+
+    @Override
+    public Office getById(Long officeId) {
+        return officeRepo.getOne(officeId);
     }
 
 }
