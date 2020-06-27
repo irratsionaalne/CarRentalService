@@ -1,6 +1,6 @@
-package CarRentalService.CRS.Services;
+package CarRentalService.CRS.services;
 
-import CarRentalService.CRS.Models.Booking;
+import CarRentalService.CRS.models.Booking;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package CarRentalSerbvice.CRS;
+package CarRentalService.crs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
