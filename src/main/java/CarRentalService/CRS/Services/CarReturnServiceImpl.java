@@ -1,9 +1,14 @@
 package CarRentalService.CRS.Services;
 
+import CarRentalService.CRS.Models.CarRental;
 import CarRentalService.CRS.Models.CarReturn;
 import CarRentalService.CRS.Repositories.CarReturnRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class CarReturnServiceImpl implements CarReturnService {
 
     @Autowired
@@ -69,5 +74,9 @@ public class CarReturnServiceImpl implements CarReturnService {
         carReturn.setAdditionalPayment(carAdditionalPayment);
         carReturnRepo.save(carReturn);
         return true;
+    }
+    @Override
+    public List<CarReturn> getAllCarReturns() {
+        return carReturnRepo.findAll();
     }
 }
