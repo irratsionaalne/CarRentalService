@@ -12,9 +12,9 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepo bookingRepo;
 
     @Override
-    public boolean createBooking(Booking booking) throws Exception {
+    public boolean createBooking(Booking booking) {
         if (booking == null) {
-            throw new Exception("Invalid booking");
+            return false;
         }
 
         booking.setActive(true);
@@ -24,44 +24,26 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public boolean updateBooking(Booking booking) {
-        if (booking == null || !bookingRepo.existsById(booking.getId())) {
-            return false;
-        }
-
-        bookingRepo.saveAndFlush(booking);
-        return true;
+        return false;
     }
 
     @Override
-    public boolean cancelBooking(Long bookingId) throws Exception {
-        Booking booking = getById(bookingId);
-        if (booking == null) {
-            throw new Exception("Booking does not exist");
-        }
-        booking.setActive(false);
-        updateBooking(booking);
-        return true;
+    public boolean cancelBooking(Long bookingId) {
+        return false;
     }
 
     @Override
-    public boolean restoreBooking(Long bookingId) throws Exception{
-        Booking booking = getById(bookingId);
-        if (booking == null) {
-            throw new Exception("Booking does not exist");
-        }
-
-        booking.setActive(true);
-        updateBooking(booking);
-        return true;
+    public boolean restoreBooking(Long bookingId) {
+        return false;
     }
 
     @Override
     public List<Booking> getAllBookings() {
-        return bookingRepo.findAll();
+        return null;
     }
 
     @Override
     public Booking getById(Long bookingId) {
-        return bookingRepo.getOne(bookingId);
+        return null;
     }
 }

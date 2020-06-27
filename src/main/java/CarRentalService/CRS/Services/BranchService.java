@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface BranchService {
 
-    boolean createBranch(Branch branch) throws Exception;
+    boolean createBranch(Branch branch);
 
     boolean updateBranch(Branch branch);
 
-    boolean deleteBranch(Long branchId) throws Exception;
+    boolean deleteBranch(Long branchId);
 
-    boolean restoreBranch(Long branchId) throws Exception;
+    boolean restoreBranch(Long branchId);
 
     List<Branch> getAllBranches();
 
