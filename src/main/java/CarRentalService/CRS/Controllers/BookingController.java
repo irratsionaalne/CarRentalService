@@ -81,7 +81,7 @@ public class BookingController {
         return showAllBookings(model);
     }
 
-    @GetMapping("/restore/{id}")
+/*    @GetMapping("/restore/{id}")
     public String restoreBooking(@PathVariable("id") Long bookingId, Model model) throws Exception {
         boolean restoreResult = bookingService.restoreBooking(bookingId);
 
@@ -93,6 +93,6 @@ public class BookingController {
             model.addAttribute("messageType", "error");
         }
         return showAllBookings(model);
-    }
+    }*/
 
 }

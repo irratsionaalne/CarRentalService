@@ -1,6 +1,7 @@
 package CarRentalService.CRS.Models;
 
 
+import com.sun.tools.javac.code.Attribute;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,5 +26,5 @@ public class Booking {
     @OneToOne
     private CarReturn carReturn;
     private String totalPrice;
-    private boolean isActive;
+    private String status;
 }

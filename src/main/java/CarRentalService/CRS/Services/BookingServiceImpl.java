@@ -19,7 +19,7 @@ public class BookingServiceImpl implements BookingService {
             throw new Exception("Invalid booking");
         }
 
-        booking.setActive(true);
+        booking.setStatus("ACTIVE");
         bookingRepo.save(booking);
         return true;
     }
@@ -40,22 +40,22 @@ public class BookingServiceImpl implements BookingService {
         if (booking == null) {
             throw new Exception("Booking does not exist");
         }
-        booking.setActive(false);
+        booking.setStatus("CANCELLED");
         updateBooking(booking);
         return true;
     }
 
-    @Override
+/*    @Override
     public boolean restoreBooking(Long bookingId) throws Exception{
         Booking booking = getById(bookingId);
         if (booking == null) {
             throw new Exception("Booking does not exist");
         }
 
-        booking.setActive(true);
+        booking.setStatus("ACTIVE");
         updateBooking(booking);
         return true;
-    }
+    }*/
 
     @Override
     public List<Booking> getAllBookings() {

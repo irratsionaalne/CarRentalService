@@ -12,7 +12,9 @@ public interface BookingService {
 
     boolean cancelBooking(Long bookingId) throws Exception;
 
+/*
     boolean restoreBooking(Long bookingId) throws Exception;
+*/
 
     List<Booking> getAllBookings();
 
