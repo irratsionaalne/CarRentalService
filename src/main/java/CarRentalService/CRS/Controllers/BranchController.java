@@ -15,7 +15,7 @@ public class BranchController {
     @Autowired
     private BranchService branchService;
 
-    @GetMapping("")
+    @GetMapping
     public String showAllBranches(Model model) {
         List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("branches", branches);
