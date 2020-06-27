@@ -70,7 +70,7 @@ public class BranchController {
         boolean deleteResult = branchService.deleteBranch(branchId);
 
         if (deleteResult) {
-            model.addAttribute("message", "Branch has been successfully cancelled");
+            model.addAttribute("message", "Branch has been successfully deleted");
             model.addAttribute("messageType", "success");
         } else {
             model.addAttribute("message", "Error in cancelling branch.");
