@@ -6,8 +6,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "employees")
-@Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Entity(name = "employee")
+@Table(name = "employee", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Data
 public class Employee {
 
