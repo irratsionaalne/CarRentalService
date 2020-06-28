@@ -2,16 +2,19 @@ package com.crs.controllers;
 
 
 import com.crs.models.Customer;
+import com.crs.models.Employee;
 import com.crs.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("customer")
 public class CustomerController {
 
 
@@ -19,73 +22,66 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("")
-    public String showAllCustomers(@ModelAttribute("messageType") String messageType, @ModelAttribute("message") String message,
-                                   Model model) {
+    public ModelAndView showAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
-        model.addAttribute("customers", customers);
-        return "customer/customer-list";
+        ModelAndView modelAndView = new ModelAndView("forms/listofcustomers");
+        modelAndView.addObject("customers", customers);
+        return modelAndView;
     }
 
     @GetMapping("/add")
-    public String addCustomerForm(@ModelAttribute("customer") Customer customer, @ModelAttribute("messageType") String messageType,
-                                  @ModelAttribute("message") String message) {
-        return "customer/customer-add";
+    public String addCustomerForm(Model model) {
+        return "add-customer";
     }
 
     @PostMapping("/add")
-    public String addCustomer(Customer customer, RedirectAttributes redirectAttributes) throws Exception {
+    public Object addCustomer(Customer customer, Model model) throws Exception {
         boolean createResult = customerService.createCustomer(customer);
 
         if (createResult) {
-            redirectAttributes.addFlashAttribute("message", "Customer has been successfully created.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-            return "redirect:/customer/";
+            model.addAttribute("message", "Customer has been successfully created.");
+            model.addAttribute("messageType", "success");
+            return showAllCustomers();
         }
-        redirectAttributes.addFlashAttribute("customer", customer);
-        redirectAttributes.addFlashAttribute("message", "Error in creating a customer!");
-        redirectAttributes.addFlashAttribute("messageType", "error");
-        return "redirect:/customer/add";
+        model.addAttribute("customer", customer);
+        model.addAttribute("message", "Error in creating a customer!");
+        model.addAttribute("messageType", "error");
+        return addCustomerForm(model);
 
     }
 
     @GetMapping("/update/{id}")
-    public String updateCustomerForm(@PathVariable("id") Long customerId, @RequestParam(value = "customer", required = false) Customer customer,
-                                     @ModelAttribute("messageType") String messageType,
-                                     @ModelAttribute("message") String message, Model model) {
-        if (customer == null) {
-            model.addAttribute("customer", customerService.getById(customerId));
-        }
-        return "customer/customer-update";
+    public String updateCustomerForm(Model model) {
+        return "update-customer";
     }
 
     @PutMapping("/update/{id}")
-    public String updateCustomer(@PathVariable("id") Long customerId, Customer customer, RedirectAttributes redirectAttributes) throws Exception {
+    public Object updateCustomer(@PathVariable("id") Long customerId, Customer customer, Model model) throws Exception {
         customer.setId(customerId);
         boolean updateResult = customerService.updateCustomer(customer);
 
         if (updateResult) {
-            redirectAttributes.addFlashAttribute("message", "Customer #" + customerId + " has been successfully updated.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-            return "redirect:/customer/";
+            model.addAttribute("message", "Customer has been successfully updated.");
+            model.addAttribute("messageType", "success");
+            return showAllCustomers();
         }
-        redirectAttributes.addAttribute("id", customerId);
-        redirectAttributes.addAttribute("customer", customer);
-        redirectAttributes.addFlashAttribute("message", "Error in updating this customer #" + customerId + "!");
-        redirectAttributes.addFlashAttribute("messageType", "error");
-        return "redirect:/customer/update/{id}";
+        model.addAttribute("customer", customer);
+        model.addAttribute("message", "Error in updating customer");
+        model.addAttribute("messageType", "error");
+        return updateCustomerForm(model);
 
     }
 
     @GetMapping("/delete/{id}")
-    public String setCustomerStatus(@PathVariable("id") Long customerId, RedirectAttributes redirectAttributes) throws Exception {
+    public String setCustomerStatus(@PathVariable("id") Long customerId, Model model) throws Exception {
         boolean deleteResult = customerService.setCustomerStatus(customerId);
 
         if (deleteResult) {
-            redirectAttributes.addFlashAttribute("message", "Customer #" + customerId + " has been successfully deleted.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
+            model.addAttribute("message", "Customer #" + customerId + " has been successfully deleted.");
+            model.addAttribute("messageType", "success");
         }
-        redirectAttributes.addFlashAttribute("message", "Error in deleting customer #" + customerId + "!");
-        redirectAttributes.addFlashAttribute("messageType", "error");
+        model.addAttribute("message", "Error in deleting customer #" + customerId + "!");
+        model.addAttribute("messageType", "error");
 
         return "redirect:/customer/";
     }

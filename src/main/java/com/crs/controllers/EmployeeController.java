@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
