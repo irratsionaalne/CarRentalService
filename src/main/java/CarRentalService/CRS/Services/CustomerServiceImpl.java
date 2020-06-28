@@ -1,6 +1,7 @@
 package CarRentalService.CRS.Services;
 
 import CarRentalService.CRS.Models.Customer;
+import CarRentalService.CRS.Models.Employee;
 import CarRentalService.CRS.Repositories.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +35,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean setCustomerStatus(Long customerId) throws Exception {
-        if (customer.isActive()) {
+        Customer customer = getById(customerId);
+        if (customer == null) {
+            throw new Exception("Customer does not exist");
+        }
+        if(customer.isActive()) {
             customer.setActive(false);
         }
         customer.setActive(true);
-        return true;
+        return updateCustomer(customer);
     }
 
     @Override
