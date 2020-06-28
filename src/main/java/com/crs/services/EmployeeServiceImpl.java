@@ -91,11 +91,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee save(UserRegistrationDto userRegistrationDto) {
         Employee employee = new Employee();
-        employee.setName(userRegistrationDto.getName());
+        employee.setFirstName(userRegistrationDto.getFirstName());
+        employee.setLastName(userRegistrationDto.getLastName());
         employee.setEmail(userRegistrationDto.getEmail());
         employee.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
-
-
         return employeeRepo.save(employee);
     }
 

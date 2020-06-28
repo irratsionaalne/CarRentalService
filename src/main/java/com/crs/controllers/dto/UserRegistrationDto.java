@@ -4,6 +4,7 @@ import com.crs.constraint.FieldMatch;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 
@@ -13,7 +14,10 @@ import javax.validation.constraints.NotEmpty;
 public class UserRegistrationDto {
 
     @NotEmpty
-    private String name;
+    private String firstName;
+
+    @NotEmpty
+    private String lastName;
 
     @NotEmpty
     private String password;
@@ -28,12 +32,20 @@ public class UserRegistrationDto {
     @AssertTrue
     private Boolean terms;
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
