@@ -10,9 +10,7 @@ public interface BranchService {
 
     boolean updateBranch(Branch branch);
 
-    boolean deleteBranch(Long branchId) throws Exception;
-
-    boolean restoreBranch(Long branchId) throws Exception;
+    boolean setBranchStatus(Long branchId) throws Exception;
 
     List<Branch> getAllBranches();
 

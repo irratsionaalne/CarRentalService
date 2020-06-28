@@ -13,9 +13,7 @@ public interface EmployeeService extends UserDetailsService {
 
     boolean updateEmployee(Employee employee);
 
-    boolean deleteEmployee(Long employeeId) throws Exception;
-
-    boolean restoreEmployee(Long employeeId) throws Exception;
+    boolean setEmployeeStatus(Long employeeId) throws Exception;
 
     List<Employee> getAllEmployees();
 

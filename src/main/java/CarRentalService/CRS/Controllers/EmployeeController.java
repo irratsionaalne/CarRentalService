@@ -40,12 +40,12 @@ public class EmployeeController {
             model.addAttribute("message", "Employee has been successfully created.");
             model.addAttribute("messageType", "success");
             return showAllEmployees(model);
-        } else {
-            model.addAttribute("employee", employee);
-            model.addAttribute("message", "Error in creating a employee.");
-            model.addAttribute("messageType", "error");
-            return addEmployeeForm(model);
         }
+        model.addAttribute("employee", employee);
+        model.addAttribute("message", "Error in creating a employee.");
+        model.addAttribute("messageType", "error");
+        return addEmployeeForm(model);
+
     }
 
     @GetMapping("/update")
@@ -53,7 +53,7 @@ public class EmployeeController {
         return "update-employee";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateEmployee(@PathVariable("id") Long employeeId, Employee employee, Model model) {
         employee.setId(employeeId);
         boolean updateResult = employeeService.updateEmployee(employee);
@@ -62,41 +62,28 @@ public class EmployeeController {
             model.addAttribute("message", "Employee has been successfully updated.");
             model.addAttribute("messageType", "success");
             return showAllEmployees(model);
-        } else {
-            model.addAttribute("employee", employee);
-            model.addAttribute("message", "Error in updating employee");
-            model.addAttribute("messageType", "error");
-            return updateEmployeeForm(model);
         }
+        model.addAttribute("employee", employee);
+        model.addAttribute("message", "Error in updating employee");
+        model.addAttribute("messageType", "error");
+        return updateEmployeeForm(model);
+
     }
 
     @GetMapping("/delete/{id}")
-    public String cancelEmployee(@PathVariable("id") Long employeeId, Model model) throws Exception {
-        boolean deleteResult = employeeService.deleteEmployee(employeeId);
+    public String setEmployeeStatus(@PathVariable("id") Long employeeId, Model model) throws Exception {
+        boolean deleteResult = employeeService.setEmployeeStatus(employeeId);
 
         if (deleteResult) {
             model.addAttribute("message", "Employee has been successfully deleted");
             model.addAttribute("messageType", "success");
-        } else {
-            model.addAttribute("message", "Error in cancelling employee.");
-            model.addAttribute("messageType", "error");
         }
+        model.addAttribute("message", "Error in cancelling employee.");
+        model.addAttribute("messageType", "error");
+
 
         return showAllEmployees(model);
     }
 
-    @GetMapping("/restore/{id}")
-    public String restoreEmployee(@PathVariable("id") Long employeeId, Model model) throws Exception {
-        boolean restoreResult = employeeService.restoreEmployee(employeeId);
-
-        if (restoreResult) {
-            model.addAttribute("message", "Employee has been successfully restored.");
-            model.addAttribute("messageType", "success");
-        } else {
-            model.addAttribute("message", "Error in restoring employee.");
-            model.addAttribute("messageType", "error");
-        }
-        return showAllEmployees(model);
-    }
 
 }

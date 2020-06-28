@@ -33,24 +33,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean deleteCustomer(Long customerId) throws Exception {
+    public boolean setCustomerStatus(Long customerId) throws Exception {
         Customer customer = getById(customerId);
         if (customer == null) {
             throw new Exception("Invalid deleting of Customer");
         }
-        customer.setActive(false);
-        deleteCustomer(customerId);
-        return true;
-    }
-
-    @Override
-    public boolean restoreCustomer(Long customerId) throws Exception {
-        Customer customer = getById(customerId);
-        if (customer == null) {
-            throw new Exception("Invalid restoration of Customer");
+        if (customer.isActive()) {
+            customer.setActive(false);
         }
         customer.setActive(true);
-        restoreCustomer(customerId);
         return true;
     }
 

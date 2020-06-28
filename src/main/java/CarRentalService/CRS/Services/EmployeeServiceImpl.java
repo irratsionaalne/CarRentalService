@@ -29,10 +29,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Employee findByLogin(String email) {
-        return employeeRepo.findByEmail(email);
-    }
-
     @Override
     public boolean createEmployee(Employee employee) throws Exception {
         if (employee == null) {
@@ -55,23 +51,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean deleteEmployee(Long employeeId) throws Exception {
+    public boolean setEmployeeStatus(Long employeeId) throws Exception {
         Employee employee = getById(employeeId);
         if (employee == null) {
             throw new Exception("Employee does not exist");
         }
-
-        employee.setActive(false);
-        return updateEmployee(employee);
-    }
-
-    @Override
-    public boolean restoreEmployee(Long employeeId) throws Exception {
-        Employee employee = getById(employeeId);
-        if (employee == null) {
-            throw new Exception("Employee does not exist");
+        if(employee.isActive()) {
+            employee.setActive(false);
         }
-
         employee.setActive(true);
         return updateEmployee(employee);
     }

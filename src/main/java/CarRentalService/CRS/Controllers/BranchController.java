@@ -36,12 +36,12 @@ public class BranchController {
             model.addAttribute("message", "Branch has been successfully created.");
             model.addAttribute("messageType", "success");
             return showAllBranches(model);
-        } else {
-            model.addAttribute("branch", branch);
-            model.addAttribute("message", "Error in creating a branch.");
-            model.addAttribute("messageType", "error");
-            return addBranchForm(model);
         }
+        model.addAttribute("branch", branch);
+        model.addAttribute("message", "Error in creating a branch.");
+        model.addAttribute("messageType", "error");
+        return addBranchForm(model);
+
     }
 
     @GetMapping("/update")
@@ -49,7 +49,7 @@ public class BranchController {
         return "update-branch";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateBranch(@PathVariable("id") Long branchId, Branch branch, Model model) {
         branch.setId(branchId);
         boolean updateResult = branchService.updateBranch(branch);
@@ -58,40 +58,26 @@ public class BranchController {
             model.addAttribute("message", "Branch has been successfully updated.");
             model.addAttribute("messageType", "success");
             return showAllBranches(model);
-        } else {
-            model.addAttribute("branch", branch);
-            model.addAttribute("message", "Error in updating branch");
-            model.addAttribute("messageType", "error");
-            return updateBranchForm(model);
         }
+        model.addAttribute("branch", branch);
+        model.addAttribute("message", "Error in updating branch");
+        model.addAttribute("messageType", "error");
+        return updateBranchForm(model);
+
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteBranch(@PathVariable("id") Long branchId, Model model) throws Exception {
-        boolean deleteResult = branchService.deleteBranch(branchId);
+    @PutMapping("/delete/{id}")
+    public String setBranchStatus(@PathVariable("id") Long branchId, Model model) throws Exception {
+        boolean deleteResult = branchService.setBranchStatus(branchId);
 
         if (deleteResult) {
             model.addAttribute("message", "Branch has been successfully deleted");
             model.addAttribute("messageType", "success");
-        } else {
-            model.addAttribute("message", "Error in cancelling branch.");
-            model.addAttribute("messageType", "error");
         }
+        model.addAttribute("message", "Error in cancelling branch.");
+        model.addAttribute("messageType", "error");
 
-        return showAllBranches(model);
-    }
 
-    @GetMapping("/restore/{id}")
-    public String restoreBranch(@PathVariable("id") Long branchId, Model model) throws Exception {
-        boolean restoreResult = branchService.restoreBranch(branchId);
-
-        if (restoreResult) {
-            model.addAttribute("message", "Branch has been successfully restored.");
-            model.addAttribute("messageType", "success");
-        } else {
-            model.addAttribute("message", "Error in restoring branch.");
-            model.addAttribute("messageType", "error");
-        }
         return showAllBranches(model);
     }
 

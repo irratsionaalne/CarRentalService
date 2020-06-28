@@ -40,12 +40,12 @@ public class CarController {
             redirectAttributes.addFlashAttribute("message", "Car has been successfully created.");
             redirectAttributes.addFlashAttribute("messageType", "success");
             return "redirect:/car/";
-        } else {
-            redirectAttributes.addFlashAttribute("car", car);
-            redirectAttributes.addFlashAttribute("message", "Error in creating a car!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-            return "redirect:/car/add";
         }
+        redirectAttributes.addFlashAttribute("car", car);
+        redirectAttributes.addFlashAttribute("message", "Error in creating a car!");
+        redirectAttributes.addFlashAttribute("messageType", "error");
+        return "redirect:/car/add";
+
     }
 
     @GetMapping("/update/{id}")
@@ -58,7 +58,7 @@ public class CarController {
         return "car/car-update";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateCar(@PathVariable("id") Long carId, Car car, RedirectAttributes redirectAttributes) throws Exception {
         car.setId(carId);
         boolean updateResult = carService.updateCar(car);
@@ -67,40 +67,26 @@ public class CarController {
             redirectAttributes.addFlashAttribute("message", "Car #" + carId + " has been successfully updated.");
             redirectAttributes.addFlashAttribute("messageType", "success");
             return "redirect:/car/";
-        } else {
-            redirectAttributes.addAttribute("id", carId);
-            redirectAttributes.addAttribute("car", car);
-            redirectAttributes.addFlashAttribute("message", "Error in updating this car #" + carId + "!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-            return "redirect:/car/update/{id}";
         }
+        redirectAttributes.addAttribute("id", carId);
+        redirectAttributes.addAttribute("car", car);
+        redirectAttributes.addFlashAttribute("message", "Error in updating this car #" + carId + "!");
+        redirectAttributes.addFlashAttribute("messageType", "error");
+        return "redirect:/car/update/{id}";
+
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteCar(@PathVariable("id") Long carId, RedirectAttributes redirectAttributes) throws Exception {
-        boolean deleteResult = carService.deleteCar(carId);
+    @PutMapping("/delete/{id}")
+    public String setCarStatus(@PathVariable("id") Long carId, RedirectAttributes redirectAttributes) throws Exception {
+        boolean deleteResult = carService.setCarStatus(carId);
 
         if (deleteResult) {
             redirectAttributes.addFlashAttribute("message", "Car #" + carId + " has been successfully deleted.");
             redirectAttributes.addFlashAttribute("messageType", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Error in deleting car #" + carId + "!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
         }
-        return "redirect:/car/";
-    }
+        redirectAttributes.addFlashAttribute("message", "Error in deleting car #" + carId + "!");
+        redirectAttributes.addFlashAttribute("messageType", "error");
 
-    @GetMapping("/restore/{id}")
-    public String restoreCar(@PathVariable("id") Long carId, RedirectAttributes redirectAttributes) throws Exception {
-        boolean restoreResult = carService.restoreCar(carId);
-
-        if (restoreResult) {
-            redirectAttributes.addFlashAttribute("message", "Car #" + carId + " has been successfully restored.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Error in restoring car #" + carId + "!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-        }
         return "redirect:/car/";
     }
 

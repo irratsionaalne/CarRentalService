@@ -34,24 +34,15 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public boolean deleteCar(Long carId) throws Exception {
+    public boolean setCarStatus(Long carId) throws Exception {
         Car car = getById(carId);
         if (car == null) {
             throw new Exception("Invalid deleting of Car");
         }
-        car.setActive(false);
-        deleteCar(carId);
-        return true;
-    }
-
-    @Override
-    public boolean restoreCar(Long carId) throws Exception {
-        Car car = getById(carId);
-        if (car == null) {
-            throw new Exception("Invalid restoration of  Customer");
+        if(car.isActive()) {
+            car.setActive(false);
         }
         car.setActive(true);
-        restoreCar(carId);
         return true;
     }
 

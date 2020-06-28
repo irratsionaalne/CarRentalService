@@ -5,10 +5,7 @@ import CarRentalService.CRS.Services.CarRentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,12 +39,12 @@ public class CarRentalController {
             model.addAttribute("message", "Car has been successfully rented.");
             model.addAttribute("messageType", "success");
             return showAllCarRents(model);
-        } else {
-            model.addAttribute("car-rental", carRental);
-            model.addAttribute("message", "Error renting a car!");
-            model.addAttribute("messageType", "error");
-            return addCarRentalForm(model);
         }
+        model.addAttribute("car-rental", carRental);
+        model.addAttribute("message", "Error renting a car!");
+        model.addAttribute("messageType", "error");
+        return addCarRentalForm(model);
+
     }
 
     @GetMapping("/update")
@@ -55,7 +52,7 @@ public class CarRentalController {
         return "update-car-rental";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateCarRental(@PathVariable("id") Long carRentalId, CarRental carRental, Model model) throws Exception {
         carRental.setId(carRentalId);
         boolean updateResult = carRentalService.updateCarRental(carRental);
@@ -64,44 +61,28 @@ public class CarRentalController {
             model.addAttribute("message", "Car rent has been successfully updated.");
             model.addAttribute("messageType", "success");
             return showAllCarRents(model);
-        } else {
-            model.addAttribute("car-rent", carRental);
-            model.addAttribute("message", "Error in updating a car rent!");
-            model.addAttribute("messageType", "error");
-            return updateCarRentalForm(model);
         }
+        model.addAttribute("car-rent", carRental);
+        model.addAttribute("message", "Error in updating a car rent!");
+        model.addAttribute("messageType", "error");
+        return updateCarRentalForm(model);
+
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCarRental(@PathVariable("id") Long carRentalId, Model model) throws Exception {
-        boolean deleteResult = carRentalService.deleteCarRental(carRentalId);
+    public String setCarRentalStatus(@PathVariable("id") Long carRentalId, Model model) throws Exception {
+        boolean deleteResult = carRentalService.setCarRentalStatus(carRentalId);
 
         if (deleteResult) {
             model.addAttribute("message", "Car rent order has been successfully deleted.");
             model.addAttribute("messageType", "success");
-        } else {
-            model.addAttribute("message", "Error in deleting a car rent order!");
-            model.addAttribute("messageType", "error");
         }
+        model.addAttribute("message", "Error in deleting a car rent order!");
+        model.addAttribute("messageType", "error");
+
 
         return showAllCarRents(model);
     }
-
-    /*@GetMapping("/restore/{id}")
-    public String restoreCarRental(@PathVariable("id") Long carRentalId, Model model) throws Exception {
-        boolean deleteResult = carRentalService.restoreCarRental(carRentalId);
-
-        if (deleteResult) {
-            model.addAttribute("message", "Car rent has been successfully restored.");
-            model.addAttribute("messageType", "success");
-        } else {
-            model.addAttribute("message", "Error in restoring a car rent!");
-            model.addAttribute("messageType", "error");
-        }
-
-        return showAllCarRents(model);
-    }*/
-
 
 
 }

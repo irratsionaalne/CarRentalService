@@ -11,9 +11,7 @@ public interface CarReturnService {
 
     boolean updateCarReturn(CarReturn carReturn) throws Exception;
 
-    boolean deleteCarReturn(Long carReturnId) throws Exception;
-
-    boolean restoreCarReturn(Long carReturnId) throws Exception;
+    boolean setCarReturnStatus(Long carReturnId) throws Exception;
 
     CarReturn getById(Long carReturnId);
 

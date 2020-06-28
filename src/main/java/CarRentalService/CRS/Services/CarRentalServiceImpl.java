@@ -33,26 +33,16 @@ public class CarRentalServiceImpl implements CarRentalService {
     }
 
     @Override
-    public boolean deleteCarRental(Long carRentalId) throws Exception {
+    public boolean setCarRentalStatus(Long carRentalId) throws Exception {
         CarRental carRental = getById(carRentalId);
         if (carRentalId == null) {
             throw new Exception("Invalid input ... ");
         }
-        carRental.setActive(false);
-        updateCarRental(carRental);
-        return true;
-    }
-
-    @Override
-    public boolean restoreCarRental(Long carRentalId) throws Exception {
-
-        CarRental carRental= getById(carRentalId);
-        if (carRental == null) {
-            throw new Exception("Invalid input ... ");
+        if (carRental.isActive()) {
+            carRental.setActive(false);
         }
-
         carRental.setActive(true);
-        return updateCarRental(carRental);
+        return true;
     }
 
     @Override

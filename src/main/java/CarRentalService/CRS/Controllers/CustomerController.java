@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 
 @Controller
@@ -40,12 +41,12 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("message", "Customer has been successfully created.");
             redirectAttributes.addFlashAttribute("messageType", "success");
             return "redirect:/customer/";
-        } else {
-            redirectAttributes.addFlashAttribute("customer", customer);
-            redirectAttributes.addFlashAttribute("message", "Error in creating a customer!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-            return "redirect:/customer/add";
         }
+        redirectAttributes.addFlashAttribute("customer", customer);
+        redirectAttributes.addFlashAttribute("message", "Error in creating a customer!");
+        redirectAttributes.addFlashAttribute("messageType", "error");
+        return "redirect:/customer/add";
+
     }
 
     @GetMapping("/update/{id}")
@@ -58,7 +59,7 @@ public class CustomerController {
         return "customer/customer-update";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateCustomer(@PathVariable("id") Long customerId, Customer customer, RedirectAttributes redirectAttributes) throws Exception {
         customer.setId(customerId);
         boolean updateResult = customerService.updateCustomer(customer);
@@ -67,40 +68,26 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("message", "Customer #" + customerId + " has been successfully updated.");
             redirectAttributes.addFlashAttribute("messageType", "success");
             return "redirect:/customer/";
-        } else {
-            redirectAttributes.addAttribute("id", customerId);
-            redirectAttributes.addAttribute("customer", customer);
-            redirectAttributes.addFlashAttribute("message", "Error in updating this customer #" + customerId + "!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-            return "redirect:/customer/update/{id}";
         }
+        redirectAttributes.addAttribute("id", customerId);
+        redirectAttributes.addAttribute("customer", customer);
+        redirectAttributes.addFlashAttribute("message", "Error in updating this customer #" + customerId + "!");
+        redirectAttributes.addFlashAttribute("messageType", "error");
+        return "redirect:/customer/update/{id}";
+
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable("id") Long customerId, RedirectAttributes redirectAttributes) throws Exception {
-        boolean deleteResult = customerService.deleteCustomer(customerId);
+    public String setCustomerStatus(@PathVariable("id") Long customerId, RedirectAttributes redirectAttributes) throws Exception {
+        boolean deleteResult = customerService.setCustomerStatus(customerId);
 
         if (deleteResult) {
             redirectAttributes.addFlashAttribute("message", "Customer #" + customerId + " has been successfully deleted.");
             redirectAttributes.addFlashAttribute("messageType", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Error in deleting customer #" + customerId + "!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
         }
-        return "redirect:/customer/";
-    }
+        redirectAttributes.addFlashAttribute("message", "Error in deleting customer #" + customerId + "!");
+        redirectAttributes.addFlashAttribute("messageType", "error");
 
-    @GetMapping("/restore/{id}")
-    public String restoreCustomer(@PathVariable("id") Long customerId, RedirectAttributes redirectAttributes) throws Exception {
-        boolean restoreResult = customerService.restoreCustomer(customerId);
-
-        if (restoreResult) {
-            redirectAttributes.addFlashAttribute("message", "Customer #" + customerId + " has been successfully restored.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Error in restoring customer #" + customerId + "!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-        }
         return "redirect:/customer/";
     }
 }

@@ -35,12 +35,12 @@ public class OfficeController {
             model.addAttribute("message", "Office has been successfully created.");
             model.addAttribute("messageType", "success");
             return showAllOffices(model);
-        } else {
-            model.addAttribute("office", office);
-            model.addAttribute("message", "Error in creating a office.");
-            model.addAttribute("messageType", "error");
-            return addOfficeForm(model);
         }
+        model.addAttribute("office", office);
+        model.addAttribute("message", "Error in creating a office.");
+        model.addAttribute("messageType", "error");
+        return addOfficeForm(model);
+
     }
 
     @GetMapping("/update")
@@ -48,7 +48,7 @@ public class OfficeController {
         return "update-office";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateOffice(@PathVariable("id") Long officeId, Office office, Model model) {
         office.setId(officeId);
         boolean updateResult = officeService.updateOffice(office);
@@ -57,12 +57,12 @@ public class OfficeController {
             model.addAttribute("message", "Office has been successfully updated.");
             model.addAttribute("messageType", "success");
             return showAllOffices(model);
-        } else {
-            model.addAttribute("office", office);
-            model.addAttribute("message", "Error in updating office");
-            model.addAttribute("messageType", "error");
-            return updateOfficeForm(model);
         }
+        model.addAttribute("office", office);
+        model.addAttribute("message", "Error in updating office");
+        model.addAttribute("messageType", "error");
+        return updateOfficeForm(model);
+
     }
 
 }

@@ -35,23 +35,14 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public boolean deleteBranch(Long branchId) throws Exception {
+    public boolean setBranchStatus(Long branchId) throws Exception {
         Branch branch = getById(branchId);
         if (branch == null) {
             throw new Exception("Branch does not exist");
         }
-        branch.setActive(false);
-        updateBranch(branch);
-        return true;
-    }
-
-    @Override
-    public boolean restoreBranch(Long branchId) throws Exception {
-        Branch branch= getById(branchId);
-        if (branch == null) {
-            throw new Exception("Branch does not exist");
+        if (branch.isActive()) {
+            branch.setActive(false);
         }
-
         branch.setActive(true);
         updateBranch(branch);
         return true;

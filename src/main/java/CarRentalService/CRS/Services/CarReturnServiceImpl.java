@@ -33,26 +33,17 @@ public class CarReturnServiceImpl implements CarReturnService {
     }
 
     @Override
-    public boolean deleteCarReturn(Long carReturnId) throws Exception {
+    public boolean setCarReturnStatus(Long carReturnId) throws Exception {
         CarReturn carReturn = getById(carReturnId);
         if (carReturnId == null) {
             throw new Exception("Invalid input ... ");
         }
-        carReturn.setActive(false);
+        if(carReturn.isActive()) {
+            carReturn.setActive(false);
+        }
+        carReturn.setActive(true);
         updateCarReturn(carReturn);
         return true;
-    }
-
-    @Override
-    public boolean restoreCarReturn(Long carReturnId) throws Exception {
-        CarReturn carReturn= getById(carReturnId);
-        if (carReturn == null) {
-            throw new Exception("Invalid input ... ");
-        }
-
-        carReturn.setActive(true);
-        return updateCarReturn(carReturn);
-
     }
 
     @Override
