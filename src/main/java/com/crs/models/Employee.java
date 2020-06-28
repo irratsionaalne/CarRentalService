@@ -22,7 +22,7 @@ public class Employee {
     private Branch branch;
     @OneToMany
     private Set<Booking> bookings;
-    private boolean isActive;
+    private boolean isActive = true;
     private String password;
 
     public Employee() {
