@@ -10,9 +10,7 @@ public interface CarService {
 
     boolean updateCar(Car car) throws Exception;
 
-    boolean deleteCar(Long carId) throws Exception;
-
-    boolean restoreCar(Long carId) throws Exception;
+    boolean setCarStatus(Long carId) throws Exception;
 
     List<Car> getAllCars();
 

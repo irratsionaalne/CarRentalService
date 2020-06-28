@@ -10,11 +10,11 @@ public interface CarRentalService {
 
     boolean updateCarRental(CarRental carRental) throws Exception;
 
-    boolean deleteCarRental(Long carRentalId) throws Exception;
-
-    boolean restoreCarRental(Long carRentalId) throws Exception;
+    boolean setCarRentalStatus(Long carRentalId) throws Exception;
 
     CarRental getById(Long carRentalId);
 
     boolean addComment(Long carRentalId,String carRentalComment);
+
+    List<CarRental> getAllCarRentals();
 }

@@ -10,11 +10,9 @@ public interface CustomerService {
 
     boolean updateCustomer(Customer customer) throws Exception;
 
-    boolean deleteCustomer(Long customerId) throws Exception;
-
-    boolean restoreCustomer(Long customerId) throws Exception;
+    boolean setCustomerStatus(Long customerId) throws Exception;
 
     List<Customer> getAllCustomers();
-
+  
     Customer getById(Long customerId);
 }

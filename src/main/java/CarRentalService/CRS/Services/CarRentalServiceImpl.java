@@ -3,8 +3,13 @@ package CarRentalService.CRS.Services;
 import CarRentalService.CRS.Models.CarRental;
 import CarRentalService.CRS.Repositories.CarRentalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class CarRentalServiceImpl implements CarRentalService {
+
     
     @Autowired
     private CarRentalRepo carRentalRepo;
@@ -28,26 +33,16 @@ public class CarRentalServiceImpl implements CarRentalService {
     }
 
     @Override
-    public boolean deleteCarRental(Long carRentalId) throws Exception {
+    public boolean setCarRentalStatus(Long carRentalId) throws Exception {
         CarRental carRental = getById(carRentalId);
         if (carRentalId == null) {
             throw new Exception("Invalid input ... ");
         }
-        carRental.setActive(false);
-        updateCarRental(carRental);
-        return true;
-    }
-
-    @Override
-    public boolean restoreCarRental(Long carRentalId) throws Exception {
-
-        CarRental carRental= getById(carRentalId);
-        if (carRental == null) {
-            throw new Exception("Invalid input ... ");
+        if (carRental.isActive()) {
+            carRental.setActive(false);
         }
-
         carRental.setActive(true);
-        return updateCarRental(carRental);
+        return true;
     }
 
     @Override
@@ -61,5 +56,9 @@ public class CarRentalServiceImpl implements CarRentalService {
             carRental.setComment(carRentalComment);
             carRentalRepo.save(carRental);
             return true;
+    }
+    @Override
+    public List<CarRental> getAllCarRentals() {
+        return carRentalRepo.findAll();
     }
 }
