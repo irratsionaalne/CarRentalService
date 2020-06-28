@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/login")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -19,7 +19,12 @@ public class EmployeeController {
     public String showAllEmployees(Model model) {
         List<Employee> employees = employeeService.getAllEmployees();
         model.addAttribute("employees", employees);
-        return "show-all-employees";
+        return "login";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
     }
 
     @GetMapping("/add")
