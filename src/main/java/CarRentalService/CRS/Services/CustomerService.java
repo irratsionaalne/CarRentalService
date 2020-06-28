@@ -13,6 +13,6 @@ public interface CustomerService {
     boolean setCustomerStatus(Long customerId) throws Exception;
 
     List<Customer> getAllCustomers();
-
+  
     Customer getById(Long customerId);
 }

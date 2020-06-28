@@ -35,6 +35,7 @@ public class CarServiceImpl implements CarService{
 
     @Override
     public boolean setCarStatus(Long carId) throws Exception {
+
         Car car = getById(carId);
         if (car == null) {
             throw new Exception("Invalid deleting of Car");

@@ -34,10 +34,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean setCustomerStatus(Long customerId) throws Exception {
-        Customer customer = getById(customerId);
-        if (customer == null) {
-            throw new Exception("Invalid deleting of Customer");
-        }
         if (customer.isActive()) {
             customer.setActive(false);
         }
