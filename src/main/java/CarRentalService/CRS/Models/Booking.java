@@ -1,7 +1,5 @@
 package CarRentalService.CRS.Models;
 
-
-import com.sun.tools.javac.code.Attribute;
 import lombok.Data;
 
 import javax.persistence.*;
