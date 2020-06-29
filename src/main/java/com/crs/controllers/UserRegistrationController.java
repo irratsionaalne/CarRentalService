@@ -38,7 +38,7 @@ public class UserRegistrationController {
 
         Employee existing = employeeService.findByEmail(userDto.getEmail());
         if (existing != null) {
-            result.rejectValue("login", null, "There is already an account registered with that login");
+            result.rejectValue("email", null, "There is already an account registered with that login");
         }
 
         if (result.hasErrors()) {
@@ -46,6 +46,6 @@ public class UserRegistrationController {
         }
 
         employeeService.save(userDto);
-        return "redirect:/registration?success";
+        return "login";
     }
 }

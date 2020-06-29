@@ -6,20 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/login")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping
-    public String showAllEmployees(Model model) {
+    public ModelAndView showAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
-        model.addAttribute("employees", employees);
-        return "login";
+        ModelAndView modelAndView = new ModelAndView("forms/listofemployees");
+        modelAndView.addObject("employees", employees);
+        return modelAndView;
     }
 
     @GetMapping("/login")
@@ -33,13 +34,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public String addEmployee(Employee employee, Model model) throws Exception {
+    public Object addEmployee(Employee employee, Model model) throws Exception {
         boolean createResult = employeeService.createEmployee(employee);
 
         if (createResult) {
             model.addAttribute("message", "Employee has been successfully created.");
             model.addAttribute("messageType", "success");
-            return showAllEmployees(model);
+            return showAllEmployees();
         }
         model.addAttribute("employee", employee);
         model.addAttribute("message", "Error in creating a employee.");
@@ -54,14 +55,14 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateEmployee(@PathVariable("id") Long employeeId, Employee employee, Model model) {
+    public Object updateEmployee(@PathVariable("id") Long employeeId, Employee employee, Model model) {
         employee.setId(employeeId);
         boolean updateResult = employeeService.updateEmployee(employee);
 
         if (updateResult) {
             model.addAttribute("message", "Employee has been successfully updated.");
             model.addAttribute("messageType", "success");
-            return showAllEmployees(model);
+            return showAllEmployees();
         }
         model.addAttribute("employee", employee);
         model.addAttribute("message", "Error in updating employee");
@@ -71,7 +72,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete/{id}")
-    public String setEmployeeStatus(@PathVariable("id") Long employeeId, Model model) throws Exception {
+    public ModelAndView setEmployeeStatus(@PathVariable("id") Long employeeId, Model model) throws Exception {
         boolean deleteResult = employeeService.setEmployeeStatus(employeeId);
 
         if (deleteResult) {
@@ -81,9 +82,7 @@ public class EmployeeController {
         model.addAttribute("message", "Error in cancelling employee.");
         model.addAttribute("messageType", "error");
 
-
-        return showAllEmployees(model);
+        return showAllEmployees();
     }
-
 
 }
