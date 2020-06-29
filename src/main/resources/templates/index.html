@@ -6,19 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" type="text/css"
-          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
 
     <title>Home</title>
 </head>
 <body>
-
-<br>
-<br>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">CRS</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Bookings <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage DB
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Cars</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Branches</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Employees</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Customers</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/revenue.html" th:href="@{/revenue}">Revenue</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <h2>
-        Welcome <span sec:authentication="principal.username">User</span>
+    <h2 class="display-4">
+        Welcome <span sec:authentication="principal.username"><strong>User</strong></span>
+        <!--Welcome <span th:text="${#authentication.getPrincipal()}"><strong></strong></span>-->
     </h2>
+    <br/>
+    <br/>
+    <div class="jumbotron jumbotron-fluid">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Booking Id" aria-label="Booking Id">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <br/>
+        <button class="btn btn-outline-success" type="button">ADD</button>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">Something here...</h1>
+            <p class="lead">Something else here...</p>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+
     <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a></p>
 </div>
 
