@@ -1,6 +1,7 @@
 body{
     background-color: #8bd0fb;
 }
+
 ul{
     list-style-type: none;
 }
@@ -9,25 +10,21 @@ ul{
     text-align: center;
     color: whitesmoke;
 }
-
 .nav-item, .nav-link, .dropdown-item{
     margin: 10px;
     padding-right: 10px;
     font-weight: bolder;
     text-decoration: none;
 }
-
 .navbar-custom, #navbarSupportedContent,.dropdown-menu {
     background-color: rgb(33, 33, 33) !important;
 }
-
 .navbar{
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100% !important;
     background-color: rgb(33, 33, 33) !important;
 }
-
 .navbar a:hover{
     background-color: #8bd0fb;
     color: black;
@@ -35,18 +32,58 @@ ul{
     padding-right: 10px;
     text-decoration: none;
 }
-
 .navbar a:focus, .navbar a:after{
     background-color: #eee;
     color: black;
     text-align: center;
     text-decoration: none;
 }
-
-.container{
-    margin-top: 50px;
-}
-
 .dropdown-divider{
     color: grey;
+}
+
+.container{
+    margin-top: 40px;
+}
+.container .jumbotron, .container-fluid .jumbotron, .jumbotron {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+h3{
+    margin-top: 1px;
+    padding-top: 1px;
+}
+
+form.bookings{
+    width: 80%;
+}
+form.bookings input[type=text] {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid rgba(139, 208, 251, 0.3);
+    float: left;
+    width: 80%;
+    background-color: rgba(139, 208, 251, 0.3);
+}
+form.bookings button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: whitesmoke;
+    font-size: 16px;
+    border: 2px solid #2196F3;
+    border-left: none;
+    cursor: pointer;
+}
+form.bookings button:hover {
+    background: #0b7dda;
+}
+form.bookings::after {
+    content: "";
+    clear: both;
+    display: table;
 }
