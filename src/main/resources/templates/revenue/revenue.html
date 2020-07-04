@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link href="../../static/css/stylesRegLogin.css" th:href="@{/static/css/stylesRegLogin.css}" rel="stylesheet" />
+
+    <title>Revenue</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2 class="display-4">
+                    Welcome <span sec:authentication="principal.username">User</span>
+                </h2>
+                <div class="jumbotron">
+                    <div class="container">
+                        <h1 class="display-3">This is the REVENUE SECTION...</h1>
+                        <p class="lead">Some tables here...</p>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Branch</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Employee</th>
+                                <th scope="col">Is Active</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Tartu</td>
+                                <td>Tesla</td>
+                                <td>Cybertruck</td>
+                                <td>Employee1</td>
+                                <td>True</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        >
+    </div>
+    <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a></p>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("employee")
+
+@RequestMapping("/employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -19,15 +20,12 @@ public class EmployeeController {
     @GetMapping
     public ModelAndView showAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
-        ModelAndView modelAndView = new ModelAndView("forms/listofemployees");
+        ModelAndView modelAndView = new ModelAndView("employee/listofemployees");
         modelAndView.addObject("employees", employees);
         return modelAndView;
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
+
 
     @GetMapping("/add")
     public String addEmployeeForm(Model model) {
