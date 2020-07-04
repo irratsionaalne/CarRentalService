@@ -1,21 +1,26 @@
 package com.crs.controllers;
 
+import com.crs.controllers.dto.CustomerRegistrationDto;
+import com.crs.controllers.dto.EmployeeRegistrationDto;
 import com.crs.models.Employee;
 import com.crs.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-
 @RequestMapping("/employee")
+@RequiredArgsConstructor
+@Slf4j
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
+
+    private final EmployeeService employeeService;
 
     @GetMapping
     public ModelAndView showAllEmployees() {
@@ -25,26 +30,28 @@ public class EmployeeController {
         return modelAndView;
     }
 
-
-
-    @GetMapping("/add")
-    public String addEmployeeForm(Model model) {
-        return "add-employee";
+    @ModelAttribute("employee")
+    public EmployeeRegistrationDto employeeRegistrationDto() {
+        return new EmployeeRegistrationDto();
     }
 
-    @PostMapping("/add")
-    public Object addEmployee(Employee employee, Model model) throws Exception {
-        boolean createResult = employeeService.createEmployee(employee);
+    @GetMapping("/add-employee")
+    public String addEmployeeForm(Model model) {
+        return "employee/add-employee";
+    }
 
-        if (createResult) {
-            model.addAttribute("message", "Employee has been successfully created.");
-            model.addAttribute("messageType", "success");
-            return showAllEmployees();
+    @PostMapping("/add-employee")
+    public Object addEmployee(@ModelAttribute("employee") @Valid EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
+        Employee employee = employeeService.createEmployee(employeeRegistrationDto);
+        log.info("Logging addEmployee in Controller");
+        if (employee != null) {
+            return "redirect:/employee";
         }
-        model.addAttribute("employee", employee);
-        model.addAttribute("message", "Error in creating a employee.");
-        model.addAttribute("messageType", "error");
-        return addEmployeeForm(model);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", "Error in creating an employee!");
+        modelAndView.addObject("messageType", "error");
+        modelAndView.setViewName("employee/add-employee");
+        return modelAndView;
 
     }
 
@@ -68,20 +75,6 @@ public class EmployeeController {
         model.addAttribute("messageType", "error");
         return updateEmployeeForm(model);
 
-    }
-
-    @GetMapping("/delete/{id}")
-    public ModelAndView setEmployeeStatus(@PathVariable("id") Long employeeId, Model model) throws Exception {
-        boolean deleteResult = employeeService.setEmployeeStatus(employeeId);
-
-        if (deleteResult) {
-            model.addAttribute("message", "Employee has been successfully deleted");
-            model.addAttribute("messageType", "success");
-        }
-        model.addAttribute("message", "Error in cancelling employee.");
-        model.addAttribute("messageType", "error");
-
-        return showAllEmployees();
     }
 
 }

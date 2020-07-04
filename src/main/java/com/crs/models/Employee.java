@@ -7,22 +7,18 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "employee")
-@Table(name = "employee", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "employee")
 @Data
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String jobPosition;
-    @ManyToOne
-    private Branch branch;
+    private EmployeeRole role;
+    private String branch;
     @OneToMany
     private Set<Booking> bookings;
-    private boolean isActive = true;
-    private String password;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private User user;
 
 }

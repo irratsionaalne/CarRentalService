@@ -1,10 +1,13 @@
 package com.crs.controllers;
 
 
+import com.crs.controllers.dto.CustomerRegistrationDto;
 import com.crs.controllers.dto.UserRegistrationDto;
-import com.crs.models.Employee;
-import com.crs.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.crs.models.User;
+import com.crs.repositories.UserRepo;
+import com.crs.services.CustomerService;
+import com.crs.services.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,14 +20,18 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/registration")
-public class UserRegistrationController {
+@RequiredArgsConstructor
+public class CustomerRegistrationController {
 
-    @Autowired
-    private EmployeeService employeeService;
 
-    @ModelAttribute("employee")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    private final UserServiceImpl userService;
+
+    private final CustomerService customerService;
+
+
+    @ModelAttribute("customer")
+    public CustomerRegistrationDto customerRegistrationDto() {
+        return new CustomerRegistrationDto();
     }
 
     @GetMapping
@@ -33,11 +40,10 @@ public class UserRegistrationController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result) {
+    public String registerCustomer(@ModelAttribute("customer") @Valid CustomerRegistrationDto customerRegistrationDto,
+                                      BindingResult result) throws Exception {
 
-        Employee existing = employeeService.findByEmail(userDto.getEmail());
-        if (existing != null) {
+        if(userService.doesUserExist(customerRegistrationDto.getEmail())) {
             result.rejectValue("email", null, "There is already an account registered with that login");
         }
 
@@ -45,7 +51,7 @@ public class UserRegistrationController {
             return "registration";
         }
 
-        employeeService.save(userDto);
+        customerService.createCustomer(customerRegistrationDto);
         return "login";
     }
 }

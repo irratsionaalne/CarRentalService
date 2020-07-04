@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("booking")
 public class BookingController {
 
     @Autowired
@@ -20,11 +21,6 @@ public class BookingController {
         List<Booking> bookings = bookingService.getAllBookings();
         model.addAttribute("bookings", bookings);
         return "index";
-    }
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
     }
 
     @GetMapping("/add")
