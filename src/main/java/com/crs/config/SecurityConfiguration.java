@@ -30,8 +30,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/img/**",
                         "/webjars/**",
                         "/login**",
-                        "/employee/add-employee",
-                        "/add-employee",
                         "/home**",
                         "/"
                         )
@@ -41,7 +39,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .failureUrl("/home")
                 .permitAll()
                 .and()
                 .logout()
