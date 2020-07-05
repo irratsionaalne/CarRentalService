@@ -1,93 +1,76 @@
 package com.crs.controllers;
 
 
+import com.crs.controllers.dto.CarDto;
 import com.crs.models.Car;
 import com.crs.services.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/car")
+@RequiredArgsConstructor
 public class CarController {
 
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
 
     @GetMapping("")
-    public String showAllCars(@ModelAttribute("messageType") String messageType, @ModelAttribute("message") String message,
-                              Model model) {
+    public ModelAndView showAllCars() {
         List<Car> cars = carService.getAllCars();
-        model.addAttribute("cars", cars);
-        return "car/listofcars";
+        ModelAndView modelAndView = new ModelAndView("car/listofcars");
+        modelAndView.addObject("cars", cars);
+        return modelAndView;
     }
 
-    @GetMapping("/add")
-    public String addCarForm(@ModelAttribute("car") Car car, @ModelAttribute("messageType") String messageType,
-                             @ModelAttribute("message") String message) {
-        return "car/car-add";
+    @ModelAttribute("car")
+    public CarDto carDto() {
+        return new CarDto();
     }
 
-    @PostMapping("/add")
-    public String addCar(Car car, RedirectAttributes redirectAttributes) throws Exception {
-        boolean createResult = carService.createCar(car);
+    @GetMapping("/add-car")
+    public String addCarForm(Model model) {
+        return "car/add-car";
+    }
 
-        if (createResult) {
-            redirectAttributes.addFlashAttribute("message", "Car has been successfully created.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-            return "redirect:/car/";
+    @PostMapping("/add-car")
+    public Object addCar(@ModelAttribute("car") @Valid CarDto carDto) throws Exception {
+        Car car = carService.createCar(carDto);
+
+        if (car != null) {
+            return "redirect:/login";
         }
-        redirectAttributes.addFlashAttribute("car", car);
-        redirectAttributes.addFlashAttribute("message", "Error in creating a car!");
-        redirectAttributes.addFlashAttribute("messageType", "error");
-        return "redirect:/car/add";
-
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", "Error in creating a car!");
+        modelAndView.addObject("messageType", "error");
+        modelAndView.setViewName("car/add-car");
+        return modelAndView;
     }
 
-    @GetMapping("/update/{id}")
-    public String updateCarForm(@PathVariable("id") Long carId, @RequestParam(value = "car", required = false) Car car,
-                                @ModelAttribute("messageType") String messageType,
-                                @ModelAttribute("message") String message, Model model) {
-        if (car == null) {
-            model.addAttribute("car", carService.getById(carId));
-        }
-        return "car/car-update";
+    @GetMapping("/update")
+    public String updateCarForm(Model model) {
+        return "update-car";
     }
 
     @PutMapping("/update/{id}")
-    public String updateCar(@PathVariable("id") Long carId, Car car, RedirectAttributes redirectAttributes) throws Exception {
+    public Object updateCar(@PathVariable("id") Long carId, Car car, Model model) throws Exception {
         car.setId(carId);
         boolean updateResult = carService.updateCar(car);
 
         if (updateResult) {
-            redirectAttributes.addFlashAttribute("message", "Car #" + carId + " has been successfully updated.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-            return "redirect:/car/";
+            model.addAttribute("message", "Car has been successfully updated.");
+            model.addAttribute("messageType", "success");
+            return showAllCars();
         }
-        redirectAttributes.addAttribute("id", carId);
-        redirectAttributes.addAttribute("car", car);
-        redirectAttributes.addFlashAttribute("message", "Error in updating this car #" + carId + "!");
-        redirectAttributes.addFlashAttribute("messageType", "error");
-        return "redirect:/car/update/{id}";
-
+        model.addAttribute("car", car);
+        model.addAttribute("message", "Error in updating car");
+        model.addAttribute("messageType", "error");
+        return updateCarForm(model);
     }
-
-    @PutMapping("/delete/{id}")
-    public String setCarStatus(@PathVariable("id") Long carId, RedirectAttributes redirectAttributes) throws Exception {
-        boolean deleteResult = carService.setCarStatus(carId);
-
-        if (deleteResult) {
-            redirectAttributes.addFlashAttribute("message", "Car #" + carId + " has been successfully deleted.");
-            redirectAttributes.addFlashAttribute("messageType", "success");
-        }
-        redirectAttributes.addFlashAttribute("message", "Error in deleting car #" + carId + "!");
-        redirectAttributes.addFlashAttribute("messageType", "error");
-
-        return "redirect:/car/";
-    }
-
 }

@@ -53,6 +53,34 @@ public class WebController {
         return "registration";
     }
 
+    /*@GetMapping("office")
+    public String showOfficeForm(Model model) {
+        return "office";
+    }*/
+
+    /* @GetMapping("branch")
+    public String showBranchForm(Model model) {
+        return "branch";
+    }*/
+
+    /*@GetMapping("car")
+    public String showCarForm(Model model) {
+        return "car";
+    }*/
+
+    @GetMapping("rental")
+    public String showRentalForm(Model model) {
+        return "rental";
+    }
+
+    @GetMapping("return")
+    public String showReturnForm(Model model) {
+        return "return";
+    }
+
+    //office
+    //branch
+
     @PostMapping("registration")
     public String registerCustomer(@ModelAttribute("customer") @Valid CustomerRegistrationDto customerRegistrationDto,
                                    BindingResult result) throws Exception {
