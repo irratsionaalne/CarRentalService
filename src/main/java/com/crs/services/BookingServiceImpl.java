@@ -2,16 +2,17 @@ package com.crs.services;
 
 import com.crs.models.Booking;
 import com.crs.repositories.BookingRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
 
-    @Autowired
-    private BookingRepo bookingRepo;
+    private final BookingRepo bookingRepo;
 
     @Override
     public boolean createBooking(Booking booking) throws Exception {
