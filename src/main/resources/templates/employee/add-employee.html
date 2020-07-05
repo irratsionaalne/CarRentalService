@@ -70,7 +70,7 @@
 
                         <label for="role" class="control-label">Role</label>
 
-                        <select id="role" class="form-control">
+                        <select id="role" class="form-control" name="role">
                             <option th:each="role : ${T(com.crs.models.EmployeeRole).values()}"
                                     th:value="${role}" th:text="${role.displayValue}"></option>
                         </select>
