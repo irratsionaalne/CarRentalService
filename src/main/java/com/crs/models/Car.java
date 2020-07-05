@@ -1,14 +1,11 @@
 package com.crs.models;
 
-
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "car")
+@Table(name = "car")
 @Data
 public class Car {
 

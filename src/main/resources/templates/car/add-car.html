@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link href="../static/css/stylesRegLogin.css" th:href="@{/css/stylesRegLogin.css}" rel="stylesheet" />
+
+    <title>Add Car</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <h1 class="display-3">Add Car</h1>
+                <form th:action="@{/add-car}" th:object="${car}" method="post">
+
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
+
+                        <label for="make" class="control-label">Make</label>
+
+                        <input
+                                id="make" class="form-control" th:field="*{make}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('make')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('model')}? 'has-error':''">
+
+                        <label for="model" class="control-label">Model</label>
+
+                        <input
+                                id="model" class="form-control" th:field="*{model}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('model')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('bodyType')}? 'has-error':''">
+
+                        <label for="bodyType" class="control-label">Body Type</label>
+
+                        <input
+                                id="bodyType" class="form-control" th:field="*{bodyType}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('bodyType')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('year')}? 'has-error':''">
+
+                        <label for="year" class="control-label">Year</label>
+
+                        <input
+                                id="year" class="form-control" th:field="*{year}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('year')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('color')}? 'has-error':''">
+
+                        <label for="color" class="control-label">Color</label>
+
+                        <input
+                                id="color" class="form-control" th:field="*{color}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('color')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Create car</button>
+                        
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>
