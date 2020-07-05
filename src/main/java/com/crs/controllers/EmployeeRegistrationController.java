@@ -44,7 +44,6 @@ public class EmployeeRegistrationController {
 
     @PostMapping
     public String registerEmployee(@ModelAttribute("employee") @Valid EmployeeRegistrationDto employeeRegistrationDto,
-                                   EmployeeRole employeeRole,
                                    BindingResult result) throws Exception {
 
         log.info("DTO {}", employeeRegistrationDto);
