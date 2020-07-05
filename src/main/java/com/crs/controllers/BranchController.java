@@ -22,10 +22,10 @@ public class BranchController {
         model.addAttribute("branches", branches);
         return "listofbranches";
     }
+    @ModelAttribute("branch")
+    public BranchCreationDto branchCreationDto() {
 
-    @GetMapping("/add")
-    public String addBranchForm(Model model) {
-        return "add-branch";
+        return new BranchCreationDto();
     }
 
     @PostMapping("/add")
