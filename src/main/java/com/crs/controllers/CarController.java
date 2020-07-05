@@ -3,6 +3,7 @@ package com.crs.controllers;
 
 import com.crs.models.Car;
 import com.crs.services.CarService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +14,17 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/car")
+@RequiredArgsConstructor
 public class CarController {
 
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
 
     @GetMapping("")
     public String showAllCars(@ModelAttribute("messageType") String messageType, @ModelAttribute("message") String message,
                               Model model) {
         List<Car> cars = carService.getAllCars();
         model.addAttribute("cars", cars);
-        return "car/listofcars";
+        return "car/list";
     }
 
     @GetMapping("/add")

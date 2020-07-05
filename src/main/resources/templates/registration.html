@@ -104,11 +104,19 @@
                        th:each="error : ${#fields.errors('confirmPassword')}"
                        th:text="${error}">Validation error</p>
                 </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                            <span><strong> I agree to Terms and Conditions of CRS OÜ</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <br/>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Register</button>
                     <span>Already registered? <a href="/" th:href="@{/login}"><strong>Login here</strong></a></span>
                 </div>
-
             </form>
         </div>
     </div>

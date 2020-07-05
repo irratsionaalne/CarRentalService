@@ -2,6 +2,7 @@ package com.crs.controllers;
 
 import com.crs.models.CarReturn;
 import com.crs.services.CarReturnService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +12,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/car-return")
+@RequiredArgsConstructor
 
 public class CarReturnController {
-    @Autowired
-    private CarReturnService carReturnService;
+
+    private final CarReturnService carReturnService;
 
     @GetMapping
     public String showAllCarReturns(Model model) {
