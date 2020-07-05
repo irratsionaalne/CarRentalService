@@ -25,8 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    EmployeeRole employeeRole;
-
     @Override
     public Employee createEmployee(EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
         User user = new User();
@@ -41,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         employee.setId(user.getId());
         employee.setBranch(employeeRegistrationDto.getBranch());
-        employee.setRole(employeeRole);
+        employee.setRole(employeeRegistrationDto.getRole());
         return employeeRepo.save(employee);
     }
 
