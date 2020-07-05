@@ -11,8 +11,6 @@ public interface CarService {
 
     boolean updateCar(Car car) throws Exception;
 
-    boolean setCarStatus(Long carId) throws Exception;
-
     List<Car> getAllCars();
 
     Car getById(Long carId);

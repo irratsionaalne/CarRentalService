@@ -1,14 +1,11 @@
 package com.crs.models;
 
-
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "car")
+@Table(name = "car")
 @Data
 public class Car {
 
@@ -20,8 +17,9 @@ public class Car {
     private String bodyType;
     private String year;
     private String color;
-    private String mileage;
-    private String status;
-    private String pricePerDay;
+    private int mileage;
+    @Enumerated(value = EnumType.STRING)
+    private CarStatus status;
+    private double pricePerDay;
     private boolean isActive;
 }

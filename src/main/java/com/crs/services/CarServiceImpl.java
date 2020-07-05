@@ -1,27 +1,36 @@
 package com.crs.services;
 
+import com.crs.controllers.dto.CarDto;
 import com.crs.models.Car;
+import com.crs.models.CarStatus;
 import com.crs.repositories.CarRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CarServiceImpl implements CarService{
 
-    @Autowired
-    public CarRepo carRepo;
-
+    private final CarRepo carRepo;
 
     @Override
-    public boolean createCar(Car car) throws Exception {
-        if (car == null) {
-            throw new Exception("Invalid update for Car");
-        }
+    public Car createCar(CarDto carDto) throws Exception {
+        Car car = new Car();
+        car.setMake(carDto.getMake());
+        car.setModel(carDto.getModel());
+        car.setBodyType(carDto.getBodyType());
+        car.setYear(carDto.getYear());
+        car.setColor(carDto.getColor());
+        car.setMileage(carDto.getMileage());
+        car.setStatus(carDto.getStatus());
+        car.setPricePerDay(carDto.getPricePerDay());
         car.setActive(true);
-        carRepo.save(car);
-        return true;
+
+        return carRepo.save(car);
     }
 
     @Override
@@ -30,20 +39,6 @@ public class CarServiceImpl implements CarService{
             throw new Exception("Invalid updating of Car");
         }
         carRepo.saveAndFlush(car);
-        return true;
-    }
-
-    @Override
-    public boolean setCarStatus(Long carId) throws Exception {
-
-        Car car = getById(carId);
-        if (car == null) {
-            throw new Exception("Invalid deleting of Car");
-        }
-        if(car.isActive()) {
-            car.setActive(false);
-        }
-        car.setActive(true);
         return true;
     }
 

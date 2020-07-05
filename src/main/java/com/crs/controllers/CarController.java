@@ -73,5 +73,4 @@ public class CarController {
         model.addAttribute("messageType", "error");
         return updateCarForm(model);
     }
-
 }
