@@ -2,6 +2,7 @@ package com.crs.controllers;
 
 import com.crs.models.CarRental;
 import com.crs.services.CarRentalService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +12,16 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/car-rental")
-
+@RequiredArgsConstructor
 public class CarRentalController {
 
-    @Autowired
-    private CarRentalService carRentalService;
+    private final CarRentalService carRentalService;
 
     @GetMapping
     public String showAllCarRents(Model model) {
         List<CarRental> carRental = carRentalService.getAllCarRentals();
         model.addAttribute("carRental", carRental);
-        return "show-all-car-rentals";
+        return "listofrentals";
     }
 
     @GetMapping("/add")

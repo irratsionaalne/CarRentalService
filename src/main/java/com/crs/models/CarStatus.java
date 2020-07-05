@@ -1,6 +1,8 @@
 package com.crs.models;
 
+
 public enum CarStatus {
+
     AVAILABLE("Available"),
     BOOKED("Booked"),
     RENTED("Rented"),
