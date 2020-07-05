@@ -3,6 +3,7 @@ package com.crs.controllers;
 
 import com.crs.controllers.dto.EmployeeRegistrationDto;
 import com.crs.controllers.dto.UserRegistrationDto;
+import com.crs.models.EmployeeRole;
 import com.crs.models.User;
 import com.crs.repositories.UserRepo;
 import com.crs.services.EmployeeService;
@@ -43,6 +44,7 @@ public class EmployeeRegistrationController {
 
     @PostMapping
     public String registerEmployee(@ModelAttribute("employee") @Valid EmployeeRegistrationDto employeeRegistrationDto,
+                                   EmployeeRole employeeRole,
                                    BindingResult result) throws Exception {
 
         log.info("DTO {}", employeeRegistrationDto);
