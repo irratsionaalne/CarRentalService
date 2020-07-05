@@ -1,5 +1,6 @@
 package com.crs.controllers.dto;
 
+import com.crs.models.CarStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,12 +28,12 @@ public class CarDto {
     private String color;
 
     @NotEmpty
-    private String mileage;
+    private int mileage;
 
     @NotEmpty
-    private String status;
+    private CarStatus status;
 
     @NotEmpty
-    private String pricePerDay;
+    private double pricePerDay;
 
 }

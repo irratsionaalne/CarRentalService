@@ -17,8 +17,9 @@ public class Car {
     private String bodyType;
     private String year;
     private String color;
-    private String mileage;
-    private String status;
-    private String pricePerDay;
+    private int mileage;
+    @Enumerated(value = EnumType.STRING)
+    private CarStatus status;
+    private double pricePerDay;
     private boolean isActive;
 }

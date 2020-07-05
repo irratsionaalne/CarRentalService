@@ -82,6 +82,45 @@
                            th:text="${error}">Validation error</p>
                     </div>
 
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('mileage')}? 'has-error':''">
+
+                        <label for="mileage" class="control-label">Mileage</label>
+
+                        <input
+                                id="mileage" class="form-control" th:field="*{mileage}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('mileage')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('pricePerDay')}? 'has-error':''">
+
+                        <label for="pricePerDay" class="control-label">Price per day</label>
+
+                        <input
+                                id="pricePerDay" class="form-control" th:field="*{pricePerDay}" />
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('pricePerDay')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('status')}? 'has-error':''">
+
+                        <label for="status" class="control-label">Status</label>
+
+                        <select id="status" class="form-control" name="status">
+                            <option th:each="status : ${T(com.crs.models.CarStatus).values()}"
+                                    th:value="${status}" th:text="${status.displayValue}"></option>
+                        </select>
+
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('status')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Create car</button>

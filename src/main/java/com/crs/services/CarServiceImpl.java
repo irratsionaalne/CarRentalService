@@ -2,6 +2,7 @@ package com.crs.services;
 
 import com.crs.controllers.dto.CarDto;
 import com.crs.models.Car;
+import com.crs.models.CarStatus;
 import com.crs.repositories.CarRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
