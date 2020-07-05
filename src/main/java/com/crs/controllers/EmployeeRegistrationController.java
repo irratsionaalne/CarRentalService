@@ -3,6 +3,7 @@ package com.crs.controllers;
 
 import com.crs.controllers.dto.EmployeeRegistrationDto;
 import com.crs.controllers.dto.UserRegistrationDto;
+import com.crs.models.EmployeeRole;
 import com.crs.models.User;
 import com.crs.repositories.UserRepo;
 import com.crs.services.EmployeeService;

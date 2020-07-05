@@ -39,7 +39,7 @@ public class EmployeeRegistrationDto {
     private String branch;
 
     @NotEmpty
-    private String role;
+    private EmployeeRole role;
 
     @Email
     @NotEmpty

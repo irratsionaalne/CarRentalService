@@ -13,6 +13,7 @@ public class Employee {
 
     @Id
     private Long id;
+    @Enumerated(value = EnumType.STRING)
     private EmployeeRole role;
     private String branch;
     @OneToMany

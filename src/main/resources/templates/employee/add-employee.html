@@ -70,8 +70,14 @@
 
                         <label for="role" class="control-label">Role</label>
 
-                        <input
-                               id="role" class="form-control" th:field="*{role}" />
+                        <select id="role" class="form-control">
+                            <option th:each="role : ${T(com.crs.models.EmployeeRole).values()}"
+                                    th:value="${role}" th:text="${role.displayValue}"></option>
+                        </select>
+
+                        <!--<input
+                               id="role" class="form-control" th:field="*{role}" />-->
+
                         <p class="error-message"
                            th:each="error: ${#fields.errors('role')}"
                            th:text="${error}">Validation error</p>

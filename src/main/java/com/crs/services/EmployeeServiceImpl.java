@@ -7,7 +7,12 @@ import com.crs.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+import java.util.EnumMap;
 import java.util.List;
 
 @Service
@@ -20,6 +25,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    EmployeeRole employeeRole;
+
     @Override
     public Employee createEmployee(EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
         User user = new User();
@@ -28,12 +35,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         user.setEmail(employeeRegistrationDto.getEmail());
         user.setPassword(passwordEncoder.encode(employeeRegistrationDto.getPassword()));
         user.setRole(Role.EMPLOYEE);
+        user.setActive(true);
         user = userRepo.save(user);
 
         Employee employee = new Employee();
         employee.setId(user.getId());
-        employee.setBranch(employee.getBranch());
-        employee.setRole(employee.getRole());
+        employee.setBranch(employeeRegistrationDto.getBranch());
+        employee.setRole(employeeRole);
         return employeeRepo.save(employee);
     }
 
