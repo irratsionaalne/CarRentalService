@@ -20,7 +20,7 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("")
+    @GetMapping
     public ModelAndView showAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
         ModelAndView modelAndView = new ModelAndView("customer/listofcustomers");
