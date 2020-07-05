@@ -4,10 +4,10 @@ package com.crs.controllers;
 import com.crs.models.Car;
 import com.crs.services.CarService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -20,11 +20,11 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping("")
-    public String showAllCars(@ModelAttribute("messageType") String messageType, @ModelAttribute("message") String message,
-                              Model model) {
+    public ModelAndView showAllCars() {
         List<Car> cars = carService.getAllCars();
-        model.addAttribute("cars", cars);
-        return "car/list";
+        ModelAndView modelAndView = new ModelAndView("car/listofcars");
+        modelAndView.addObject("cars", cars);
+        return modelAndView;
     }
 
     @GetMapping("/add")
