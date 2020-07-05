@@ -1,6 +1,8 @@
 package com.crs.config;
 
 import com.crs.services.EmployeeService;
+import com.crs.services.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private EmployeeService employeeService;
+    private final UserServiceImpl userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -26,7 +28,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/js/**",
                         "/css/**",
                         "/img/**",
-                        "/webjars/**")
+                        "/webjars/**",
+                        "/login**",
+                        "/home**",
+                        "/"
+                        )
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -51,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(employeeService);
+        auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }

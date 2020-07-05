@@ -3,23 +3,20 @@ package com.crs.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "customer")
+@Table(name = "customer")
 @Data
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
     private String address;
     private LocalDate dob;
-    private boolean isActive;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private User user;
+
 }

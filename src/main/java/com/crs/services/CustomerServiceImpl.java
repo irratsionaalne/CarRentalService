@@ -1,26 +1,45 @@
 package com.crs.services;
 
+import com.crs.controllers.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
+import com.crs.models.Role;
+import com.crs.models.User;
 import com.crs.repositories.CustomerRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.crs.repositories.UserRepo;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    public CustomerRepo customerRepo;
+
+    private final UserRepo userRepo;
+
+    private final CustomerRepo customerRepo;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public boolean createCustomer(Customer customer) throws Exception {
-        if (customer == null) {
-            throw new Exception("Invalid creation of Customer");
-        }
-        customer.setActive(true);
-        customerRepo.save(customer);
-        return true;
+    public Customer createCustomer(CustomerRegistrationDto customerRegistrationDto) throws Exception {
+        User user = new User();
+        user.setFirstName(customerRegistrationDto.getFirstName());
+        user.setLastName(customerRegistrationDto.getLastName());
+        user.setEmail(customerRegistrationDto.getEmail());
+        user.setPassword(passwordEncoder.encode(customerRegistrationDto.getPassword()));
+        user.setRole(Role.CUSTOMER);
+        user.setActive(true);
+        user = userRepo.save(user);
+
+        Customer customer = new Customer();
+        customer.setId(user.getId());
+        customer.setAddress(customerRegistrationDto.getAddress());
+        customer.setDob(LocalDate.parse(customerRegistrationDto.getDob()));
+        return customerRepo.save(customer);
     }
 
     @Override
@@ -33,19 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean setCustomerStatus(Long customerId) throws Exception {
-        Customer customer = getById(customerId);
-        if (customer == null) {
-            throw new Exception("Customer does not exist");
-        }
-        if(customer.isActive()) {
-            customer.setActive(false);
-        }
-        customer.setActive(true);
-        return updateCustomer(customer);
-    }
-
-    @Override
     public List<Customer> getAllCustomers() {
         return customerRepo.findAll();
     }
@@ -54,4 +60,6 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer getById(Long customerId) {
         return customerRepo.getOne(customerId);
     }
+
+
 }

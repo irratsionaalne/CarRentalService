@@ -2,7 +2,7 @@ package com.crs.controllers;
 
 import com.crs.models.Branch;
 import com.crs.services.BranchService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/branch")
+@RequestMapping("branch")
+@RequiredArgsConstructor
 public class BranchController {
 
-    @Autowired
-    private BranchService branchService;
+    private final BranchService branchService;
 
     @GetMapping
     public String showAllBranches(Model model) {
         List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("branches", branches);
-        return "show-all-branches";
+        return "listofbranches";
     }
 
     @GetMapping("/add")

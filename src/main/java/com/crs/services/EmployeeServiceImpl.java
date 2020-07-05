@@ -1,42 +1,46 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.UserRegistrationDto;
-import com.crs.models.Employee;
+import com.crs.controllers.dto.EmployeeRegistrationDto;
+import com.crs.models.*;
 import com.crs.repositories.EmployeeRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.crs.repositories.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
+import java.util.EnumMap;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
-
-    @Autowired
-    private EmployeeRepo employeeRepo;
+    
+    private final UserRepo userRepo;
+    
+    private final EmployeeRepo employeeRepo;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public EmployeeServiceImpl(EmployeeRepo employeeRepo, BCryptPasswordEncoder passwordEncoder) {
-        this.employeeRepo = employeeRepo;
-        this.passwordEncoder = passwordEncoder;
-    }
-
     @Override
-    public boolean createEmployee(Employee employee) throws Exception {
-        if (employee == null) {
-            throw new Exception("Invalid employee");
-        }
+    public Employee createEmployee(EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
+        User user = new User();
+        user.setFirstName(employeeRegistrationDto.getFirstName());
+        user.setLastName(employeeRegistrationDto.getLastName());
+        user.setEmail(employeeRegistrationDto.getEmail());
+        user.setPassword(passwordEncoder.encode(employeeRegistrationDto.getPassword()));
+        user.setRole(Role.EMPLOYEE);
+        user.setActive(true);
+        user = userRepo.save(user);
 
-        employee.setActive(true);
-        employeeRepo.save(employee);
-        return true;
+        Employee employee = new Employee();
+        employee.setId(user.getId());
+        employee.setBranch(employeeRegistrationDto.getBranch());
+        employee.setRole(employeeRegistrationDto.getRole());
+        return employeeRepo.save(employee);
     }
 
     @Override
@@ -48,20 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepo.saveAndFlush(employee);
         return true;
     }
-
-    @Override
-    public boolean setEmployeeStatus(Long employeeId) throws Exception {
-        Employee employee = getById(employeeId);
-        if (employee == null) {
-            throw new Exception("Employee does not exist");
-        }
-        if(employee.isActive()) {
-            employee.setActive(false);
-        }
-        employee.setActive(true);
-        return updateEmployee(employee);
-    }
-
+    
     @Override
     public List<Employee> getAllEmployees() {
         return employeeRepo.findAll();
@@ -70,33 +61,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getById(Long employeeId) {
         return employeeRepo.getOne(employeeId);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Employee employee = employeeRepo.findByEmail(login);
-        if (employee == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority("employee"));
-        return new User(employee.getEmail(),employee.getPassword(), roles);
-    }
-
-    @Override
-    public Employee findByEmail(String email) {
-        return employeeRepo.findByEmail(email);
-    }
-
-    @Override
-    public Employee save(UserRegistrationDto userRegistrationDto) {
-        Employee employee = new Employee();
-        employee.setName(userRegistrationDto.getName());
-        employee.setEmail(userRegistrationDto.getEmail());
-        employee.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
-
-
-        return employeeRepo.save(employee);
     }
 
 }

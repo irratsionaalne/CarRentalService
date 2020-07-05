@@ -23,7 +23,7 @@ public class CarController {
                               Model model) {
         List<Car> cars = carService.getAllCars();
         model.addAttribute("cars", cars);
-        return "car/car-list";
+        return "car/listofcars";
     }
 
     @GetMapping("/add")
