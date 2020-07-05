@@ -12,13 +12,40 @@
     <title>Index</title>
 </head>
 <body>
-
-<br>
-<br>
-<div class="container">
-    <h2>
-        Welcome <span sec:authentication="principal.username">User</span>
-    </h2>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark bg-primary">
+        <a class="navbar-brand" href="#">CRS</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Bookings <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manage DB
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/cars">Cars</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/branches">Branches</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/employees">Employees</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/customers">Customers</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/revenue" th:href="@{/revenue}">Revenue</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="display-4">
+            <!--            Welcome <span sec:authentication="principal.username"><strong>User</strong></span>-->
+            Welcome <span th:text="${user.firstName}"><strong></strong></span>
+        </h2>
     <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a></p>
 </div>
 
