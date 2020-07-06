@@ -14,6 +14,7 @@ ul {
 
 .navbar-custom, #navbarSupportedContent, .dropdown-menu {
     background-color: rgb(33, 33, 33) !important;
+    flex: 1;
 }
 
 .navbar {
@@ -25,6 +26,7 @@ ul {
     background-color: rgb(33, 33, 33) !important;
     z-index: 5 !important;
     margin-bottom: 30px !important;
+    display: flex;
 }
 
 .navbar a {
@@ -49,9 +51,12 @@ ul {
     color: grey;
 }
 
-.navbar .float-right, .branch .float-right {
+.navbar .float-right {
     float: right !important;
-    padding-right: 40px;
+    padding-right: 30px !important;
+}
+.branch .float-right{
+
 }
 
 .navbar .float-left {
@@ -61,7 +66,9 @@ ul {
 .navbar .logout{
     float: right !important;
     padding-right: 40px !important;
+    margin-right: 40px !important;
     flex: 3;
+
 }
 
 .container-fluid {
@@ -76,26 +83,25 @@ ul {
     margin-bottom: 20px !important;
 }
 
-.bookings{
+.jumbotron.bookingsOffice {
     margin-top: 80px !important;
+    max-width: 80% !important;
 }
 
-.bookingsOffice {
-    margin-top: 80px !important;
-}
-
-.branch {
+.jumbotron.branch {
     margin-top: 60px !important;
-    max-width: 10% !important;
+    max-width: 15% !important;
     max-height: 5% !important;
     float: right;
     padding: 5px !important;
+    justify-items: center;
 }
-form.bookings, .bookingListOffice, .bookingsOffice {
+form.bookings, .bookingListOffice {
     width: 80%;
     max-width: 80%;
     margin-top: 10px !important;
 }
+
 
 form.bookings input[type=text] {
     padding: 10px;

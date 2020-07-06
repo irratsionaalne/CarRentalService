@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("employee")
 @RequiredArgsConstructor
 @Slf4j
 public class EmployeeController {
@@ -30,7 +30,7 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @ModelAttribute("employee")
+    @ModelAttribute
     public EmployeeRegistrationDto employeeRegistrationDto() {
         return new EmployeeRegistrationDto();
     }

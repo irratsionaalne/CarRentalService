@@ -59,8 +59,8 @@
                     <tr th:each="car : ${cars}">
                         <th scope="row" th:text="${car.id}"></th>
                         <td th:text="${car.make}"></td>
-                        <td ><span th:each="car : ${car.cars}" th:text="${car.make}"></span></td>
-                        <td ><span th:each="car : ${car.model}" th:text="${car.model}"></span></td>
+                        <td ><span th:text="${car.make}"></span></td>
+                        <td ><span th:text="${car.model}"></span></td>
                         <td ><span th:each="car : ${car.bodytype}" th:text="${car.bodytype}"></span></td>
                         <td ><span th:each="car : ${car.year}" th:text="${car.year}"></span></td>
                         <td ><span th:each="car : ${car.color}" th:text="${car.color}"></span></td>
