@@ -1,22 +1,16 @@
 package com.crs.controllers;
 
-import com.crs.controllers.dto.BranchCreationDto;
-import com.crs.controllers.dto.CustomerRegistrationDto;
-import com.crs.controllers.dto.EmployeeRegistrationDto;
 import com.crs.models.Branch;
-import com.crs.models.Employee;
 import com.crs.services.BranchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("branch")
+@RequestMapping("/branch")
 @RequiredArgsConstructor
 public class BranchController {
 
@@ -30,6 +24,7 @@ public class BranchController {
         return modelAndView;
     }
 
+    /*
     @ModelAttribute("branch")
     public BranchCreationDto branchCreationDto() {
         return new BranchCreationDto();

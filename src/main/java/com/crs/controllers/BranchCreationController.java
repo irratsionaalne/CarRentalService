@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -28,13 +29,14 @@ public class BranchCreationController {
     }
 
     @GetMapping
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(@ModelAttribute("messageType") String messageType,
+                                       @ModelAttribute("message") String message, Model model) {
         return "branch/add-branch";
     }
 
     @PostMapping
     public String registerBranch(@ModelAttribute("branch") @Valid BranchCreationDto branchCreationDto,
-                                 BindingResult result) throws Exception {
+                                 BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
 
         if(branchService.doesBranchExist(branchCreationDto.getStreetAddress(),branchCreationDto.getCity())) {
@@ -43,11 +45,16 @@ public class BranchCreationController {
         }
 
         if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("branch", branchCreationDto);
+            redirectAttributes.addFlashAttribute("message", "Error in creating a branch!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
             return "branch/add-branch";
         }
 
         branchService.createBranch(branchCreationDto);
-        return "branch";
+        redirectAttributes.addFlashAttribute("message", "Branch has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/branch";
     }
 
 }

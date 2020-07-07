@@ -1,21 +1,17 @@
 package com.crs.controllers;
 
-import com.crs.controllers.dto.CustomerRegistrationDto;
-import com.crs.controllers.dto.EmployeeRegistrationDto;
 import com.crs.models.Employee;
 import com.crs.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("employee")
+@RequestMapping("/employee")
 @RequiredArgsConstructor
 @Slf4j
 public class EmployeeController {
@@ -30,16 +26,15 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @ModelAttribute
+    /*
+    @ModelAttribute("employee")
     public EmployeeRegistrationDto employeeRegistrationDto() {
         return new EmployeeRegistrationDto();
     }
-
     @GetMapping("/add-employee")
     public String addEmployeeForm(Model model) {
         return "employee/add-employee";
     }
-
     @PostMapping("/add-employee")
     public Object addEmployee(@ModelAttribute("employee") @Valid EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
         Employee employee = employeeService.createEmployee(employeeRegistrationDto);
@@ -52,19 +47,15 @@ public class EmployeeController {
         modelAndView.addObject("messageType", "error");
         modelAndView.setViewName("employee/add-employee");
         return modelAndView;
-
     }
-
     @GetMapping("/update")
     public String updateEmployeeForm(Model model) {
         return "update-employee";
     }
-
     @PutMapping("/update/{id}")
     public Object updateEmployee(@PathVariable("id") Long employeeId, Employee employee, Model model) {
         employee.setId(employeeId);
         boolean updateResult = employeeService.updateEmployee(employee);
-
         if (updateResult) {
             model.addAttribute("message", "Employee has been successfully updated.");
             model.addAttribute("messageType", "success");
@@ -74,7 +65,7 @@ public class EmployeeController {
         model.addAttribute("message", "Error in updating employee");
         model.addAttribute("messageType", "error");
         return updateEmployeeForm(model);
-
     }
+     */
 
 }
