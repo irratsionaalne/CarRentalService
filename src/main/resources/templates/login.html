@@ -21,6 +21,12 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h1 class="display-3">Login page</h1>
+                <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
+                    <span th:text="${message}"></span>
+                </div>
+                <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert">
+                    <span th:text="${message}"></span>
+                </div>
                 <hr class="my-4">
                 <form th:action="@{/login}" method="post">
                     <div th:if="${param.error}">

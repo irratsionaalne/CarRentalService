@@ -1,6 +1,5 @@
 package com.crs.controllers;
 
-
 import com.crs.controllers.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
 import com.crs.services.CustomerService;
@@ -14,13 +13,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("customer")
+@RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("")
+    @GetMapping
     public ModelAndView showAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
         ModelAndView modelAndView = new ModelAndView("customer/listofcustomers");
@@ -43,7 +42,7 @@ public class CustomerController {
         Customer customer = customerService.createCustomer(customerRegistrationDto);
 
         if (customer != null) {
-           return "redirect:/customer";
+            return "redirect:/customer";
         }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("message", "Error in creating a customer!");
@@ -71,6 +70,6 @@ public class CustomerController {
         model.addAttribute("message", "Error in updating customer");
         model.addAttribute("messageType", "error");
         return updateCustomerForm(model);
-
     }
+
 }

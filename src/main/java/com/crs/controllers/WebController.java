@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -49,7 +50,8 @@ public class WebController {
     }
 
     @GetMapping("registration")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(@ModelAttribute("messageType") String messageType,
+                                       @ModelAttribute("message") String message, Model model) {
         return "registration";
     }
 
@@ -83,18 +85,23 @@ public class WebController {
 
     @PostMapping("registration")
     public String registerCustomer(@ModelAttribute("customer") @Valid CustomerRegistrationDto customerRegistrationDto,
-                                   BindingResult result) throws Exception {
+                                   BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
         if(userService.doesUserExist(customerRegistrationDto.getEmail())) {
             result.rejectValue("email", null, "There is already an account registered with that login");
         }
 
         if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("customer", customerRegistrationDto);
+            redirectAttributes.addFlashAttribute("message", "Error in creating customer!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
             return "registration";
         }
 
         customerService.createCustomer(customerRegistrationDto);
-        return "login";
+        redirectAttributes.addFlashAttribute("message", "Customer has been successfully registered.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/login";
     }
 
 

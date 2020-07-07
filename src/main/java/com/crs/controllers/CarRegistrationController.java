@@ -1,10 +1,8 @@
 package com.crs.controllers;
 
 import com.crs.controllers.dto.CarDto;
-import com.crs.controllers.dto.EmployeeRegistrationDto;
 import com.crs.services.CarService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/add-car")
 @RequiredArgsConstructor
-@Slf4j
 public class CarRegistrationController {
 
     private final CarService carService;
@@ -29,22 +27,26 @@ public class CarRegistrationController {
     }
 
     @GetMapping
-    public String showCarForm(Model model) {
+    public String showCarForm(@ModelAttribute("messageType") String messageType,
+                              @ModelAttribute("message") String message, Model model) {
         return "car/add-car";
     }
 
     @PostMapping
     public String registerCar(@ModelAttribute("car") @Valid CarDto carDto,
-                                   BindingResult result) throws Exception {
-
-        log.info("CAR DTO {}", carDto);
+                              BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
         if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("car", carDto);
+            redirectAttributes.addFlashAttribute("message", "Error in creating a car!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
             return "car/add-car";
         }
 
         carService.createCar(carDto);
-        return "login";
+        redirectAttributes.addFlashAttribute("message", "Car has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/car";
     }
 
 }
