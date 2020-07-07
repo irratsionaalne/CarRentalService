@@ -1,31 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <link rel="stylesheet" type="text/css"
-          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-
-    <title>Index</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <title>Branches</title>
 </head>
 <body>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle float-right"
+                       data-toggle="dropdown"
+                       href="#" id="navbarDropdown" role="button">
+                        Manage DB
+                    </a>
+                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <a class="dropdown-item center" href="/car">Cars</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item center" href="/branch">Branches</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item center" href="/employee">Employees</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item center" href="/customer">Customers</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link float-right" href="/revenue" th:href="@{/revenue}">Revenue</a>
+                </li>
+            </ul>
+        </div>
+        <div class="floatRight">
+            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
+                                                                 th:href="@{/logout}">Logout</a>
+            </p>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron bookingsOffice">
 
-<br>
-<br>
-<div class="container">
-    <h2>
-        Welcome <span sec:authentication="principal.username">User</span>
-    </h2>
-    <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a></p>
+    <h3>listofbranches.html</h3>
+
+        </div>
+    </div>
 </div>
-
-<script type="text/javascript"
-        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<!-- Footer -->
+<footer class="center">
+    <p class="flow-text"><strong> &copy; CRS OÜ - 2020 </strong></p>
+</footer>
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"
+        type="text/javascript"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"
+        type="text/javascript"></script>
 
 </body>
 </html>

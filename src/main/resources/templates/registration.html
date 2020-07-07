@@ -14,7 +14,7 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand float-left" href="#">CRS</a>
+        <a class="navbar-brand" th:href="@{/}">CRS</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <h1 class="display-3">Registration</h1>
+                    <h3 class="display-3">Registration</h3>
                     <form th:action="@{/registration}" th:object="${customer}" method="post">
 
                         <div th:if="${param.error}">
