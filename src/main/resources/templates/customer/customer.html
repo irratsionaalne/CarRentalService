@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/font-awesome.min.css">-->
+    <link href="../../static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
 
-    <title>Office</title>
+    <title>Customer</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -23,23 +23,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/booking">Bookings <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Manage DB
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/car">Cars</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/branch">Branches</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/employee">Employees</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/customer">Customers</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/car">Cars <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/revenue" th:href="@{/revenue}">Revenue</a>
+                    <a class="nav-link float-right" href="/cars" th:href="@{/cars}">cars</a>
                 </li>
             </ul>
         </div>
@@ -54,28 +42,28 @@
         </h2>
         <br/>
         <br/>
-        <div class="jumbotron">
+        <div class="jumbotron bookingsOffice">
             <div>
-                <h3>Bookings</h3>
-                <!--<form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Booking Id" aria-label="Booking Id">
-                </form>-->
-                <form class="bookings" action="#">
-                    <input type="text" placeholder="Search for Bookings..." name="search">
+                <h3>Client's Booking
+                    <span class="float-right">
+                    <a href="/static" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                </span>
+                </h3>
+                <form action="#" class="bookings">
+                    <input name="search" placeholder="Search for Bookings..." type="text">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <br/>
-                <h3 class="display-3"><span class="float-right"><a href="/booking/add" class="btn btn-success">ADD</a> </span>
-                </h3>
             </div>
         </div>
 
-        <div class="jumbotron">
+        <div class="jumbotron bookingListOffice">
             <div>
-                <h3>Booking List</h3>
-                <h3 class="display-3"><span class="float-right"><a href="/booking/add" class="btn btn-success">ADD</a> </span>
+                <h3>Client's Booking List
+                    <span class="float-right">
+                    <a href="/static" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                </span>
                 </h3>
-                <br/>
             </div>
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -104,8 +92,8 @@
                     <td th:text="${booking.totalPrice}></td>
                     <td th:text="${booking.status}></td>
                     <td>
-                    <a th:if="${booking.active} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                    <a th:if="${booking.active} == true" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
+                    <a th:if="${booking.active} == true" th:href="@{/booking/update/{id}(id=${booking.id})}" class="btn btn-warning"><i class="fa fa-edit-o fa-lg"></i>Edit</a>
+                    <a th:if="${booking.active} == true" th:href="@{/booking/delete/{id}(id=${booking.id})}" class="btn btn-danger"><i class="fa fa-trash-o fa-lg">Cancel</a>
                     </td>-->
                 </tr>
                 </tbody>

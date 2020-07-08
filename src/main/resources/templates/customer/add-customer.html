@@ -9,8 +9,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
     <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <title>AddCar</title>
-
+    <title>Add Branch</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -53,100 +52,76 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <h3 class="display-3">Add Car</h3>
-                    <form th:action="@{/add-car}" th:object="${car}" method="post">
+                    <h3 class="display-3">Add Customer</h3>
+                    <form th:action="@{/add-customer}" th:object="${customer}" method="post">
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('first_name')}? 'has-error':''">
 
-                            <label for="make" class="control-label">Make</label>
+                            <label for="first_name" class="control-label">First name</label>
 
                             <input
-                                    id="make" class="form-control" th:field="*{make}"/>
+                                    id="first_name" class="form-control" th:field="*{first_name}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('make')}"
+                               th:each="error: ${#fields.errors('first_name')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('model')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('last_name')}? 'has-error':''">
 
-                            <label for="model" class="control-label">Model</label>
+                            <label for="last_name" class="control-label">Last name</label>
 
                             <input
-                                    id="model" class="form-control" th:field="*{model}"/>
+                                    id="last_name" class="form-control" th:field="*{last_name}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('model')}"
+                               th:each="error: ${#fields.errors('last_name')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('bodyType')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
 
-                            <label for="bodyType" class="control-label">Body Type</label>
+                            <label for="email" class="control-label">Email</label>
 
                             <input
-                                    id="bodyType" class="form-control" th:field="*{bodyType}"/>
+                                    id="email" class="form-control" th:field="*{email}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('bodyType')}"
+                               th:each="error: ${#fields.errors('email')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('year')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('address')}? 'has-error':''">
 
-                            <label for="year" class="control-label">Year</label>
+                            <label for="address" class="control-label">Address</label>
 
                             <input
-                                    id="year" class="form-control" th:field="*{year}"/>
+                                    id="address" class="form-control" th:field="*{address}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('year')}"
+                               th:each="error: ${#fields.errors('address')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('color')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('age')}? 'has-error':''">
 
-                            <label for="color" class="control-label">Color</label>
-
-                            <input
-                                    id="color" class="form-control" th:field="*{color}"/>
-                            <p class="error-message"
-                               th:each="error: ${#fields.errors('color')}"
-                               th:text="${error}">Validation error</p>
-                        </div>
-
-                        <div class="form-group"
-                             th:classappend="${#fields.hasErrors('mileage')}? 'has-error':''">
-
-                            <label for="mileage" class="control-label">Mileage</label>
+                            <label for="age" class="control-label">Age</label>
 
                             <input
-                                    id="mileage" class="form-control" th:field="*{mileage}"/>
+                                    id="age" class="form-control" th:field="*{age}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('mileage')}"
-                               th:text="${error}">Validation error</p>
-                        </div>
-
-                        <div class="form-group"
-                             th:classappend="${#fields.hasErrors('pricePerDay')}? 'has-error':''">
-
-                            <label for="pricePerDay" class="control-label">Price per day</label>
-
-                            <input
-                                    id="pricePerDay" class="form-control" th:field="*{pricePerDay}"/>
-                            <p class="error-message"
-                               th:each="error: ${#fields.errors('pricePerDay')}"
+                               th:each="error: ${#fields.errors('age')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('status')}? 'has-error':''">
 
-                            <label for="status" class="control-label">Status</label>
+                            <label for="status" class="control-label">Active</label>
 
                             <select id="status" class="form-control" name="status">
-                                <option th:each="status : ${T(com.crs.models.CarStatus).values()}"
+                                <option th:each="status : ${T(com.crs.models.Customer).values()}"
                                         th:value="${status}" th:text="${status.displayValue}"></option>
                             </select>
 

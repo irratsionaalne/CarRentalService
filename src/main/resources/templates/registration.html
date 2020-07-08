@@ -7,52 +7,22 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
+    <link href="../static/css/stylesRegLogin.css" rel="stylesheet" th:href="@{/css/stylesRegLogin.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
     <title>Registration</title>
+
 </head>
 <body>
 <div class="container-fluid">
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark .w-100">
         <a class="navbar-brand" th:href="@{/}">CRS</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle float-right"
-                       data-toggle="dropdown"
-                       href="#" id="navbarDropdown" role="button">
-                        Manage DB
-                    </a>
-                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                        <a class="dropdown-item center" href="/car">Cars</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/branch">Branches</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/employee">Employees</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/customer">Customers</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link float-right" href="/revenue" th:href="@{/revenue}">Revenue</a>
-                </li>
-            </ul>
-        </div>
-        <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
-                                                                 th:href="@{/logout}">Logout</a>
-            </p>
-        </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron regisLogin">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-
-                    <h3 class="display-3">Registration</h3>
+                    <h1 class="display-3">Registration</h1>
                     <form th:action="@{/registration}" th:object="${customer}" method="post">
 
                         <div th:if="${param.error}">
@@ -69,7 +39,7 @@
                             <label for="first_name" class="control-label">First Name</label>
 
                             <input
-                                    id="first_name" class="form-control" th:field="*{firstName}"/>
+                                    id="first_name" class="form-control" th:field="*{firstName}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('firstName')}"
                                th:text="${error}">Validation error</p>
@@ -81,7 +51,7 @@
                             <label for="last_name" class="control-label">Last Name</label>
 
                             <input
-                                    id="last_name" class="form-control" th:field="*{lastName}"/>
+                                    id="last_name" class="form-control" th:field="*{lastName}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('lastName')}"
                                th:text="${error}">Validation error</p>
@@ -93,7 +63,7 @@
                             <label for="address" class="control-label">Address</label>
 
                             <input
-                                    id="address" class="form-control" th:field="*{address}"/>
+                                    id="address" class="form-control" th:field="*{address}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('address')}"
                                th:text="${error}">Validation error</p>
@@ -105,7 +75,7 @@
                             <label for="dob" class="control-label">Date of Birth</label>
 
                             <input type="date"
-                                   id="dob" class="form-control" th:field="*{dob}"/>
+                                   id="dob" class="form-control" th:field="*{dob}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dob')}"
                                th:text="${error}">Validation error</p>
@@ -115,7 +85,7 @@
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                             <label for="email" class="control-label">E-mail</label> <input
-                                id="email" class="form-control" th:field="*{email}"/>
+                                id="email" class="form-control" th:field="*{email}" required="required"/>
                             <p class="error-message"
                                th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
                                 error</p>
@@ -124,7 +94,7 @@
                              th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
                             <label for="password" class="control-label">Password</label> <input
                                 id="password" class="form-control" type="password"
-                                th:field="*{password}"/>
+                                th:field="*{password}" required="required"/>
                             <p class="error-message"
                                th:each="error : ${#fields.errors('password')}"
                                th:text="${error}">Validation error</p>
@@ -133,7 +103,7 @@
                              th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
                             <label for="confirmPassword" class="control-label">Confirm
                                 password</label> <input id="confirmPassword" class="form-control"
-                                                        type="password" th:field="*{confirmPassword}"/>
+                                                        type="password" th:field="*{confirmPassword}" required="required"/>
                             <p class="error-message"
                                th:each="error : ${#fields.errors('confirmPassword')}"
                                th:text="${error}">Validation error</p>
@@ -141,7 +111,7 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" aria-label="Checkbox" required>
+                                    <input type="checkbox" aria-label="Checkbox" required="required">
                                     <span><strong> I agree to Terms and Conditions of CRS OÜ</strong></span>
                                 </div>
                             </div>

@@ -66,17 +66,25 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Booking</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Job position</th>
-                        <th scope="col">Active</th>
+                        <th scope="col">Status</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="employee : ${employees}">
                         <td th:text="${employee.id}"></td>
-
-
+                        <td th:text="${employee.getRole()}"></td>
+                        <td th:text="${employee.getBranch()}"></td>
+                        <td th:text="${employee.getBookings()}"></td>
+                        <td th:text="${employee.getUser().getFirstName()}"></td>
+                        <td th:text="${employee.getUser().getLastName()}"></td>
+                        <td th:text="${employee.getUser().getEmail()}"></td>
+                        <td th:text="${employee.getUser().isActive()}"></td>
                     </tr>
                     </tbody>
                 </table>
