@@ -50,7 +50,6 @@
     <div class="container">
         <div class="jumbotron bookingsOffice">
 
-
             <h3 class="display-3">List of branches
                 <span class="float-right">
                     <a href="/" th:href="@{/add-branch}" class="btn btn-success">Add Branch</a>
@@ -67,20 +66,15 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Make</th>
-                        <th scope="col">Model</th>
-
-
+                        <th scope="col">City</th>
+                        <th scope="col">Address</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="branch : ${branches}">
-
                         <td th:text="${branch.id}"></td>
                         <td th:text="${branch.streetAddress}"></td>
                         <td th:text="${branch.city}"></td>
-
-
                     </tr>
                     </tbody>
                 </table>

@@ -50,7 +50,6 @@
     <div class="container">
         <div class="jumbotron bookingsOffice">
 
-
             <h3 class="display-3">List of cars
                 <span class="float-right">
                     <a href="/" th:href="@{/add-car}" class="btn btn-success">Add Car</a>
@@ -93,7 +92,7 @@
                         <td th:text="${car.pricePerDay}"></td>
 
                         <td>
-                            <a href="/" th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-primary">Modify</a>
+                            <a th:if="${car.isActive()} == true"  th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Modify</a>
                         </td>
                     </tr>
                     </tbody>

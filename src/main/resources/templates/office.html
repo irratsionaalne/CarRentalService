@@ -56,28 +56,36 @@
 
         <div class="jumbotron branch">
             <div class="branch float-right">
-                <h3>Add Branch</h3>
-                <span class="float-right"><a class="btn btn-success" href="/branch/add">ADD</a> </span>
-                <br/>
+                <h3>
+                    <span class="float-right">
+                    <a href="/" th:href="@{/add-branch}" class="btn btn-success">Add Branch</a>
+                </span>
+                </h3>
             </div>
         </div>
 
         <div class="jumbotron bookingsOffice">
             <div>
-                <h3>Bookings</h3>
+                <h3>Bookings
+                    <span class="float-right">
+                    <a href="/" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                </span>
+                </h3>
                 <form action="#" class="bookings">
                     <input name="search" placeholder="Search for Bookings..." type="text">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <br/>
-                <span class="left"><a class="btn btn-success" href="/booking/add">ADD</a></span>
             </div>
         </div>
 
         <div class="jumbotron bookingListOffice">
             <div>
-                <h3>Booking List</h3>
-                <span class="float-right"><a class="btn btn-success" href="/booking/add">ADD</a></span>
+                <h3>Booking List
+                    <span class="float-right">
+                    <a href="/" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                </span>
+                </h3>
             </div>
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -85,6 +93,9 @@
                     <th scope="col">#</th>
                     <th scope="col">Booking Id</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Car</th>
+                    <th scope="col">Start date</th>
                     <th scope="col">End date</th>
                     <th scope="col">Is Active</th>
                     <th scope="col"></th>
