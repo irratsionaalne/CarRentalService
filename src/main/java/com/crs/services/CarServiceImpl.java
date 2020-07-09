@@ -19,6 +19,13 @@ public class CarServiceImpl implements CarService{
 
     @Override
     public Car createCar(CarDto carDto) throws Exception {
+        Car car = convertToCar(carDto);
+
+        return carRepo.save(car);
+    }
+
+    @Override
+    public Car convertToCar(CarDto carDto) {
         Car car = new Car();
         car.setMake(carDto.getMake());
         car.setModel(carDto.getModel());
@@ -30,7 +37,23 @@ public class CarServiceImpl implements CarService{
         car.setPricePerDay(carDto.getPricePerDay());
         car.setActive(true);
 
-        return carRepo.save(car);
+        return car;
+    }
+
+    @Override
+    public CarDto convertToCarDto(Car car) {
+        CarDto carDto = new CarDto();
+        carDto.setId(car.getId());
+        carDto.setMake(car.getMake());
+        carDto.setModel(car.getModel());
+        carDto.setBodyType(car.getBodyType());
+        carDto.setYear(car.getYear());
+        carDto.setColor(car.getColor());
+        carDto.setMileage(car.getMileage());
+        carDto.setPricePerDay(car.getPricePerDay());
+        carDto.setStatus(car.getStatus());
+
+        return carDto;
     }
 
     @Override

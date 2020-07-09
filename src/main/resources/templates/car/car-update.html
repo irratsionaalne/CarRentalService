@@ -61,7 +61,7 @@
 
                             <label for="make" class="control-label">Make</label>
 
-                            <input id="make" class="form-control" type="text" th:field="*{make}" aria-describedby="nameHelp" required>
+                            <input id="make" class="form-control" type="text" th:field="*{make}">
                             <p class="error-message"
                                th:each="error: ${#fields.errors('make')}"
                                th:text="${error}">Validation error</p>
@@ -115,16 +115,10 @@
                                th:text="${error}">Validation error</p>
                         </div>
 
-                        <div class="form-group"
-                             th:classappend="${#fields.hasErrors('mileage')}? 'has-error':''">
-
+                        <div class="form-group">
                             <label for="mileage" class="control-label">Mileage</label>
-
-                            <input
-                                    id="mileage" class="form-control" th:field="*{mileage}"/>
-                            <p class="error-message"
-                               th:each="error: ${#fields.errors('mileage')}"
-                               th:text="${error}">Validation error</p>
+                            <input id="mileage" class="form-control" th:field="*{mileage}"/>
+                            <p class="error-message" th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}">Validation error</p>
                         </div>
 
                         <div class="form-group"

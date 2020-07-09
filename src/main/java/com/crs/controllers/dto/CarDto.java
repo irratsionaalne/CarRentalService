@@ -5,12 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
 @ToString
 public class CarDto {
+
+    private Long id;
 
     @NotEmpty
     private String make;
@@ -28,6 +31,7 @@ public class CarDto {
     private String color;
 
     @NotEmpty
+    @Min(0)
     private int mileage;
 
     @NotEmpty
