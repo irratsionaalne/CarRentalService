@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
     <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <title>AddCar</title>
+    <title>Update car</title>
 
 </head>
 <body>
@@ -53,17 +53,15 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <h3 class="display-3">Add Car</h3>
-
-                    <form action="#" th:action="@{/add-car}" th:object="${car}" method="post">
+                    <h3 class="display-3">Update Car</h3>
+                    <form action="#" th:action="@{/car/update/{id}(id=${car.id})}" th:object="${car}" method="post">
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
 
                             <label for="make" class="control-label">Make</label>
 
-                            <input
-                                    id="make" class="form-control" th:field="*{make}"/>
+                            <input id="make" class="form-control" type="text" th:field="*{make}" aria-describedby="nameHelp" required>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('make')}"
                                th:text="${error}">Validation error</p>
@@ -157,8 +155,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Add car</button>
-                            <a href="/car/" class="btn btn-success">Cancel</a>
+                            <button type="submit" class="btn btn-success">Update</button>
 
                         </div>
 
