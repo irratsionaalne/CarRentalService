@@ -76,13 +76,13 @@
                     </thead>
                     <tbody>
                     <tr th:each="customer : ${customers}">
-                        <!--<td th:text="${customer.id}"></td>
-                        <td th:text="${customer.getFirstName()}"></td>
-                        <td th:text="${customer.getLastName()}"></td>
-                        <td th:text="${customer.getEmail()}"></td>
+                        <td th:text="${customer.id}"></td>
+                        <td th:text="${customer.getUser().getFirstName()}"></td>
+                        <td th:text="${customer.getUser().getLastName()}"></td>
+                        <td th:text="${customer.getUser().getEmail()}"></td>
                         <td th:text="${customer.getAddress()}"></td>
                         <td th:text="${customer.getDob()}"></td>
-                    </tr> -->
+                    </tr>
                     </tbody>
                 </table>
             </div>
