@@ -18,11 +18,10 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class WebController {
 
-    @GetMapping
+    /*@GetMapping("/login")
     public String login(){
-        return "home";
-    }
-
+        return "login";
+    }*/
    /* @GetMapping
     public ModelAndView index() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
