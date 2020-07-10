@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("office")
 @RequiredArgsConstructor
 public class OfficeController {
+
+    @GetMapping("/office")
+    public String office(){
+        return "office";
+    }
 
     /*private final OfficeService officeService;
 

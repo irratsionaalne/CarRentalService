@@ -15,14 +15,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingController {
 
+
+
+
     private final BookingService bookingService;
 
-    @GetMapping
+
+
+
+    @GetMapping("/booking")
     public ModelAndView showAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
         ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
+    }
+
+    @GetMapping("/booking/booking")
+    public String addBookingForm() {
+        return "booking";
     }
 
     /*
@@ -84,5 +95,6 @@ public class BookingController {
     }
 
      */
+
 
 }

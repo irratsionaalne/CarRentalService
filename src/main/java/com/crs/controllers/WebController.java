@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -18,7 +19,12 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class WebController {
 
-    @GetMapping
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    /*@GetMapping
     public String login(){
         return "home";
     }
@@ -33,9 +39,12 @@ public class WebController {
     }*/
 
 
+
     private final UserServiceImpl userService;
 
     private final CustomerService customerService;
+
+
 
 
     @ModelAttribute("customer")
@@ -53,6 +62,7 @@ public class WebController {
                                        @ModelAttribute("message") String message, Model model) {
         return "registration";
     }
+
 
     /*@GetMapping("office")
     public String showOfficeForm(Model model) {

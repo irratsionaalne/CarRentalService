@@ -2,6 +2,7 @@ package com.crs.config;
 
 import com.crs.services.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,7 +18,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserServiceImpl userService;
 
-    @Override
+    @Autowired
+    private CustomLoginSuccessHandler customLoginSuccessHandler;
+
+   /* @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
@@ -47,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
-    }
+    }*/
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -67,4 +71,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers(
+                        "/registration**",
+                        "/js/**",
+                        "static/css/**",
+                        "/static/css/img/**",
+                        "/webjars/**",
+                        "/login/**",
+                        "/index/**",
+                        "/"
+                )
+                .permitAll()
+                // Must add customer pages
+                //.antMatchers(("/**")).hasAnyAuthority(("OWNER,EMPLOYEE,CUSTOMER"))
+                .anyRequest()
+                .authenticated()
+                .and()
+                .csrf().disable().formLogin()
+                .loginPage("/login")
+                .successHandler(customLoginSuccessHandler)
+
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/index")
+                .permitAll();
+
+    }
 }
