@@ -1,10 +1,10 @@
 package com.crs.controllers;
 
-
-import com.crs.controllers.dto.CustomerRegistrationDto;
+import com.crs.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
 import com.crs.services.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +14,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("customer")
-@RequiredArgsConstructor
+@RequestMapping("/customer")
 public class CustomerController {
+    @Autowired
+    private CustomerService customerService;
 
-    private final CustomerService customerService;
-
-    @GetMapping("")
+    @GetMapping
     public ModelAndView showAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
         ModelAndView modelAndView = new ModelAndView("customer/listofcustomers");
@@ -38,12 +37,12 @@ public class CustomerController {
         return "add-customer";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-customer")
     public Object addCustomer(@ModelAttribute("customer") @Valid CustomerRegistrationDto customerRegistrationDto) throws Exception {
         Customer customer = customerService.createCustomer(customerRegistrationDto);
 
         if (customer != null) {
-           return "redirect:/customer";
+            return "redirect:/customer";
         }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("message", "Error in creating a customer!");
@@ -71,6 +70,6 @@ public class CustomerController {
         model.addAttribute("message", "Error in updating customer");
         model.addAttribute("messageType", "error");
         return updateCustomerForm(model);
-
     }
+
 }

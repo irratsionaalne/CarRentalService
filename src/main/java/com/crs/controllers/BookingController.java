@@ -3,26 +3,34 @@ package com.crs.controllers;
 import com.crs.models.Booking;
 import com.crs.services.BookingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("booking")
-@RequiredArgsConstructor
+@RequestMapping("/booking")
 public class BookingController {
-
-    private final BookingService bookingService;
+    @Autowired
+    private BookingService bookingService;
 
     @GetMapping
-    public String showAllBookings(Model model) {
+    public ModelAndView showAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
-        model.addAttribute("bookings", bookings);
-        return "index";
+        ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
+        modelAndView.addObject("bookings", bookings);
+        return modelAndView;
     }
 
+    @GetMapping("/bookingView")
+    public String booking() {
+        return "booking/bookingView";
+    }
+
+    /*
     @GetMapping("/add")
     public String addBookingForm(Model model) {
         return "add-booking";
@@ -79,5 +87,8 @@ public class BookingController {
 
         return showAllBookings(model);
     }
+
+     */
+
 
 }

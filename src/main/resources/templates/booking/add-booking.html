@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <title>Add booking</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle float-right"
+                       data-toggle="dropdown"
+                       href="#" id="navbarDropdown" role="button">
+                        Manage DB
+                    </a>
+                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <a class="dropdown-item center" href="/booking">Bookings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item center" href="/branch">Branches</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item center" href="/employee">Employees</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item center" href="/customer">Customers</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="floatRight">
+            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
+                                                                 th:href="@{/logout}">Logout</a>
+            </p>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron bookingsOffice">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <h3 class="display-3">Add Booking</h3>
+                    <form th:action="@{/add-booking}" th:object="${booking}" method="post">
+
+                        <th scope="col">Booking Id</th>
+                        <th scope="col">Date of booking</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Start date</th>
+                        <th scope="col">End date</th>
+                        <th scope="col">Is Active</th>
+                        <th scope="col"></th>
+
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('date_of_booking')}? 'has-error':''">
+
+                            <label for="date_of_booking" class="control-label">Date of booking</label>
+
+                            <input
+                                    id="date_of_booking" class="form-control" th:field="*{date_of_booking}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('date_of_booking')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('date_from')}? 'has-error':''">
+
+                            <label for="date_from" class="control-label">Start date</label>
+
+                            <input
+                                    id="date_from" class="form-control" th:field="*{date_from}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('date_from')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('date_to')}? 'has-error':''">
+
+                            <label for="date_to" class="control-label">End date</label>
+
+                            <input
+                                    id="date_to" class="form-control" th:field="*{date_to}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('date_to')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('total_price')}? 'has-error':''">
+
+                            <label for="total_price" class="control-label">Total price</label>
+
+                            <input
+                                    id="total_price" class="form-control" th:field="*{total_price}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('total_price')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('car_id')}? 'has-error':''">
+
+                            <label for="car_id" class="control-label">Car</label>
+
+                            <input
+                                    id="car_id" class="form-control" th:field="*{car_id}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('car_id')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('customer_id')}? 'has-error':''">
+
+                            <label for="customer_id" class="control-label">Customer</label>
+
+                            <input
+                                    id="customer_id" class="form-control" th:field="*{customer_id}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('customer_id')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('car_rental_id')}? 'has-error':''">
+
+                            <label for="car_rental_id" class="control-label">Car rental</label>
+
+                            <input
+                                    id="car_rental_id" class="form-control" th:field="*{car_rental_id}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('car_rental_id')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('car_return_id')}? 'has-error':''">
+
+                            <label for="car_return_id" class="control-label">Car return</label>
+
+                            <input
+                                    id="car_return_id" class="form-control" th:field="*{car_return_id}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('car_return_id')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('status')}? 'has-error':''">
+
+                            <label for="status" class="control-label">Status</label>
+
+                            <select id="status" class="form-control" name="status">
+                                <option th:each="status : ${T(com.crs.models.Booking.getStatus).values()}"
+                                        th:value="${status}" th:text="${status.displayValue}"></option>
+                            </select>
+
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('status')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Add booking</button>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

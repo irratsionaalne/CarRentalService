@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8"/>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link href="../static/css/office.css" th:href="@{/css/office.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
 
     <title>Booking</title>
@@ -16,68 +16,72 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <a class="navbar-brand" href="/booking">CRS</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Bookings <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle float-right"
-                       data-toggle="dropdown"
-                       href="#" id="navbarDropdown" role="button">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage DB
                     </a>
-                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                        <a class="dropdown-item center" href="/car">Cars</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/car">Cars</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/branch">Branches</a>
+                        <a class="dropdown-item" href="/branch">Branches</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/employee">Employees</a>
+                        <a class="dropdown-item" href="/employee">Employees</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/customer">Customers</a>
+                        <a class="dropdown-item" href="/customer">Customers</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link float-right" href="/revenue" th:href="@{/revenue}">Revenue</a>
                 </li>
             </ul>
         </div>
         <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
-                                                                 th:href="@{/logout}">Logout</a>
+            <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
         <h2 class="display-4">
-            <!--            Welcome <span th:text="${user.firstName}"><strong></strong></span>-->
-        </h2>
 
+        </h2>
+        <br/>
+        <br/>
         <div class="jumbotron branch">
             <div class="branch float-right">
-                <h3>Add Branch</h3>
-                <span class="float-right"><a class="btn btn-success" href="/add-branch">ADD</a> </span>
-                <br/>
+                <h3>
+                    <span class="float-right">
+                    <a href="/" th:href="@{/add-branch}" class="btn btn-success">Add Branch</a>
+                </span>
+                </h3>
             </div>
         </div>
 
         <div class="jumbotron bookingsOffice">
             <div>
-                <h3>Bookings</h3>
+                <h3>Bookings
+                    <span class="float-right">
+                    <a href="/" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                </span>
+                </h3>
                 <form action="#" class="bookings">
                     <input name="search" placeholder="Search for Bookings..." type="text">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <br/>
-                <span class="left"><a class="btn btn-success" href="/add-booking">ADD</a></span>
             </div>
         </div>
 
         <div class="jumbotron bookingListOffice">
             <div>
-                <h3>Booking List</h3>
-                <span class="float-right"><a class="btn btn-success" href="/add-booking">ADD</a></span>
+                <h3>Booking List
+                    <span class="float-right">
+                    <a href="/" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                </span>
+                </h3>
             </div>
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -94,8 +98,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="booking : ${bookings}">
+                <!--<tr th:each="booking : ${bookings}">
                     <th scope="row" th:text="${booking.id}></th>
+                    <td th:text="${booking.dateOfBooking}></td>
                     <td th:text="${booking.dateOfBooking}></td>
                     <td th:text="${booking.customer}></td>
                     <td th:text="${booking.car}></td>
@@ -106,9 +111,9 @@
                     <td th:text="${booking.totalPrice}></td>
                     <td th:text="${booking.status}></td>
                     <td>
-                    <a th:if="${booking.isActive()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                    <a th:if="${booking.isActive()} == true" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
-                    </td>
+                    <a th:if="${booking.active} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
+                    <a th:if="${booking.active} == true" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
+                    </td>-->
                 </tr>
                 </tbody>
             </table>
@@ -117,7 +122,6 @@
             <br/>
             <br/>
         </div>
-
     </div>
 </div>
 
@@ -127,10 +131,10 @@
 </footer>
 
 
-<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"
-        type="text/javascript"></script>
-<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"
-        type="text/javascript"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

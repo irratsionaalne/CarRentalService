@@ -1,18 +1,19 @@
 package com.crs.services;
 
+import com.crs.dto.BranchCreationDto;
 import com.crs.models.Branch;
 
 import java.util.List;
 
 public interface BranchService {
 
-    boolean createBranch(Branch branch) throws Exception;
+    Branch createBranch(BranchCreationDto branchCreationDto) throws Exception;
 
-    boolean updateBranch(Branch branch);
-
-    boolean setBranchStatus(Long branchId) throws Exception;
+    //boolean setBranchStatus(Long branchId) throws Exception;
 
     List<Branch> getAllBranches();
+
+    boolean doesBranchExist(String streetAddress,String city);
 
     Branch getById(Long branchId);
 }

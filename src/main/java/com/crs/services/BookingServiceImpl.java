@@ -1,9 +1,9 @@
 package com.crs.services;
 
+import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
 import com.crs.repositories.BookingRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,48 +15,35 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepo bookingRepo;
 
     @Override
-    public boolean createBooking(Booking booking) throws Exception {
-        if (booking == null) {
-            throw new Exception("Invalid booking");
-        }
-
-        booking.setStatus("ACTIVE");
-        bookingRepo.save(booking);
-        return true;
+    public Booking createBooking(BookingDto bookingDto) throws Exception {
+        Booking booking = new Booking();
+        booking.setDateOfBooking(bookingDto.getDateOfBooking());
+        booking.setCustomer(bookingDto.getCustomer());
+        booking.setCar(bookingDto.getCar());
+        booking.setDateFrom(bookingDto.getDateFrom());
+        booking.setDateTo(bookingDto.getDateTo());
+        booking.setStatus(bookingDto.getStatus());
+        return bookingRepo.save(booking);
     }
 
     @Override
-    public boolean updateBooking(Booking booking) {
-        if (booking == null || !bookingRepo.existsById(booking.getId())) {
-            return false;
-        }
+    public boolean createBooking(Booking booking) throws Exception {
+        return false;
+    }
 
+    @Override
+    public boolean updateBooking(Booking booking) throws Exception {
+        if (booking == null || !bookingRepo.existsById(booking.getId())) {
+            throw new Exception("Invalid updating of Booking");
+        }
         bookingRepo.saveAndFlush(booking);
         return true;
     }
 
     @Override
     public boolean cancelBooking(Long bookingId) throws Exception {
-        Booking booking = getById(bookingId);
-        if (booking == null) {
-            throw new Exception("Booking does not exist");
-        }
-        booking.setStatus("CANCELLED");
-        updateBooking(booking);
-        return true;
+        return false;
     }
-
-/*    @Override
-    public boolean restoreBooking(Long bookingId) throws Exception{
-        Booking booking = getById(bookingId);
-        if (booking == null) {
-            throw new Exception("Booking does not exist");
-        }
-
-        booking.setStatus("ACTIVE");
-        updateBooking(booking);
-        return true;
-    }*/
 
     @Override
     public List<Booking> getAllBookings() {

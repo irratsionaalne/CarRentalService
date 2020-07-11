@@ -1,22 +1,18 @@
-package com.crs.controllers.dto;
+package com.crs.dto;
 
 import com.crs.constraint.FieldMatch;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.Value;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match")
 })
-@Getter
-@Setter
-public class CustomerRegistrationDto {
+@Value
+public class UserRegistrationDto {
 
     @NotEmpty
     private String firstName;
@@ -30,18 +26,10 @@ public class CustomerRegistrationDto {
     @NotEmpty
     private String confirmPassword;
 
-    @NotEmpty
-    private String address;
-
-    @NotEmpty
-    private String dob;
-
     @Email
     @NotEmpty
     private String email;
 
     @AssertTrue
     private Boolean terms;
-
-
 }

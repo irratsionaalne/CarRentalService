@@ -1,6 +1,6 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.CustomerRegistrationDto;
+import com.crs.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
 import com.crs.models.Role;
 import com.crs.models.User;

@@ -1,11 +1,7 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.CustomerRegistrationDto;
-import com.crs.controllers.dto.UserRegistrationDto;
+import com.crs.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
-import com.crs.models.Employee;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 

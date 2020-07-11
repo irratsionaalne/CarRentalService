@@ -1,19 +1,14 @@
-package com.crs.controllers.dto;
+package com.crs.dto;
 
 import com.crs.constraint.FieldMatch;
-import com.crs.models.Booking;
-import com.crs.models.Branch;
 import com.crs.models.EmployeeRole;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.Value;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
-import java.util.Set;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match")
