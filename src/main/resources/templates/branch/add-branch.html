@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
+    <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <title>Add Branch</title>
 </head>
@@ -61,7 +61,7 @@
                             <label for="streetAddress" class="control-label">Street address</label>
 
                             <input
-                                    id="streetAddress" class="form-control" th:field="*{streetAddress}"/>
+                                    id="streetAddress" class="form-control" th:field="*{streetAddress}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('streetAddress')}"
                                th:text="${error}">Validation error</p>
@@ -72,7 +72,7 @@
                             <label for="city" class="control-label">City</label>
 
                             <input
-                                    id="city" class="form-control" th:field="*{city}"/>
+                                    id="city" class="form-control" th:field="*{city}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('city')}"
                                th:text="${error}">Validation error</p>
