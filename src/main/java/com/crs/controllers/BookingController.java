@@ -1,5 +1,6 @@
 package com.crs.controllers;
 
+import com.crs.dto.CarDto;
 import com.crs.models.Booking;
 import com.crs.services.BookingService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/booking")
@@ -30,10 +32,10 @@ public class BookingController {
         return "booking/bookingView";
     }
 
-    /*
     @GetMapping("/add")
-    public String addBookingForm(Model model) {
-        return "add-booking";
+    public String addBookingForm(@ModelAttribute("booking") Booking booking, @ModelAttribute("messageType") String messageType,
+                                 @ModelAttribute("message") String message, Model model) {
+        return "booking/add-booking";
     }
 
     @PostMapping("/add")
@@ -43,12 +45,12 @@ public class BookingController {
         if (createResult) {
             model.addAttribute("message", "Booking has been successfully created.");
             model.addAttribute("messageType", "success");
-            return showAllBookings(model);
+            return "booking/listofbookings";
         }
         model.addAttribute("booking", booking);
         model.addAttribute("message", "Error in creating a booking.");
         model.addAttribute("messageType", "error");
-        return addBookingForm(model);
+        return "redirect:/booking";
 
     }
 
@@ -58,14 +60,14 @@ public class BookingController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateBooking(@PathVariable("id") UUID bookingId, Booking booking, Model model) {
+    public String updateBooking(@PathVariable("id") UUID bookingId, Booking booking, Model model) throws Exception {
         booking.setId(bookingId);
         boolean updateResult = bookingService.updateBooking(booking);
 
         if (updateResult) {
             model.addAttribute("message", "Booking has been successfully updated.");
             model.addAttribute("messageType", "success");
-            return showAllBookings(model);
+            return "/booking/listofbookings";
         }
         model.addAttribute("booking", booking);
         model.addAttribute("message", "Error in updating booking");
@@ -74,7 +76,7 @@ public class BookingController {
 
     }
 
-    @PutMapping("/delete/{id}")
+   /* @PutMapping("/delete/{id}")
     public String cancelBooking(@PathVariable("id") UUID bookingId, Model model) throws Exception {
         boolean deleteResult = bookingService.cancelBooking(bookingId);
 
@@ -86,9 +88,8 @@ public class BookingController {
         model.addAttribute("messageType", "error");
 
         return showAllBookings(model);
-    }
+    }*/
 
-     */
 
 
 }

@@ -5,6 +5,7 @@ import com.crs.models.*;
 import com.crs.repositories.EmployeeRepo;
 import com.crs.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
-    
-    private final UserRepo userRepo;
-    
-    private final EmployeeRepo employeeRepo;
-
-    private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private  UserRepo userRepo;
+    @Autowired
+    private  EmployeeRepo employeeRepo;
+    @Autowired
+    private  BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Employee createEmployee(EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
@@ -33,9 +33,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         user = userRepo.save(user);
 
         Employee employee = new Employee();
-        employee.setId(user.getId());
         employee.setBranch(employeeRegistrationDto.getBranch());
         employee.setRole(employeeRegistrationDto.getRole());
+        employee.setUser(user);
         return employeeRepo.save(employee);
     }
 

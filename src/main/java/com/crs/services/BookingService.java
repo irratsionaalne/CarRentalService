@@ -2,6 +2,7 @@ package com.crs.services;
 
 import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
+import com.crs.models.Car;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +16,8 @@ public interface BookingService {
     boolean updateBooking(Booking booking) throws Exception;
 
     boolean cancelBooking(UUID bookingId) throws Exception;
+
+    boolean searchForBooking(String fromDate, String todate, Car car, String city) throws Exception;
 
 /*
     boolean restoreBooking(UUID bookingId) throws Exception;
