@@ -4,6 +4,7 @@ import com.crs.dto.CarDto;
 import com.crs.models.Car;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CarService {
 
@@ -13,6 +14,6 @@ public interface CarService {
 
     List<Car> getAllCars();
 
-    Car getById(Long carId);
+    Car getById(UUID carId);
 
 }

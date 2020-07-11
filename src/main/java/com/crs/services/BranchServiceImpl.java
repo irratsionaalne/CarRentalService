@@ -5,15 +5,16 @@ import com.crs.dto.BranchCreationDto;
 import com.crs.models.*;
 import com.crs.repositories.BranchRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class BranchServiceImpl implements BranchService {
-
-    private final BranchRepo branchRepo;
+    @Autowired
+    private BranchRepo branchRepo;
 
     @Override
     public Branch createBranch(BranchCreationDto branchCreationDto) throws Exception {
@@ -29,7 +30,7 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public Branch getById(Long branchId) {
+    public Branch getById(UUID branchId) {
         return branchRepo.getOne(branchId);
     }
 

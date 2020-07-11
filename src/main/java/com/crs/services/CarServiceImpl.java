@@ -4,15 +4,16 @@ import com.crs.dto.CarDto;
 import com.crs.models.Car;
 import com.crs.repositories.CarRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class CarServiceImpl implements CarService{
-
-    private final CarRepo carRepo;
+    @Autowired
+    private CarRepo carRepo;
 
     @Override
     public Car createCar(CarDto carDto) throws Exception {
@@ -45,7 +46,7 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public Car getById(Long carId) {
+    public Car getById(UUID carId) {
         return carRepo.getOne(carId);
     }
 }

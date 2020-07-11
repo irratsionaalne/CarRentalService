@@ -7,22 +7,23 @@ import com.crs.models.User;
 import com.crs.repositories.CustomerRepo;
 import com.crs.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-
-    private final UserRepo userRepo;
-
-    private final CustomerRepo customerRepo;
-
-    private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private  UserRepo userRepo;
+    @Autowired
+    private CustomerRepo customerRepo;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Customer createCustomer(CustomerRegistrationDto customerRegistrationDto) throws Exception {
@@ -36,9 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
         user = userRepo.save(user);
 
         Customer customer = new Customer();
-        customer.setId(user.getId());
         customer.setAddress(customerRegistrationDto.getAddress());
         customer.setDob(LocalDate.parse(customerRegistrationDto.getDob()));
+        customer.setUser(user);
         return customerRepo.save(customer);
     }
 
@@ -57,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getById(Long customerId) {
+    public Customer getById(UUID customerId) {
         return customerRepo.getOne(customerId);
     }
 

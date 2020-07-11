@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/car")
@@ -26,7 +27,7 @@ public class CarController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateCarForm(@PathVariable("id") Long carId, @ModelAttribute("messageType") String messageType,
+    public String updateCarForm(@PathVariable("id") UUID carId, @ModelAttribute("messageType") String messageType,
                                 @ModelAttribute("message") String message, Model model) {
         Car car = carService.getById(carId);
         if (car == null) {
@@ -38,7 +39,7 @@ public class CarController {
     }
 
     @PostMapping("/update/{id}")
-    public Object updateCar(@PathVariable("id") Long carId, Car car, Model model) throws Exception {
+    public Object updateCar(@PathVariable("id") UUID carId, Car car, Model model) throws Exception {
         car.setId(carId);
         boolean updateResult = carService.updateCar(car);
         if (updateResult) {
@@ -79,7 +80,7 @@ public class CarController {
         return "update-car";
     }
     @PutMapping("/update/{id}")
-    public Object updateCar(@PathVariable("id") Long carId, Car car, Model model) throws Exception {
+    public Object updateCar(@PathVariable("id") UUID carId, Car car, Model model) throws Exception {
         car.setId(carId);
         boolean updateResult = carService.updateCar(car);
         if (updateResult) {

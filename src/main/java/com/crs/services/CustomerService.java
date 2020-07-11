@@ -4,6 +4,7 @@ import com.crs.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CustomerService {
 
@@ -13,5 +14,5 @@ public interface CustomerService {
 
     List<Customer> getAllCustomers();
   
-    Customer getById(Long customerId);
+    Customer getById(UUID customerId);
 }

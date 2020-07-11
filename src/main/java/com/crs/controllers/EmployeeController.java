@@ -52,7 +52,7 @@ public class EmployeeController {
         return "update-employee";
     }
     @PutMapping("/update/{id}")
-    public Object updateEmployee(@PathVariable("id") Long employeeId, Employee employee, Model model) {
+    public Object updateEmployee(@PathVariable("id") UUID employeeId, Employee employee, Model model) {
         employee.setId(employeeId);
         boolean updateResult = employeeService.updateEmployee(employee);
         if (updateResult) {

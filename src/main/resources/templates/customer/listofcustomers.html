@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/css/office.css}"/>
+    <link href="../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <title>Customers</title>
 </head>
@@ -51,7 +51,7 @@
         <div class="jumbotron bookingsOffice">
             <h3 class="display-3">List of customers
                 <span class="float-right">
-                    <a href="/" th:href="@{/registration}" class="btn btn-success">Add Customer</a>
+                    <a th:href="@{/add-customer.html}" class="btn btn-success">Add Customer</a>
                 </span></h3>
             <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
                 <span th:text="${message}"></span>
@@ -76,13 +76,14 @@
                     </thead>
                     <tbody>
                     <tr th:each="customer : ${customers}">
-                        <!--<td th:text="${customer.id}"></td>
-                        <td th:text="${customer.getFirstName()}"></td>
-                        <td th:text="${customer.getLastName()}"></td>
-                        <td th:text="${customer.getEmail()}"></td>
+                        <td th:text="${customer.id}"></td>
+                        <td th:text="${customer.getUser().getFirstName()}"></td>
+                        <td th:text="${customer.getUser().getLastName()}"></td>
+                        <td th:text="${customer.getUser().getEmail()}"></td>
                         <td th:text="${customer.getAddress()}"></td>
                         <td th:text="${customer.getDob()}"></td>
-                    </tr> -->
+                        <td th:text="${customer.getUser().isActive()}"></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

@@ -21,11 +21,9 @@ public class CustomerRegistrationDto {
     @NotEmpty
     private String lastName;
 
+    @Email
     @NotEmpty
-    private String password;
-
-    @NotEmpty
-    private String confirmPassword;
+    private String email;
 
     @NotEmpty
     private String address;
@@ -33,12 +31,14 @@ public class CustomerRegistrationDto {
     @NotEmpty
     private String dob;
 
-    @Email
-    @NotEmpty
-    private String email;
-
     @AssertTrue
     private Boolean terms;
+
+    @NotEmpty
+    private String password;
+
+    @NotEmpty
+    private String confirmPassword;
 
 
 }

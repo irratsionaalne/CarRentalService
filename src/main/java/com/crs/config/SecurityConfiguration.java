@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/home**",
                         "/office**",
                         "/booking**",
+                        "/add-customer**",
                         "/"
                         )
                 .permitAll()
@@ -81,7 +82,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/",
                         "/js/**",
                         "static/css/**",
-                        "/static/css/img/**",
+                        "/static/img/**",
                         "/webjars/**"
 
 
