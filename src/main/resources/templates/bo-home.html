@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link href="../static/css/styles.css" th:href="@{../static/css/styles.css}" rel="stylesheet"/>
+    <link href="../../resources/static/css/styles.css" th:href="@{/resources/static/css/styles.css}" rel="stylesheet"/>
 
     <title>Index</title>
 
@@ -22,7 +22,23 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Bookings <span class="sr-only float-right">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
+                </li>
+
+                <li class="nav-item float-right">
+                    <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
+                </li>
+               <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle float-right" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage DB
@@ -36,7 +52,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/customer">Customers</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
         <div class="floatRight">
@@ -53,24 +69,13 @@
         <div class="jumbotron bookings">
             <div>
                 <h3>Search for</h3>
-                <!--<form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Booking Id" aria-label="Booking Id">
-                </form>-->
-                <form class="bookings" action="#">
-                    <input type="text" placeholder="Bookings" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
                 <br/>
-                <h3 class="display-3"><span class="float-right"><a href="/booking/add" class="btn btn-success">ADD</a> </span>
-                </h3>
             </div>
         </div>
 
         <div class="jumbotron bookings">
             <div>
                 <h3>Booking List</h3>
-                <h3 class="display-3"><span class="float-right"><a href="/booking/add" class="btn btn-success">ADD</a> </span>
-                </h3>
                 <br/>
             </div>
             <table class="table table-striped">
