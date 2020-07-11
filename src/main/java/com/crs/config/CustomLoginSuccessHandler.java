@@ -1,7 +1,6 @@
 package com.crs.config;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -33,7 +32,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
 
     protected String determineTargetUrl(Authentication authentication){
-        String url="/index";
+        String url="/home";
 
         String role= authentication.getAuthorities().toString();
         System.out.println(role);
@@ -42,7 +41,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                     url="/office";
                 }
                 else if ( role.equals("[EMPLOYEE]")){
-                    url="/booking/booking";
+                    url="/booking/bookingView";
                 }
                 return url;
     }

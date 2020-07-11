@@ -76,14 +76,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(
-                        "/registration**",
+                        "/registration/**",
+                        "/login/**",
+                        "/index/**",
+                        "/",
                         "/js/**",
                         "static/css/**",
                         "/static/css/img/**",
-                        "/webjars/**",
-                        "/login/**",
-                        "/index/**",
-                        "/"
+                        "/webjars/**"
+
+
                 )
                 .permitAll()
                 // Must add customer pages

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/booking")
+@RequestMapping("booking")
 @RequiredArgsConstructor
 public class BookingController {
 
@@ -23,7 +23,7 @@ public class BookingController {
 
 
 
-    @GetMapping("/booking")
+    @GetMapping
     public ModelAndView showAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
         ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
@@ -31,9 +31,9 @@ public class BookingController {
         return modelAndView;
     }
 
-    @GetMapping("/booking/booking")
-    public String addBookingForm() {
-        return "booking";
+    @GetMapping("/bookingView")
+    public String booking() {
+        return "booking/bookingView";
     }
 
     /*

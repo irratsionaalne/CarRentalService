@@ -24,6 +24,12 @@ public class WebController {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
+
     /*@GetMapping
     public String login(){
         return "home";
@@ -79,7 +85,7 @@ public class WebController {
         return "car";
     }*/
 
-    @GetMapping("rental")
+    /*@GetMapping("rental")
     public String showRentalForm(Model model) {
         return "rental";
     }
@@ -87,7 +93,7 @@ public class WebController {
     @GetMapping("return")
     public String showReturnForm(Model model) {
         return "return";
-    }
+    }*/
 
     //office
     //branch
