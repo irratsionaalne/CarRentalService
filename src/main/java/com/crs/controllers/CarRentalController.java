@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/car-rental")
@@ -52,7 +53,7 @@ public class CarRentalController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateCarRental(@PathVariable("id") Long carRentalId, CarRental carRental, Model model) throws Exception {
+    public String updateCarRental(@PathVariable("id") UUID carRentalId, CarRental carRental, Model model) throws Exception {
         carRental.setId(carRentalId);
         boolean updateResult = carRentalService.updateCarRental(carRental);
 
@@ -69,7 +70,7 @@ public class CarRentalController {
     }
 
     @GetMapping("/delete/{id}")
-    public String setCarRentalStatus(@PathVariable("id") Long carRentalId, Model model) throws Exception {
+    public String setCarRentalStatus(@PathVariable("id") UUID carRentalId, Model model) throws Exception {
         boolean deleteResult = carRentalService.setCarRentalStatus(carRentalId);
 
         if (deleteResult) {

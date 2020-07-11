@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import java.util.Date;
 public class BookingDto extends Booking {
 
     @NotEmpty
-    private Date dateOfBooking;
+    private LocalDate dateOfBooking;
 
     @NotEmpty
     private Customer customer;

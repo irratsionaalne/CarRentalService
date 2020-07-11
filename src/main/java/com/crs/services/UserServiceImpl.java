@@ -4,6 +4,7 @@ import com.crs.models.User;
 import com.crs.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +17,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserDetailsService {
 
-    private final UserRepo userRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     @SneakyThrows
     @Override

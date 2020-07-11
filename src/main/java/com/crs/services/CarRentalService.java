@@ -3,6 +3,7 @@ package com.crs.services;
 import com.crs.models.CarRental;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CarRentalService {
 
@@ -10,11 +11,11 @@ public interface CarRentalService {
 
     boolean updateCarRental(CarRental carRental) throws Exception;
 
-    boolean setCarRentalStatus(Long carRentalId) throws Exception;
+    boolean setCarRentalStatus(UUID carRentalId) throws Exception;
 
-    CarRental getById(Long carRentalId);
+    CarRental getById(UUID carRentalId);
 
-    boolean addComment(Long carRentalId,String carRentalComment);
+    boolean addComment(UUID carRentalId,String carRentalComment);
 
     List<CarRental> getAllCarRentals();
 }

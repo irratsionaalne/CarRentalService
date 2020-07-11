@@ -3,6 +3,7 @@ package com.crs.services;
 import com.crs.models.CarReturn;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CarReturnService {
 
@@ -10,13 +11,13 @@ public interface CarReturnService {
 
     boolean updateCarReturn(CarReturn carReturn) throws Exception;
 
-    boolean setCarReturnStatus(Long carReturnId) throws Exception;
+    boolean setCarReturnStatus(UUID carReturnId) throws Exception;
 
-    CarReturn getById(Long carReturnId);
+    CarReturn getById(UUID carReturnId);
 
-    boolean addComment(Long carReturnId,String carRentalComment);
+    boolean addComment(UUID carReturnId,String carRentalComment);
 
-    boolean addAdditionalPayment(Long carReturnId,String carAdditionalPayment);
+    boolean addAdditionalPayment(UUID carReturnId,String carAdditionalPayment);
 
     List<CarReturn> getAllCarReturns();
 }

@@ -1,21 +1,28 @@
 package com.crs.models;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Data
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private Date dateOfBooking;
-    @ManyToOne
+    @GeneratedValue(generator = "UUID")
+    @Column(updatable = false, nullable = false)
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
+    private LocalDate dateOfBooking;
+    @OneToOne
     private Customer customer;
     @OneToOne
     private Car car;

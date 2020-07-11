@@ -3,6 +3,7 @@ package com.crs.services;
 import com.crs.models.Office;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface OfficeService {
 
@@ -12,6 +13,6 @@ public interface OfficeService {
 
     List<Office> getAllOffices();
 
-    Office getById(Long officeId);
+    Office getById(UUID officeId);
 
 }

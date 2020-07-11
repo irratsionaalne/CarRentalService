@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
@@ -40,7 +41,7 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     @Override
-    public Office getById(Long officeId) {
+    public Office getById(UUID officeId) {
         return officeRepo.getOne(officeId);
     }
 

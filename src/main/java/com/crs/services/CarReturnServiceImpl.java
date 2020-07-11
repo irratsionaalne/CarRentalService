@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CarReturnServiceImpl implements CarReturnService {
@@ -32,7 +33,7 @@ public class CarReturnServiceImpl implements CarReturnService {
     }
 
     @Override
-    public boolean setCarReturnStatus(Long carReturnId) throws Exception {
+    public boolean setCarReturnStatus(UUID carReturnId) throws Exception {
         CarReturn carReturn = getById(carReturnId);
         if (carReturnId == null) {
             throw new Exception("Invalid input ... ");
@@ -46,12 +47,12 @@ public class CarReturnServiceImpl implements CarReturnService {
     }
 
     @Override
-    public CarReturn getById(Long carReturnId) {
+    public CarReturn getById(UUID carReturnId) {
         return carReturnRepo.getOne(carReturnId);
     }
 
     @Override
-    public boolean addComment(Long carReturnId,String carRentalComment) {
+    public boolean addComment(UUID carReturnId,String carRentalComment) {
         CarReturn carReturn = carReturnRepo.getOne(carReturnId);
         carReturn.setComment(carRentalComment);
         carReturnRepo.save(carReturn);
@@ -59,7 +60,7 @@ public class CarReturnServiceImpl implements CarReturnService {
     }
 
     @Override
-    public boolean addAdditionalPayment(Long carReturnId,String carAdditionalPayment) {
+    public boolean addAdditionalPayment(UUID carReturnId,String carAdditionalPayment) {
         CarReturn carReturn = carReturnRepo.getOne(carReturnId);
         carReturn.setAdditionalPayment(carAdditionalPayment);
         carReturnRepo.save(carReturn);

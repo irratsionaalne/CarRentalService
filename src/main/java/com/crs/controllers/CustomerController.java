@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/customer")
@@ -57,7 +58,7 @@ public class CustomerController {
     }
 
     @PutMapping("/update/{id}")
-    public Object updateCustomer(@PathVariable("id") Long customerId, Customer customer, Model model) throws Exception {
+    public Object updateCustomer(@PathVariable("id") UUID customerId, Customer customer, Model model) throws Exception {
         customer.setId(customerId);
         boolean updateResult = customerService.updateCustomer(customer);
 
