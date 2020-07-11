@@ -2,9 +2,11 @@ package com.crs.services;
 
 import com.crs.models.Car;
 
+import java.time.LocalDateTime;
+
 
 public interface SearchService {
 
-    boolean searchForBooking(String fromDate, String toDate, Car car, String city) throws Exception;
+    boolean searchForBooking(LocalDateTime dateFrom, LocalDateTime dateTo, Car car ) throws Exception;
 
 }
