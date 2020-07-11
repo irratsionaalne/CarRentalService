@@ -4,6 +4,7 @@ import com.crs.dto.EmployeeRegistrationDto;
 import com.crs.models.Employee;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface EmployeeService {
 
@@ -13,6 +14,6 @@ public interface EmployeeService {
 
     List<Employee> getAllEmployees();
 
-    Employee getById(Long employeeId);
+    Employee getById(UUID employeeId);
 
 }

@@ -58,7 +58,7 @@ public class BookingController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateBooking(@PathVariable("id") Long bookingId, Booking booking, Model model) {
+    public String updateBooking(@PathVariable("id") UUID bookingId, Booking booking, Model model) {
         booking.setId(bookingId);
         boolean updateResult = bookingService.updateBooking(booking);
 
@@ -75,7 +75,7 @@ public class BookingController {
     }
 
     @PutMapping("/delete/{id}")
-    public String cancelBooking(@PathVariable("id") Long bookingId, Model model) throws Exception {
+    public String cancelBooking(@PathVariable("id") UUID bookingId, Model model) throws Exception {
         boolean deleteResult = bookingService.cancelBooking(bookingId);
 
         if (deleteResult) {

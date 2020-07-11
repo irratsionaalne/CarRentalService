@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +46,7 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public Car getById(Long carId) {
+    public Car getById(UUID carId) {
         return carRepo.getOne(carId);
     }
 }

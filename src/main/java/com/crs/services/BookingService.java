@@ -4,6 +4,7 @@ import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface BookingService {
 
@@ -13,14 +14,14 @@ public interface BookingService {
 
     boolean updateBooking(Booking booking) throws Exception;
 
-    boolean cancelBooking(Long bookingId) throws Exception;
+    boolean cancelBooking(UUID bookingId) throws Exception;
 
 /*
-    boolean restoreBooking(Long bookingId) throws Exception;
+    boolean restoreBooking(UUID bookingId) throws Exception;
 */
 
     List<Booking> getAllBookings();
 
-    Booking getById(Long bookingId);
+    Booking getById(UUID bookingId);
     
 }

@@ -1,19 +1,24 @@
 package com.crs.config;
 
 
+import com.crs.models.Role;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
-
+    private String returnURL;
 
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
@@ -30,22 +35,19 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     }
 
 
-    protected String determineTargetUrl(Authentication authentication){
-        String url="/bo-home";
+    protected String determineTargetUrl(Authentication authentication) {
+        returnURL = "/bo-home";
 
-        String role= authentication.getAuthorities().toString();
-        System.out.println(role);
+        authentication.getAuthorities().forEach(grantedAuthority -> {
+            if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
+                returnURL = "/office";
+            }
 
-                if (role.equals("[OWNER]")){
-                    url="/office";
-                }
-                else if ( role.equals("[EMPLOYEE]")){
-                    url="/booking/bookingView";
-                }
-                return url;
+            if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
+                returnURL = "/booking/bookingView";
+            }
+        });
+
+        return returnURL;
     }
-
-
-
-
 }

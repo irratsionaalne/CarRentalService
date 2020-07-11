@@ -53,7 +53,7 @@ public class BranchController {
 
 
     /*@PutMapping("/delete/{id}")
-    public String setBranchStatus(@PathVariable("id") Long branchId, Model model) throws Exception {
+    public String setBranchStatus(@PathVariable("id") UUID branchId, Model model) throws Exception {
         boolean deleteResult = branchService.setBranchStatus(branchId);
         if (deleteResult) {
             model.addAttribute("message", "Branch has been successfully deleted");

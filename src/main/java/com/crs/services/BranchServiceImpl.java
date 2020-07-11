@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public Branch getById(Long branchId) {
+    public Branch getById(UUID branchId) {
         return branchRepo.getOne(branchId);
     }
 

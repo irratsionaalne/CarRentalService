@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +42,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public boolean cancelBooking(Long bookingId) throws Exception {
+    public boolean cancelBooking(UUID bookingId) throws Exception {
         return false;
     }
 
@@ -51,7 +52,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking getById(Long bookingId) {
+    public Booking getById(UUID bookingId) {
         return bookingRepo.getOne(bookingId);
     }
 }

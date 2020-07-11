@@ -2,17 +2,19 @@ package com.crs.models;
 
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity(name = "customer")
-@Table(name = "customer")
 @Data
 public class Customer {
 
     @Id
-    private Long id;
+    @GeneratedValue
+    private UUID id;
     private String address;
     private LocalDate dob;
     @OneToOne(fetch = FetchType.EAGER)

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CarRentalServiceImpl implements CarRentalService {
@@ -33,7 +34,7 @@ public class CarRentalServiceImpl implements CarRentalService {
     }
 
     @Override
-    public boolean setCarRentalStatus(Long carRentalId) throws Exception {
+    public boolean setCarRentalStatus(UUID carRentalId) throws Exception {
         CarRental carRental = getById(carRentalId);
         if (carRentalId == null) {
             throw new Exception("Invalid input ... ");
@@ -46,12 +47,12 @@ public class CarRentalServiceImpl implements CarRentalService {
     }
 
     @Override
-    public CarRental getById(Long carRentalId) {
+    public CarRental getById(UUID carRentalId) {
         return carRentalRepo.getOne(carRentalId);
     }
 
     @Override
-        public boolean addComment(Long carRentalId,String carRentalComment) {
+        public boolean addComment(UUID carRentalId,String carRentalComment) {
             CarRental carRental = carRentalRepo.getOne(carRentalId);
             carRental.setComment(carRentalComment);
             carRentalRepo.save(carRental);
