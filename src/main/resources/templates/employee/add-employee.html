@@ -22,21 +22,15 @@
                 <li class="nav-item active">
                     <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle float-right"
-                       data-toggle="dropdown"
-                       href="#" id="navbarDropdown" role="button">
-                        Manage DB
-                    </a>
-                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                        <a class="dropdown-item center" href="/car">Cars</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/branch">Branches</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/employee">Employees</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/customer">Customers</a>
-                    </div>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
+                </li>
+
+                <li class="nav-item float-right">
+                    <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link float-right" href="/revenue" th:href="@{/revenue}">Revenue</a>
