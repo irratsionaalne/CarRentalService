@@ -37,7 +37,7 @@ public class CustomerController {
         return "add-customer";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-customer")
     public Object addCustomer(@ModelAttribute("customer") @Valid CustomerRegistrationDto customerRegistrationDto) throws Exception {
         Customer customer = customerService.createCustomer(customerRegistrationDto);
 
