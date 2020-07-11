@@ -16,9 +16,6 @@ public interface BookingService {
     boolean updateBooking(Booking booking) throws Exception;
 
     boolean cancelBooking(UUID bookingId) throws Exception;
-
-    boolean searchForBooking(String fromDate, String todate, Car car, String city) throws Exception;
-
 /*
     boolean restoreBooking(UUID bookingId) throws Exception;
 */

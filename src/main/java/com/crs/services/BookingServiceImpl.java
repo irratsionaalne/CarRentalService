@@ -2,19 +2,17 @@ package com.crs.services;
 
 import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
-import com.crs.models.Car;
 import com.crs.repositories.BookingRepo;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
-
-    private final BookingRepo bookingRepo;
+    @Autowired
+    private BookingRepo bookingRepo;
 
     @Override
     public Booking createBooking(BookingDto bookingDto) throws Exception {
@@ -57,8 +55,5 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepo.getOne(bookingId);
     }
 
-    @Override
-    public boolean searchForBooking(String fromDate, String todate, Car car, String city) throws Exception {
-        return false;
-    }
+
 }
