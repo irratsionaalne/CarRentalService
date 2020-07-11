@@ -37,9 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
         user = userRepo.save(user);
 
         Customer customer = new Customer();
-        customer.setId(user.getId());
         customer.setAddress(customerRegistrationDto.getAddress());
         customer.setDob(LocalDate.parse(customerRegistrationDto.getDob()));
+        customer.setUser(user);
         return customerRepo.save(customer);
     }
 
