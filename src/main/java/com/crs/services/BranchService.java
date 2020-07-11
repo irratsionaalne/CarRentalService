@@ -1,7 +1,6 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.BranchCreationDto;
-import com.crs.controllers.dto.EmployeeRegistrationDto;
+import com.crs.dto.BranchCreationDto;
 import com.crs.models.Branch;
 
 import java.util.List;

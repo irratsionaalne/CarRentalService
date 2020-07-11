@@ -1,9 +1,10 @@
 package com.crs.controllers;
 
 
-import com.crs.controllers.dto.BranchCreationDto;
+import com.crs.dto.BranchCreationDto;
 import com.crs.services.BranchService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +18,9 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/add-branch")
-@RequiredArgsConstructor
-
 public class BranchCreationController {
-
-    private final BranchService branchService;
+    @Autowired
+    private  BranchService branchService;
 
     @ModelAttribute("branch")
     public BranchCreationDto branchCreationDto() {

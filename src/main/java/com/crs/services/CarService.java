@@ -1,6 +1,6 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.CarDto;
+import com.crs.dto.CarDto;
 import com.crs.models.Car;
 
 import java.util.List;

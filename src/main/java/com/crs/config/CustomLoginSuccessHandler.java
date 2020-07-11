@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Configuration
-
 public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 
@@ -32,7 +31,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
 
     protected String determineTargetUrl(Authentication authentication){
-        String url="/home";
+        String url="/bo-home";
 
         String role= authentication.getAuthorities().toString();
         System.out.println(role);

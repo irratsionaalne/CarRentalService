@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+@RequestMapping("/office")
 public class OfficeController {
 
-    @GetMapping("/office")
+    @GetMapping
     public String office(){
         return "office";
     }
@@ -28,9 +28,5 @@ public class OfficeController {
         return "office";
     }*/
 
-    @GetMapping
-    public String addOfficeForm(Model model) {
-        return "office";
-    }
 
 }

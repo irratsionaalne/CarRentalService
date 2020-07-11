@@ -1,4 +1,4 @@
-package com.crs.controllers.dto;
+package com.crs.dto;
 
 import lombok.Getter;
 import lombok.Setter;

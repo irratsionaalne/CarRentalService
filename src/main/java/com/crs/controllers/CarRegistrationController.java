@@ -1,8 +1,9 @@
 package com.crs.controllers;
 
-import com.crs.controllers.dto.CarDto;
+import com.crs.dto.CarDto;
 import com.crs.services.CarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,9 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/add-car")
-@RequiredArgsConstructor
 public class CarRegistrationController {
-
-    private final CarService carService;
+    @Autowired
+    private CarService carService;
 
     @ModelAttribute("car")
     public CarDto carDto() {

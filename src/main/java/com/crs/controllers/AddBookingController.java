@@ -1,8 +1,8 @@
 package com.crs.controllers;
 
-import com.crs.controllers.dto.BookingDto;
+import com.crs.dto.BookingDto;
 import com.crs.services.BookingService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +16,9 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/add-booking")
-@RequiredArgsConstructor
 public class AddBookingController {
-
-    private final BookingService bookingService;
+    @Autowired
+    private  BookingService bookingService;
 
     @ModelAttribute("booking")
     public BookingDto bookingDto() {

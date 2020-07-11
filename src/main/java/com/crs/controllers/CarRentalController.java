@@ -12,10 +12,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/car-rental")
-@RequiredArgsConstructor
 public class CarRentalController {
-
-    private final CarRentalService carRentalService;
+    @Autowired
+    private CarRentalService carRentalService;
 
     @GetMapping
     public String showAllCarRents(Model model) {

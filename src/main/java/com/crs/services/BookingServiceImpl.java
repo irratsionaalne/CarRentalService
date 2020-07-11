@@ -1,12 +1,9 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.BookingDto;
+import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
-import com.crs.models.Booking;
-import com.crs.repositories.BookingRepo;
 import com.crs.repositories.BookingRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.crs.controllers.dto;
+package com.crs.dto;
 
 import com.crs.models.*;
 import lombok.Getter;

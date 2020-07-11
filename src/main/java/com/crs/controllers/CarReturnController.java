@@ -12,11 +12,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/car-return")
-@RequiredArgsConstructor
-
 public class CarReturnController {
-
-    private final CarReturnService carReturnService;
+    @Autowired
+    private CarReturnService carReturnService;
 
     @GetMapping
     public String showAllCarReturns(Model model) {

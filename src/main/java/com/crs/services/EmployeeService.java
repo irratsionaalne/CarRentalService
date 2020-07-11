@@ -1,8 +1,7 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.EmployeeRegistrationDto;
+import com.crs.dto.EmployeeRegistrationDto;
 import com.crs.models.Employee;
-import com.crs.models.EmployeeRole;
 
 import java.util.List;
 

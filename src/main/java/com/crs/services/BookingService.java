@@ -1,6 +1,6 @@
 package com.crs.services;
 
-import com.crs.controllers.dto.BookingDto;
+import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 
 package com.crs.services;
 
-import com.crs.controllers.dto.BranchCreationDto;
+import com.crs.dto.BranchCreationDto;
 import com.crs.models.*;
 import com.crs.repositories.BranchRepo;
 import lombok.RequiredArgsConstructor;

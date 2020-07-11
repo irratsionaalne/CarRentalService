@@ -1,9 +1,10 @@
 package com.crs.controllers;
 
-import com.crs.controllers.dto.EmployeeRegistrationDto;
+import com.crs.dto.EmployeeRegistrationDto;
 import com.crs.services.EmployeeService;
 import com.crs.services.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,12 +18,11 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/add-employee")
-@RequiredArgsConstructor
 public class EmployeeRegistrationController {
-
-    private final UserServiceImpl userService;
-
-    private final EmployeeService employeeService;
+    @Autowired
+    private UserServiceImpl userService;
+    @Autowired
+    private EmployeeService employeeService;
 
     @ModelAttribute("employee")
     public EmployeeRegistrationDto employeeRegistrationDto() {

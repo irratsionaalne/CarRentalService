@@ -1,9 +1,10 @@
 package com.crs.controllers;
 
-import com.crs.controllers.dto.CustomerRegistrationDto;
+import com.crs.dto.CustomerRegistrationDto;
 import com.crs.models.Customer;
 import com.crs.services.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
-@RequiredArgsConstructor
 public class CustomerController {
-
-    private final CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping
     public ModelAndView showAllCustomers() {

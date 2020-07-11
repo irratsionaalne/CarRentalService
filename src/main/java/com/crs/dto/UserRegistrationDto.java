@@ -1,11 +1,10 @@
-package com.crs.controllers.dto;
+package com.crs.dto;
 
 import com.crs.constraint.FieldMatch;
 import lombok.Value;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 
