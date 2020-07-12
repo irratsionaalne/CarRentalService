@@ -1,10 +1,8 @@
 package com.crs.services;
 
-import com.crs.dto.EmployeeRegistrationDto;
 import com.crs.models.*;
 import com.crs.repositories.EmployeeRepo;
 import com.crs.repositories.UserRepo;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,21 +20,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     private  BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public Employee createEmployee(EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
+    public void createEmployee(Employee employee) throws Exception {
         User user = new User();
-        user.setFirstName(employeeRegistrationDto.getFirstName());
-        user.setLastName(employeeRegistrationDto.getLastName());
-        user.setEmail(employeeRegistrationDto.getEmail());
-        user.setPassword(passwordEncoder.encode(employeeRegistrationDto.getPassword()));
+        user.setFirstName(employee.getFirstName());
+        user.setLastName(employee.getLastName());
+        user.setEmail(employee.getEmail());
+        user.setPassword(passwordEncoder.encode(employee.getPassword()));
         user.setRole(Role.EMPLOYEE);
         user.setActive(true);
-        user = userRepo.save(user);
+        userRepo.save(user);
 
-        Employee employee = new Employee();
-        employee.setBranch(employeeRegistrationDto.getBranch());
-        employee.setRole(employeeRegistrationDto.getRole());
         employee.setUser(user);
-        return employeeRepo.save(employee);
+        employeeRepo.save(employee);
     }
 
     @Override

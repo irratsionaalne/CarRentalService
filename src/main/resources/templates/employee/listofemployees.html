@@ -62,7 +62,7 @@
         <div class="jumbotron bookingsOffice">
             <h3 class="display-3">List of employees
                 <span class="float-right">
-                    <a href="/" th:href="@{/add-employee}" class="btn btn-success">Add Employee</a>
+                    <a href="/" th:href="@{/employee/add}" class="btn btn-success">Add Employee</a>
                 </span></h3>
             <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
                 <span th:text="${message}"></span>

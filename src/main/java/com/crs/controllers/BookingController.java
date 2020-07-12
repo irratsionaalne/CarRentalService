@@ -1,9 +1,7 @@
 package com.crs.controllers;
 
-import com.crs.dto.CarDto;
 import com.crs.models.Booking;
 import com.crs.services.BookingService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

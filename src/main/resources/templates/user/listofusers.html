@@ -10,7 +10,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
 
-    <title>Customers</title>
+    <title>Users</title>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
                     <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
+                    <a class="nav-link float-right" href="/user"  th:href="@{/user}">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link float-right" href="/revenue" th:href="@{/revenue}">Revenue</a>
@@ -47,9 +47,9 @@
     </nav>
     <div class="container">
         <div class="jumbotron bookingsOffice">
-            <h3 class="display-3">List of customers
+            <h3 class="display-3">List of users
                 <span class="float-right">
-                    <a th:href="@{/add-customer.html}" class="btn btn-success">Add Customer</a>
+                    <a th:href="@{/user/add}" class="btn btn-success">Add User</a>
                 </span></h3>
             <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
                 <span th:text="${message}"></span>
@@ -57,7 +57,7 @@
             <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert">
                 <span th:text="${message}"></span>
             </div>
-            <div class="container-fluid" th:switch="${customers.size() > 0}">
+            <div class="container-fluid" th:switch="${users.size() > 0}">
                 <h3 th:case="false">No customers available!</h3>
 
                 <table th:case="true" class="table">
@@ -73,14 +73,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="customer : ${customers}">
-                        <td th:text="${customer.id}"></td>
-                        <td th:text="${customer.getUser().getFirstName()}"></td>
-                        <td th:text="${customer.getUser().getLastName()}"></td>
-                        <td th:text="${customer.getUser().getEmail()}"></td>
-                        <td th:text="${customer.getAddress()}"></td>
-                        <td th:text="${customer.getDob()}"></td>
-                        <td th:text="${customer.getUser().isActive()}"></td>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.getFirstName()}"></td>
+                        <td th:text="${user.getLastName()}"></td>
+                        <td th:text="${user.getEmail()}"></td>
+                        <td th:text="${user.getAddress()}"></td>
+                        <td th:text="${user.getDob()}"></td>
+                        <td th:text="${user.isActive()}"></td>
                     </tr>
                     </tbody>
                 </table>
