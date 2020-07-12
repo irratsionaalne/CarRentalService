@@ -1,6 +1,5 @@
 package com.crs.services;
 
-import com.crs.dto.EmployeeRegistrationDto;
 import com.crs.models.Employee;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.UUID;
 
 public interface EmployeeService {
 
-    Employee createEmployee(EmployeeRegistrationDto employeeRegistrationDto) throws Exception;
+    boolean createEmployee(Employee employee) throws Exception;
 
     boolean updateEmployee(Employee employee);
 
