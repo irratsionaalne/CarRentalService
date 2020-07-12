@@ -1,6 +1,7 @@
 package com.crs.controllers;
 
-import com.crs.dto.CarDto;
+
+import com.crs.models.Car;
 import com.crs.services.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class CarRegistrationController {
     private CarService carService;
 
     @ModelAttribute("car")
-    public CarDto carDto() {
-        return new CarDto();
+    public Car car() {
+        return new Car();
     }
 
     @GetMapping
@@ -33,17 +34,17 @@ public class CarRegistrationController {
     }
 
     @PostMapping
-    public String registerCar(@ModelAttribute("car") @Valid CarDto carDto,
+    public String registerCar(@ModelAttribute("car") @Valid Car car,
                               BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("car", carDto);
+            redirectAttributes.addFlashAttribute("car", car);
             redirectAttributes.addFlashAttribute("message", "Error in creating a car!");
             redirectAttributes.addFlashAttribute("messageType", "error");
             return "car/add-car";
         }
 
-        carService.createCar(carDto);
+        carService.createCar(car);
         redirectAttributes.addFlashAttribute("message", "Car has been successfully created.");
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/car";

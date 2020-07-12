@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link href="../../static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet"/>
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-
+    <link href="../../static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet"/>
 
     <title>Office</title>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -23,22 +22,20 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/booking">Bookings <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Manage DB
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/car">Cars</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/branch">Branches</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/employee">Employees</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/customer">Customers</a>
-                    </div>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
+                </li>
+
+                <li class="nav-item float-right">
                     <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
                 </li>
             </ul>

@@ -21,39 +21,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomLoginSuccessHandler customLoginSuccessHandler;
 
-   /* @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers(
-                        "/registration**",
-                        "/js/**",
-                        "/css/**",
-                        "/static/css/img/**",
-                        "/webjars/**",
-                        "/login**",
-                        "/home**",
-                        "/office**",
-                        "/booking**",
-                        "/add-customer**",
-                        "/"
-                        )
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
-    }*/
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -81,10 +48,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/login/**",
                         "/",
                         "/js/**",
-                        "static/css/**",
+                        "/css/**",
+                        "/img/**",
+                        "/static/css/**",
                         "/static/img/**",
-                        "/webjars/**"
-
+                        "/webjars/**",
+                        "/home**"
 
                 )
                 .permitAll()
