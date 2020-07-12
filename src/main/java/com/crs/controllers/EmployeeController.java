@@ -39,7 +39,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user,
+    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user, @ModelAttribute("messageType") String messageType,
+                                   @ModelAttribute("message") String message,
                                    BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
         if(userService.doesUserExist(user.getEmail())) {

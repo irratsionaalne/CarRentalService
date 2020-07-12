@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface EmployeeService {
 
-    boolean createEmployee(Employee employee) throws Exception;
+    void createEmployee(Employee employee) throws Exception;
 
     boolean updateEmployee(Employee employee);
 

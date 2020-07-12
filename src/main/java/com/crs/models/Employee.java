@@ -30,13 +30,15 @@ public class Employee {
     private String lastName;
     @NotEmpty
     private String password;
-    @Email
+    //@Email
+    @NotEmpty
     private String email;
     @AssertTrue
     private boolean terms;
     @NotEmpty
     private String role;
-    @NotNull
+    //@NotNull
+    @NotEmpty
     private String branch;
     @OneToMany
     private List<Booking> bookings;
