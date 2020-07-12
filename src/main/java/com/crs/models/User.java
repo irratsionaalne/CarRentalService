@@ -9,6 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,12 +26,16 @@ public class User implements UserDetails {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    @NotEmpty
     private String firstName;
+    @NotEmpty
     private String lastName;
+    @Email
     private String email;
     @Enumerated(value = EnumType.STRING)
     private Role role;
     private boolean isActive;
+    @NotEmpty
     private String password;
 
     @Override
