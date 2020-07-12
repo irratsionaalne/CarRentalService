@@ -144,6 +144,11 @@ form.bookings::after {
     max-width: 900px !important;
 }
 
+.listOfCars {
+    margin-top: 80px !important;
+
+}
+
 .socialMedia {
     align-items: center !important;
     text-align: center !important;
