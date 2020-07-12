@@ -27,5 +27,5 @@ public class Car {
     private CarStatus status;
     private double pricePerDay;
     private boolean isActive;
-    private String imageURL;
+    private String imageUrl;
 }

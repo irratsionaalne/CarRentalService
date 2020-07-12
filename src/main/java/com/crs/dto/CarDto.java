@@ -36,4 +36,7 @@ public class CarDto {
     @NotEmpty
     private double pricePerDay;
 
+    @NotEmpty
+    private String imageUrl;
+
 }

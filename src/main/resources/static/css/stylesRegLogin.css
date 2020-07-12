@@ -93,7 +93,7 @@ ul {
     color: whitesmoke;
     z-index: 6 !important;
     clear: both;
-    position: sticky;
+    position: relative;
 }
 .footer-sections-address{
     align-content: center;
