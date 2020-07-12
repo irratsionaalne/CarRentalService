@@ -5,15 +5,17 @@ import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
         @Autowired
@@ -33,16 +35,20 @@ public class UserController {
         }
 
         @PostMapping("/add")
-        public Object addUser(@ModelAttribute("user") User user) {
+        public Object addUser(@ModelAttribute("user") User user,
+                              BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
-            if (user != null) {
-                return "redirect:/user";
+            if (result.hasErrors()) {
+                redirectAttributes.addFlashAttribute("user", user);
+                redirectAttributes.addFlashAttribute("message", "Error in creating a user!");
+                redirectAttributes.addFlashAttribute("messageType", "error");
+                return "user/add-user";
             }
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.addObject("message", "Error in creating a customer!");
-            modelAndView.addObject("messageType", "error");
-            modelAndView.setViewName("user/add-user");
-            return modelAndView;
+
+            userService.createUser(user);
+            redirectAttributes.addFlashAttribute("message", "User has been successfully created.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+            return "redirect:/user";
         }
 
         @GetMapping("/update/{id}")
