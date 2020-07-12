@@ -1,7 +1,6 @@
 package com.crs.controllers;
 
-import com.crs.dto.CustomerRegistrationDto;
-import com.crs.services.CustomerService;
+import com.crs.models.User;
 import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,18 +9,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 @Controller
 public class WebController {
 
     @Autowired
     private  UserServiceImpl userService;
-    @Autowired
-    private  CustomerService customerService;
 
     @GetMapping("/bo-home")
     public String index() {
@@ -51,18 +45,13 @@ public class WebController {
 
 
 
-    @ModelAttribute("customer")
-    public CustomerRegistrationDto customerRegistrationDto() {
-        return new CustomerRegistrationDto();
-    }
-
     @GetMapping("login")
     public String showLoginForm(Model model) {
         return "login";
     }
 
     @GetMapping("registration")
-    public String showRegistrationForm(@ModelAttribute("messageType") String messageType,
+    public String showRegistrationForm(@ModelAttribute("user") User user, @ModelAttribute("messageType") String messageType,
                                        @ModelAttribute("message") String message, Model model) {
         return "registration";
     }
@@ -97,21 +86,21 @@ public class WebController {
     //branch
 
     @PostMapping("registration")
-    public String registerCustomer(@ModelAttribute("customer") @Valid CustomerRegistrationDto customerRegistrationDto,
-                                   BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+    public String registerCustomer(@ModelAttribute("user") User user,
+                                   BindingResult result, RedirectAttributes redirectAttributes) {
 
-        if(userService.doesUserExist(customerRegistrationDto.getEmail())) {
+        if(userService.doesUserExist(user.getEmail())) {
             result.rejectValue("email", null, "There is already an account registered with that login");
         }
 
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("customer", customerRegistrationDto);
+            redirectAttributes.addFlashAttribute("user", user);
             redirectAttributes.addFlashAttribute("message", "Error in creating customer!");
             redirectAttributes.addFlashAttribute("messageType", "error");
             return "registration";
         }
 
-        customerService.createCustomer(customerRegistrationDto);
+        userService.createUser(user);
         redirectAttributes.addFlashAttribute("message", "Customer has been successfully registered.");
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/login";

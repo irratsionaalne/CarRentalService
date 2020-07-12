@@ -18,7 +18,7 @@ public class BookingDto extends Booking {
     private LocalDate dateOfBooking;
 
     @NotEmpty
-    private Customer customer;
+    private User user;
 
     @NotEmpty
     private Car car;
@@ -29,11 +29,11 @@ public class BookingDto extends Booking {
     @NotEmpty
     private LocalDateTime dateTo;
 
-    @NotEmpty
-    private CarRental carRental;
-
-    @NotEmpty
-    private CarReturn carReturn;
+//    @NotEmpty
+//    private CarRental carRental;
+//
+//    @NotEmpty
+//    private CarReturn carReturn;
 
     @NotEmpty
     private String totalPrice;
