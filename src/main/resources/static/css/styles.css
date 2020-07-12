@@ -135,20 +135,30 @@ form.bookings::after {
 .listOfCars {
     min-height: 300px !important;
     max-width: 900px !important;
+    margin-bottom: 30px !important;
 }
 
 .socialMedia {
     max-height: 500px !important;
     max-width: 900px !important;
-}
-
-.socialMedia {
     align-items: center !important;
     text-align: center !important;
 }
+/*.footer-sections-links{
+    position: relative;
+    align-content: center;
+    float: right;
+    margin: 0px 0px 10px 10px;
+}*/
 
-footer {
-    position: fixed;
+#carouselExampleCaptions {
+    max-width: 880px !important;
+}
+
+.footer.fluid-block {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
     bottom: 0 !important;
     text-align: center !important;
     margin-top: 10px !important;
@@ -156,9 +166,39 @@ footer {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    height: 40px;
+    max-height: 30vh;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
     clear: both;
 }
+.footer-sections-address{
+    align-content: center;
+    float: left;
+    margin-left: 100px;
+    padding-left: 100px;
+    flex: 1;
+}
+
+.socialMediaFooter {
+    flex: 4;
+    float: right;
+    max-width: 500px !important;
+    margin-right: 100px;
+    padding-right: 100px;
+}
+.footer-sections-links li{
+    text-decoration: none;
+    align-items: center;
+    display: inline-block ;
+    margin: 0px 0px 10px 10px;
+}
+.copyright{
+    text-align: center;
+    align-content: center;
+    background-color: rgb(33, 33, 33) !important;
+    color: whitesmoke;
+    z-index: 6 !important;
+    clear: both;
+}
+

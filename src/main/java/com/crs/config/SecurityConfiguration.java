@@ -54,18 +54,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/static/img/**",
                         "/webjars/**",
                         "/home**"
-
                 )
                 .permitAll()
-                // Must add customer pages
-                //.antMatchers(("/**")).hasAnyAuthority(("OWNER,EMPLOYEE,CUSTOMER"))
                 .anyRequest()
                 .authenticated()
                 .and()
-                .csrf().disable().formLogin()
+                .csrf()
+                .disable()
+                .formLogin()
                 .loginPage("/login")
                 .successHandler(customLoginSuccessHandler)
-
+                .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
@@ -73,6 +72,38 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
                 .permitAll();
-
     }
+
+    /* @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers(
+                        "/registration**",
+                        "/js/**",
+                        "/css/**",
+                        "/static/css/img/**",
+                        "/webjars/**",
+                        "/login**",
+                        "/home**",
+                        "/office**",
+                        "/booking**",
+                        "/add-customer**",
+                        "/"
+                        )
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
+    }*/
 }
