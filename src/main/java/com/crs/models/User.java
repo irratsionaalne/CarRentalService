@@ -4,11 +4,14 @@ package com.crs.models;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,12 +27,22 @@ public class User implements UserDetails {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    @NotEmpty
     private String firstName;
+    @NotEmpty
     private String lastName;
+    @NotEmpty
     private String email;
+    @NotEmpty
+    private String address;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotEmpty
+    private LocalDate dob;
     @Enumerated(value = EnumType.STRING)
+    @NotEmpty
     private Role role;
     private boolean isActive;
+    @NotEmpty
     private String password;
 
     @Override

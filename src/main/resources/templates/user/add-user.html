@@ -10,7 +10,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
 
-    <title>Add Customer</title>
+    <title>Add User</title>
 
 </head>
 <body>
@@ -48,29 +48,29 @@
                 <div class="col-md-6 col-md-offset-3">
 
                     <h3 class="display-3">Add Customer</h3>
-                    <form th:action="@{/add-customer}" th:object="${customer}" method="post">
+                    <form action="#" th:action="@{/user/add}" th:object="${user}" method="post">
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('first_name')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
 
                             <label for="first_name" class="control-label">First name</label>
 
                             <input
-                                    id="first_name" class="form-control" th:field="*{first_name}"/>
+                                    id="first_name" class="form-control" th:field="*{firstName}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('first_name')}"
+                               th:each="error: ${#fields.errors('firstName')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('last_name')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
 
                             <label for="last_name" class="control-label">Last name</label>
 
                             <input
-                                    id="last_name" class="form-control" th:field="*{last_name}"/>
+                                    id="last_name" class="form-control" th:field="*{lastName}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('last_name')}"
+                               th:each="error: ${#fields.errors('lastName')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
@@ -99,30 +99,40 @@
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('age')}? 'has-error':''">
+                            th:classappend="${#fields.hasErrors('dob')}? 'has-error':''">
 
-                            <label for="age" class="control-label">Age</label>
+                        <label for="dob" class="control-label">Date of Birth</label>
 
-                            <input
-                                    id="age" class="form-control" th:field="*{age}"/>
-                            <p class="error-message"
-                               th:each="error: ${#fields.errors('age')}"
-                               th:text="${error}">Validation error</p>
+                        <input type="date"
+                               id="dob" class="form-control" th:field="*{dob}" required="required"/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('dob')}"
+                           th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('status')}? 'has-error':''">
-
-                            <label for="status" class="control-label">Active</label>
-
-                            <select id="status" class="form-control" name="status">
-                                <option th:each="status : ${T(com.crs.models.Customer).values()}"
-                                        th:value="${status}" th:text="${status.displayValue}"></option>
-                            </select>
+                             th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+                            <label for="password" class="control-label">Password</label> <input
+                                id="password" class="form-control" type="password"
+                                th:field="*{password}" required="required"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('status')}"
+                               th:each="error : ${#fields.errors('password')}"
                                th:text="${error}">Validation error</p>
                         </div>
+
+<!--                        <div class="form-group"-->
+<!--                             th:classappend="${#fields.hasErrors('status')}? 'has-error':''">-->
+
+<!--                            <label for="status" class="control-label">Active</label>-->
+
+<!--                            <select id="status" class="form-control" name="status">-->
+<!--                                <option th:each="status : ${T(com.crs.models.Customer).values()}"-->
+<!--                                        th:value="${status}" th:text="${status.displayValue}"></option>-->
+<!--                            </select>-->
+<!--                            <p class="error-message"-->
+<!--                               th:each="error: ${#fields.errors('status')}"-->
+<!--                               th:text="${error}">Validation error</p>-->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add customer</button>

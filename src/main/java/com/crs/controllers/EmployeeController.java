@@ -1,19 +1,26 @@
 package com.crs.controllers;
 
+import com.crs.models.Booking;
 import com.crs.models.Employee;
+import com.crs.models.User;
 import com.crs.services.EmployeeService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
+    @Autowired
+    private UserServiceImpl userService;
     @Autowired
     private EmployeeService employeeService;
 
@@ -25,28 +32,36 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    /*
-    @ModelAttribute("employee")
-    public EmployeeRegistrationDto employeeRegistrationDto() {
-        return new EmployeeRegistrationDto();
-    }
-    @GetMapping("/add-employee")
-    public String addEmployeeForm(Model model) {
+    @GetMapping("/add")
+    public String showRegistrationForm(@ModelAttribute("employee") Employee employee, @ModelAttribute("messageType") String messageType,
+                                       @ModelAttribute("message") String message, Model model) {
         return "employee/add-employee";
     }
-    @PostMapping("/add-employee")
-    public Object addEmployee(@ModelAttribute("employee") @Valid EmployeeRegistrationDto employeeRegistrationDto) throws Exception {
-        Employee employee = employeeService.createEmployee(employeeRegistrationDto);
-        log.info("Logging addEmployee in Controller");
-        if (employee != null) {
-            return "redirect:/employee";
+
+    @PostMapping("/add")
+    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user, @ModelAttribute("messageType") String messageType,
+                                   @ModelAttribute("message") String message,
+                                   BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+
+        if(userService.doesUserExist(user.getEmail())) {
+            result.rejectValue("email", null, "There is already an account registered with that login");
         }
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message", "Error in creating an employee!");
-        modelAndView.addObject("messageType", "error");
-        modelAndView.setViewName("employee/add-employee");
-        return modelAndView;
+
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("employee", employee);
+            redirectAttributes.addFlashAttribute("message", "Error in creating an employee!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "employee/add-employee";
+        }
+
+        employeeService.createEmployee(employee);
+        redirectAttributes.addFlashAttribute("message", "Employee has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/employee";
     }
+
+    /*
+
     @GetMapping("/update")
     public String updateEmployeeForm(Model model) {
         return "update-employee";

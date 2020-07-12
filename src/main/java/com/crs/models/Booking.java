@@ -22,15 +22,14 @@ public class Booking {
     private UUID id;
     private LocalDate dateOfBooking;
     @OneToOne
-    private Customer customer;
+    private User user;
     @OneToOne
     private Car car;
     private LocalDateTime dateFrom;
     private LocalDateTime dateTo;
-    @OneToOne
-    private CarRental carRental;
-    @OneToOne
-    private CarReturn carReturn;
+    private String carRentalComment;
+    private String carReturnComment;
+    private String extraPayment;
     private String totalPrice;
     private String status;
 

@@ -13,10 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserServiceImpl userService;
+    @Autowired
+    private UserServiceImpl userService;
 
     @Autowired
     private CustomLoginSuccessHandler customLoginSuccessHandler;
@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 )
                 .permitAll()
                 // Must add customer pages
-                //.antMatchers(("/**")).hasAnyAuthority(("OWNER,EMPLOYEE,CUSTOMER"))
+                .antMatchers(("/**")).hasAnyAuthority(("OWNER,EMPLOYEE,CUSTOMER"))
                 .anyRequest()
                 .authenticated()
                 .and()

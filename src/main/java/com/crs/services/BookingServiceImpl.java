@@ -18,7 +18,7 @@ public class BookingServiceImpl implements BookingService {
     public Booking createBooking(BookingDto bookingDto) throws Exception {
         Booking booking = new Booking();
         booking.setDateOfBooking(bookingDto.getDateOfBooking());
-        booking.setCustomer(bookingDto.getCustomer());
+        booking.setUser(bookingDto.getUser());
         booking.setCar(bookingDto.getCar());
         booking.setDateFrom(bookingDto.getDateFrom());
         booking.setDateTo(bookingDto.getDateTo());
