@@ -16,16 +16,10 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand float-left" href="/booking">CRS</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Bookings <span class="sr-only float-right">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
-                </li>
-            </ul>
+        <a class="navbar-brand float-left" href="#">CRS</a>
+        <div class="float-left">
+            <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
+            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
         </div>
         <div class="floatRight">
             <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary float-right">Logout</a>
@@ -85,20 +79,20 @@
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
-            <h5><strong>Address</strong></h5>
+            <h6><strong>Address</strong></h6>
             <p>Peterson 1, Dorpat Complex</p>
             <p>6392673, Tartu</p>
             <p>Estonia</p>
         </div>
         <div class="socialMediaFooter">
-            <h4>Follow us on social media for best deals</h4>
+            <h6><strong>Follow us on social media for best deals</strong></h6>
             <ul class="footer-sections-links">
-                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
             </ul>
         </div>
     </footer>

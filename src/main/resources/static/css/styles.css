@@ -30,6 +30,7 @@ ul {
 .navbar a {
     text-align: center;
     color: whitesmoke;
+    padding-top: 0;
 }
 
 .navbar a:hover {
@@ -54,14 +55,16 @@ ul {
     padding-right: 40px;
 }
 
-.navbar .float-left {
+.navbar .float-left, .nav-link.float-left{
     float: left !important;
+    padding-left: 5px !important;
+    flex: 3;
 }
 
-.navbar .logout{
+.navbar .logout, .navbar .float-right, .float-right{
     float: right !important;
-    padding-right: 40px !important;
-    flex: 3;
+    margin-right: 40px !important;
+    padding-right: 0;
 }
 
 .container-fluid {
@@ -80,8 +83,8 @@ ul {
     margin-bottom: 150px !important;
 }
 
-.bookingsOffice {
-    margin-top: 80px !important;
+.jumbotron.bookingsOffice {
+    margin-top: 120px !important;
 }
 
 .branch {
@@ -94,7 +97,7 @@ ul {
 form.bookings, .bookingListOffice, .bookingsOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 10px !important;
+    margin-top: 100px !important;
 }
 
 form.bookings input[type=text] {
@@ -139,6 +142,9 @@ form.bookings::after {
     margin-bottom: 150px !important;
     margin-top: 80px !important;
 }
+.carousel-caption{
+    background-color: rgba(9, 9, 9, 0.44);
+}
 
 .socialMedia {
     max-height: 500px !important;
@@ -166,7 +172,6 @@ input[type="checkbox"] {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    max-height: 20%;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
@@ -181,7 +186,8 @@ input[type="checkbox"] {
     flex: 1;
 }
 .footer-sections-address p{
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .socialMediaFooter {
@@ -211,6 +217,8 @@ input[type="checkbox"] {
     position: fixed;
     width: 100%;
     bottom: 0;
+    max-height: 20%;
+    font-weight: 100;
 }
 
 

@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link th:href="@{/css/stylesRegLogin.css}" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
 
     <title>Registration</title>
 
@@ -19,6 +19,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/}">CRS</a>
     </nav>
+
     <div class="container">
         <div class="jumbotron regisLogin">
             <div class="row">
@@ -30,9 +31,9 @@
                             <div class="alert alert-danger">This email already exists.</div>
                         </div>
 
-<!--                        <p class="error-message" th:if="${#fields.hasGlobalErrors()}"-->
-<!--                           th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation-->
-<!--                            error</p>-->
+                        <!--                        <p class="error-message" th:if="${#fields.hasGlobalErrors()}"-->
+                        <!--                           th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation-->
+                        <!--                            error</p>-->
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
@@ -100,15 +101,15 @@
                                th:each="error : ${#fields.errors('password')}"
                                th:text="${error}">Validation error</p>
                         </div>
-<!--                        <div class="form-group"-->
-<!--                             th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">-->
-<!--                            <label for="confirmPassword" class="control-label">Confirm-->
-<!--                                password</label> <input id="confirmPassword" class="form-control"-->
-<!--                                                        type="password" th:field="*{user.confirmPassword}" required="required"/>-->
-<!--                            <p class="error-message"-->
-<!--                               th:each="error : ${#fields.errors('confirmPassword')}"-->
-<!--                               th:text="${error}">Validation error</p>-->
-<!--                        </div>-->
+                        <!--                        <div class="form-group"-->
+                        <!--                             th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">-->
+                        <!--                            <label for="confirmPassword" class="control-label">Confirm-->
+                        <!--                                password</label> <input id="confirmPassword" class="form-control"-->
+                        <!--                                                        type="password" th:field="*{user.confirmPassword}" required="required"/>-->
+                        <!--                            <p class="error-message"-->
+                        <!--                               th:each="error : ${#fields.errors('confirmPassword')}"-->
+                        <!--                               th:text="${error}">Validation error</p>-->
+                        <!--                        </div>-->
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -129,17 +130,18 @@
         </div>
     </div>
 </div>
+
 <!-- Footer -->
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
-            <h5><strong>Address</strong></h5>
+            <h6><strong>Address</strong></h6>
             <p>Peterson 1, Dorpat Complex</p>
             <p>6392673, Tartu</p>
             <p>Estonia</p>
         </div>
         <div class="socialMediaFooter">
-            <h5>Follow us on social media for best deals</h5>
+            <h6><strong>Follow us on social media for best deals</strong></h6>
             <ul class="footer-sections-links">
                 <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
                 <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>

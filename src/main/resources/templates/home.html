@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
 <!--    <script src="https://use.fontawesome.com/1a734a453b.js"></script>-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Home</title>
+<title>Home</title>
 
 </head>
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark bg-primary">
-        <div class="float-left">
-        <a class="navbar-brand" th:href="@{/}">CRS</a>
-        </div>
+            <a class="navbar-brand" th:href="@{/}">CRS</a>
         <div class="float-right">
-        <a th:href="@{/login}" class="btn btn-primary">Login</a>
-        <a th:href="@{/registration}" class="btn btn-primary">Register</a>
+            <a th:href="@{/login}" class="btn btn-primary">Login</a>
+            <a th:href="@{/registration}" class="btn btn-primary">Register</a>
         </div>
     </nav>
     <div class="container">
@@ -30,39 +29,53 @@
         </h2>
 
         <div class="jumbotron listOfCars">
-                <h3 class="display-3">List of cars</h3>
+            <h3 class="display-3">List of cars</h3>
             <!-- Section: Slider -->
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-interval="1000">
-                        <img th:src="@{/img/Mercedes-benzAMG.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Mercedes-benz AMG">
+                        <img th:src="@{/img/Mercedes-benzAMG.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Mercedes-benz AMG">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Mercedes-benz AMG</h5>
-                            <a th:href="@{/add-booking}" class="btn btn-success">Click here</a>
+                            <h6>Mercedes-benz AMG</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add-booking}" class="btn btn-success float-right">Book Now</a>
                         </div>
                     </div>
                     <div class="carousel-item" data-interval="2000">
-                        <img th:src="@{/img/LandRover.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Land Rover White">
+                        <img th:src="@{/img/LandRover.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Land Rover White">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Land Rover White</h5>
+                            <h6>Land Rover White</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add-booking}" class="btn btn-success float-right">Book Now</a>
                         </div>
                     </div>
                     <div class="carousel-item" data-interval="3000">
-                        <img th:src="@{/img/FordMustangRed.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Ford Mustang Red">
+                        <img th:src="@{/img/FordMustangRed.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Ford Mustang Red">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Ford Mustang Red</h5>
+                            <h6>Ford Mustang Red</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add-booking}" class="btn btn-success float-right">Book Now</a>
                         </div>
                     </div>
                     <div class="carousel-item" data-interval="4000">
-                        <img th:src="@{/img/BMWSedan.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="BMW Sedan">
+                        <img th:src="@{/img/BMWSedan.jpg}" width="600" height="400" class="d-block w-100 img-responsive"
+                             alt="BMW Sedan">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>BMW Sedan</h5>
+                            <h6>BMW Sedan</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add-booking}" class="btn btn-success float-right">Book Now</a>
                         </div>
                     </div>
                     <div class="carousel-item" data-interval="5000">
-                        <img th:src="@{/img/AudiCoupe.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Audi Coupe">
+                        <img th:src="@{/img/AudiCoupe.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Audi Coupe">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Audi Coupe</h5>
+                            <h6>Audi Coupe</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add-booking}" class="btn btn-success float-right">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -82,28 +95,34 @@
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
-            <h5><strong>Address</strong></h5>
+            <h6><strong>Address</strong></h6>
             <p>Peterson 1, Dorpat Complex</p>
             <p>6392673, Tartu</p>
             <p>Estonia</p>
         </div>
         <div class="socialMediaFooter">
-            <h4>Follow us on social media for best deals</h4>
+            <h6><strong>Follow us on social media for best deals</strong></h6>
             <ul class="footer-sections-links">
-                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
             </ul>
         </div>
     </footer>
     <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>

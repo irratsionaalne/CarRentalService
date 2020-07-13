@@ -17,24 +17,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/office}">CRS</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle float-right"
-                       data-toggle="dropdown"
-                       href="#" id="navbarDropdown" role="button">
-                        Manage DB
-                    </a>
-                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                        <a class="dropdown-item center" href="/car">Cars</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item center" href="/customer">Customers</a>
-                    </div>
-                </li>
-            </ul>
+        <div class="float-left">
+            <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
+            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
         </div>
         <div class="floatRight">
             <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
@@ -119,23 +104,9 @@
                                th:each="error : ${#fields.errors('password')}"
                                th:text="${error}">Validation error</p>
                         </div>
-
-<!--                        <div class="form-group"-->
-<!--                             th:classappend="${#fields.hasErrors('status')}? 'has-error':''">-->
-
-<!--                            <label for="status" class="control-label">Active</label>-->
-
-<!--                            <select id="status" class="form-control" name="status">-->
-<!--                                <option th:each="status : ${T(com.crs.models.Customer).values()}"-->
-<!--                                        th:value="${status}" th:text="${status.displayValue}"></option>-->
-<!--                            </select>-->
-<!--                            <p class="error-message"-->
-<!--                               th:each="error: ${#fields.errors('status')}"-->
-<!--                               th:text="${error}">Validation error</p>-->
-<!--                        </div>-->
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add customer</button>
+                            <button type="submit" class="btn btn-danger">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -148,20 +119,20 @@
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
-            <h5><strong>Address</strong></h5>
+            <h6><strong>Address</strong></h6>
             <p>Peterson 1, Dorpat Complex</p>
             <p>6392673, Tartu</p>
             <p>Estonia</p>
         </div>
         <div class="socialMediaFooter">
-            <h4>Follow us on social media for best deals</h4>
+            <h6><strong>Follow us on social media for best deals</strong></h6>
             <ul class="footer-sections-links">
-                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
             </ul>
         </div>
     </footer>
