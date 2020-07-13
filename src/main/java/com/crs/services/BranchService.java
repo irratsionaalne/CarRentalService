@@ -17,4 +17,6 @@ public interface BranchService {
     boolean doesBranchExist(String streetAddress,String city);
 
     Branch getById(UUID branchId);
+
+    boolean updateBranch(Branch branch);
 }

@@ -39,4 +39,14 @@ public class BranchServiceImpl implements BranchService {
 
         return branchRepo.findByCityAndStreetAddress(city,streetAddress).isPresent();
     }
+
+    @Override
+    public boolean updateBranch(Branch branch) {
+        if (branch == null || !branchRepo.existsById(branch.getId())) {
+            return false;
+        }
+        branch.setActive(true);
+        branchRepo.saveAndFlush(branch);
+        return true;
+    }
 }
