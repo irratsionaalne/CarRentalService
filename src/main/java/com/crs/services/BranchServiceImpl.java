@@ -17,12 +17,13 @@ public class BranchServiceImpl implements BranchService {
     private BranchRepo branchRepo;
 
     @Override
-    public Branch createBranch(BranchCreationDto branchCreationDto) throws Exception {
+    public boolean createBranch(BranchCreationDto branchCreationDto) throws Exception {
         Branch branch = new Branch();
         branch.setStreetAddress(branchCreationDto.getStreetAddress());
         branch.setCity(branchCreationDto.getCity());
         branch.setActive(true);
-        return branchRepo.save(branch);
+        branchRepo.save(branch);
+        return true;
     }
 
     @Override
@@ -45,8 +46,30 @@ public class BranchServiceImpl implements BranchService {
         if (branch == null || !branchRepo.existsById(branch.getId())) {
             return false;
         }
-        branch.setActive(true);
         branchRepo.saveAndFlush(branch);
         return true;
     }
+
+    @Override
+    public boolean deleteBranchById(UUID branchId) {
+        Branch branch = getById(branchId);
+        if (branchId == null) {
+            return false;
+        }
+        branch.setActive(false);
+        updateBranch(branch);
+        return true;
+    }
+
+    @Override
+    public boolean restoreBranchById(UUID branchId) {
+        Branch branch = getById(branchId);
+        if (branchId == null) {
+            return false;
+        }
+        branch.setActive(true);
+        updateBranch(branch);
+        return true;
+    }
+
 }

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface BranchService {
 
-    Branch createBranch(BranchCreationDto branchCreationDto) throws Exception;
+    boolean createBranch(BranchCreationDto branchCreationDto) throws Exception;
 
     //boolean setBranchStatus(UUID branchId) throws Exception;
 
@@ -19,4 +19,8 @@ public interface BranchService {
     Branch getById(UUID branchId);
 
     boolean updateBranch(Branch branch);
+
+    boolean deleteBranchById(UUID branchId);
+
+    boolean restoreBranchById(UUID branchId);
 }

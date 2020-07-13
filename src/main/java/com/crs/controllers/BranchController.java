@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,9 +29,10 @@ public class BranchController {
     }
 
 
+    //add branch here
+
     @GetMapping("/update/{id}")
-    public String updateBranchForm(@PathVariable("id") UUID branchId, @ModelAttribute("messageType") String messageType,
-                                   @ModelAttribute("message") String message, Model model) {
+    public String updateBranchForm(@PathVariable("id") UUID branchId, Model model) {
         Branch branch = branchService.getById(branchId);
         if (branch == null) {
             throw new IllegalArgumentException("Branch with this ID not found!");
@@ -54,6 +56,34 @@ public class BranchController {
         model.addAttribute("messageType", "error");
         return "redirect:/car/update/{id}";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteBranch(@PathVariable("id") UUID branchId, RedirectAttributes redirectAttributes) {
+        boolean deleteResult = branchService.deleteBranchById(branchId);
+        if (deleteResult) {
+            redirectAttributes.addFlashAttribute("message", "Branch #" + branchId + " has been inactivated.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/branch";
+    }
+
+    @GetMapping("/restore/{id}")
+    public String restoreBranch(@PathVariable("id") UUID branchId, RedirectAttributes redirectAttributes) {
+        boolean restoreResult = branchService.restoreBranchById(branchId);
+        if (restoreResult) {
+            redirectAttributes.addFlashAttribute("message", "Branch #" + branchId + " has been successfully restored.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error in restoring country #" + branchId + "!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/branch";
+    }
+
+
 
     /*
     @ModelAttribute("branch")
