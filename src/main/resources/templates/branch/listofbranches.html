@@ -56,7 +56,7 @@
             <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert">
                 <span th:text="${message}"></span>
             </div>
-            <div class="container-fluid" th:switch="${branches.size() < 0}">
+            <div class="container-fluid" th:switch="${branches.size() > 0}">
                 <h3 th:case="false">No branches available!</h3>
                 <table th:case="true" class="table">
                     <thead>

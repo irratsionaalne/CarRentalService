@@ -145,7 +145,8 @@
 
                             <select id="status" class="form-control" name="status">
                                 <option th:each="status : ${T(com.crs.models.CarStatus).values()}"
-                                        th:value="${status}" th:text="${status.displayValue}"></option>
+                                        th:value="${status}"
+                                        th:text="${status.displayValue}"></option>
                             </select>
 
                             <p class="error-message"
