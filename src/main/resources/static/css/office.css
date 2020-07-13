@@ -51,24 +51,16 @@ ul {
     color: grey;
 }
 
-.navbar .float-right {
-    float: right !important;
-    padding-right: 30px !important;
-}
-.branch .float-right{
-
-}
-
-.navbar .float-left {
+.navbar .float-left, .nav-link.float-left{
     float: left !important;
+    padding-left: 5px !important;
+    flex: 2;
 }
 
-.navbar .logout{
+.navbar .logout, .navbar .float-right{
     float: right !important;
-    padding-right: 40px !important;
     margin-right: 40px !important;
     flex: 3;
-
 }
 
 .container-fluid {
@@ -99,7 +91,7 @@ ul {
 form.bookings, .bookingListOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 10px !important;
+    margin-top: 120px !important;
 }
 
 
@@ -169,7 +161,6 @@ input[type="checkbox"] {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    max-height: 20%;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
@@ -184,7 +175,8 @@ input[type="checkbox"] {
     flex: 1;
 }
 .footer-sections-address p{
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .socialMediaFooter {
@@ -214,5 +206,7 @@ input[type="checkbox"] {
     position: fixed;
     width: 100%;
     bottom: 0;
+    max-height: 20%;
+    font-weight: 100;
 }
 
