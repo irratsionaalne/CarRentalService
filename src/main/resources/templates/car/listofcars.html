@@ -42,7 +42,7 @@
             </div>
             <div class="container-fluid" th:switch="${cars.size() > 0}">
                 <h3 th:case="false">No cars available!</h3>
-                <table th:case="true" class="table">
+                <table th:case="true" class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -55,12 +55,10 @@
                         <th scope="col">Status</th>
                         <th scope="col">Price per day</th>
                         <th scope="col">Modify</th>
-
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="car : ${cars}">
-
                         <td th:text="${car.id}"></td>
                         <td th:text="${car.make}"></td>
                         <td th:text="${car.model}"></td>
@@ -70,7 +68,6 @@
                         <td th:text="${car.mileage}"></td>
                         <td th:text="${car.status}"></td>
                         <td th:text="${car.pricePerDay}"></td>
-
                         <td>
                             <a th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Modify</a>
                         </td>
