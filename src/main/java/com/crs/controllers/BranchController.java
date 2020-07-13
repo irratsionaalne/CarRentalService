@@ -43,7 +43,7 @@ public class BranchController {
     }
 
     @PostMapping("/update/{id}")
-    public Object updateCar(@PathVariable("id") UUID branchId, Branch branch, Model model) throws Exception {
+    public Object updateCar(@PathVariable("id") UUID branchId, Branch branch, Model model) {
         branch.setId(branchId);
         boolean updateResult = branchService.updateBranch(branch);
         if (updateResult) {
@@ -54,7 +54,7 @@ public class BranchController {
         model.addAttribute("branch", branch);
         model.addAttribute("message", "Error in updating a Branch");
         model.addAttribute("messageType", "error");
-        return "redirect:/car/update/{id}";
+        return "redirect:/branch/update/{id}";
     }
 
     @GetMapping("/delete/{id}")
@@ -77,51 +77,10 @@ public class BranchController {
             redirectAttributes.addFlashAttribute("message", "Branch #" + branchId + " has been successfully restored.");
             redirectAttributes.addFlashAttribute("messageType", "success");
         } else {
-            redirectAttributes.addFlashAttribute("message", "Error in restoring country #" + branchId + "!");
+            redirectAttributes.addFlashAttribute("message", "Error in restoring branch #" + branchId + "!");
             redirectAttributes.addFlashAttribute("messageType", "error");
         }
         return "redirect:/branch";
     }
-
-
-
-    /*
-    @ModelAttribute("branch")
-    public BranchCreationDto branchCreationDto() {
-        return new BranchCreationDto();
-    }
-
-
-    @GetMapping("/add-branch")
-    public String addBranchForm(Model model) {
-        return "branch/add-branch";
-    }
-
-    @PostMapping("/add-branch")
-    public Object addBranch(@ModelAttribute("branch") @Valid BranchCreationDto branchCreationDto) throws Exception {
-        Branch branch = branchService.createBranch(branchCreationDto);
-        if (branch != null) {
-            return "redirect:/branch";
-        }
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message", "Error in creating a branch!");
-        modelAndView.addObject("messageType", "error");
-        modelAndView.setViewName("branch/add-branch");
-        return modelAndView;
-
-    }
-
-
-    /*@PutMapping("/delete/{id}")
-    public String setBranchStatus(@PathVariable("id") UUID branchId, Model model) throws Exception {
-        boolean deleteResult = branchService.setBranchStatus(branchId);
-        if (deleteResult) {
-            model.addAttribute("message", "Branch has been successfully deleted");
-            model.addAttribute("messageType", "success");
-        }
-        model.addAttribute("message", "Error in cancelling branch.");
-        model.addAttribute("messageType", "error");
-        return showAllBranches(model);
-    }*/
 
 }
