@@ -32,7 +32,6 @@
     </nav>
     <div class="container">
         <div class="jumbotron bookingsOffice">
-
             <h3 class="display-3">List of branches
                 <span class="float-right">
                     <a href="/" th:href="@{/add-branch}" class="btn btn-success">Add Branch</a>
@@ -45,7 +44,7 @@
             </div>
             <div class="container-fluid" th:switch="${branches.size() > 0}">
                 <h3 th:case="false">No branches available!</h3>
-                <table th:case="true" class="table">
+                <table th:case="true" class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>

@@ -38,12 +38,9 @@
                     <h3 class="display-3">Add Car</h3>
 
                     <form action="#" th:action="@{/add-car}" th:object="${car}" method="post">
-
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
-
                             <label for="make" class="control-label">Make</label>
-
                             <input
                                     id="make" class="form-control" th:field="*{make}"/>
                             <p class="error-message"
@@ -53,9 +50,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('model')}? 'has-error':''">
-
                             <label for="model" class="control-label">Model</label>
-
                             <input
                                     id="model" class="form-control" th:field="*{model}"/>
                             <p class="error-message"
@@ -65,9 +60,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('bodyType')}? 'has-error':''">
-
                             <label for="bodyType" class="control-label">Body Type</label>
-
                             <input
                                     id="bodyType" class="form-control" th:field="*{bodyType}"/>
                             <p class="error-message"
@@ -77,9 +70,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('year')}? 'has-error':''">
-
                             <label for="year" class="control-label">Year</label>
-
                             <input
                                     id="year" class="form-control" th:field="*{year}"/>
                             <p class="error-message"
@@ -89,9 +80,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('color')}? 'has-error':''">
-
                             <label for="color" class="control-label">Color</label>
-
                             <input
                                     id="color" class="form-control" th:field="*{color}"/>
                             <p class="error-message"
@@ -101,9 +90,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('mileage')}? 'has-error':''">
-
                             <label for="mileage" class="control-label">Mileage</label>
-
                             <input
                                     id="mileage" class="form-control" th:field="*{mileage}"/>
                             <p class="error-message"
@@ -113,9 +100,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('pricePerDay')}? 'has-error':''">
-
                             <label for="pricePerDay" class="control-label">Price per day</label>
-
                             <input
                                     id="pricePerDay" class="form-control" th:field="*{pricePerDay}"/>
                             <p class="error-message"
@@ -125,37 +110,29 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('status')}? 'has-error':''">
-
                             <label for="status" class="control-label">Status</label>
-
                             <select id="status" class="form-control" name="status">
                                 <option th:each="status : ${T(com.crs.models.CarStatus).values()}"
                                         th:value="${status}"
                                         th:text="${status.displayValue}"></option>
                             </select>
-
                             <p class="error-message"
                                th:each="error: ${#fields.errors('status')}"
                                th:text="${error}">Validation error</p>
                         </div>
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('imageUrl')}? 'has-error':''">
-
                             <label for="imageUrl" class="control-label">Image URL</label>
-
                             <input
                                     id="imageUrl" class="form-control" th:field="*{imageUrl}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('imageUrl')}"
                                th:text="${error}">Validation error</p>
                         </div>
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add car</button>
                             <a href="/car/" class="btn btn-danger">Cancel</a>
-
                         </div>
-
                     </form>
                 </div>
             </div>

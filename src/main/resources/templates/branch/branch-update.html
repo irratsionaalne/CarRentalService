@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
     <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
     <title>Update car</title>
 
 </head>
@@ -51,9 +52,7 @@
 
                     <h3 class="display-3">Update Branch</h3>
                     <form action="#" th:action="@{/branch/update/{id}(id=${branch.id})}" th:object="${branch}" method="post">
-
                         <div class="form-group" th:classappend="${#fields.hasErrors('streetAddress')}? 'has-error':''">
-
                             <label for="streetAddress" class="control-label">Street address</label>
                             <input id="streetAddress" class="form-control" th:field="*{streetAddress}" required="required"/>
 
@@ -62,20 +61,15 @@
                         </div>
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('city')}? 'has-error':''">
-
                             <label for="city" class="control-label">City</label>
                             <input id="city" class="form-control" th:field="*{city}" required="required"/>
-
                             <p class="error-message" th:each="error: ${#fields.errors('city')}"
                                th:text="${error}">Validation error</p>
-
                         </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Update</button>
-
                         </div>
-
                     </form>
                 </div>
             </div>
