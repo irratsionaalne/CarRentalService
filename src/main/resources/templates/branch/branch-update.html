@@ -9,7 +9,8 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
     <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <title>Branches</title>
+    <title>Update car</title>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -45,42 +46,38 @@
     </nav>
     <div class="container">
         <div class="jumbotron bookingsOffice">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
 
-            <h3 class="display-3">List of branches
-                <span class="float-right">
-                    <a href="/" th:href="@{/add-branch}" class="btn btn-success">Add Branch</a>
-                </span></h3>
-            <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
-                <span th:text="${message}"></span>
-            </div>
-            <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert">
-                <span th:text="${message}"></span>
-            </div>
-            <div class="container-fluid" th:switch="${branches.size() > 0}">
-                <h3 th:case="false">No branches available!</h3>
-                <table th:case="true" class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Active</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="branch : ${branches}">
-                        <td th:text="${branch.id}"></td>
-                        <td th:text="${branch.streetAddress}"></td>
-                        <td th:text="${branch.city}"></td>
-                        <td th:text="${branch.isActive()}"></td>
-                        <td>
-                            <a th:href="@{/branch/update/{id}(id=${branch.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
-                            <a th:if="${branch.active} == true" th:href="@{/branch/delete/{id}(id=${branch.id})}" class="btn btn-danger">Delete</a>
-                            <a th:if="${branch.active} == false" th:href="@{/branch/restore/{id}(id=${branch.id})}" class="btn btn-primary">Restore</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <h3 class="display-3">Update Branch</h3>
+                    <form action="#" th:action="@{/branch/update/{id}(id=${branch.id})}" th:object="${branch}" method="post">
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('streetAddress')}? 'has-error':''">
+
+                            <label for="streetAddress" class="control-label">Street address</label>
+                            <input id="streetAddress" class="form-control" th:field="*{streetAddress}" required="required"/>
+
+                            <p class="error-message" th:each="error: ${#fields.errors('streetAddress')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('city')}? 'has-error':''">
+
+                            <label for="city" class="control-label">City</label>
+                            <input id="city" class="form-control" th:field="*{city}" required="required"/>
+
+                            <p class="error-message" th:each="error: ${#fields.errors('city')}"
+                               th:text="${error}">Validation error</p>
+
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Update</button>
+
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>

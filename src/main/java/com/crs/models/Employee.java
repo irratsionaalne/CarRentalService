@@ -7,10 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,10 +33,11 @@ public class Employee {
     @AssertTrue
     private boolean terms;
     @NotEmpty
-    private String role;
-    //@NotNull
-    @NotEmpty
-    private String branch;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+    @OneToOne(fetch = FetchType.EAGER)
+    @NotBlank
+    private Branch branch;
     @OneToMany
     private List<Booking> bookings;
     @OneToOne(fetch = FetchType.EAGER)

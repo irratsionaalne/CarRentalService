@@ -1,8 +1,10 @@
 package com.crs.controllers;
 
 import com.crs.models.Booking;
+import com.crs.models.Branch;
 import com.crs.models.Employee;
 import com.crs.models.User;
+import com.crs.services.BranchService;
 import com.crs.services.EmployeeService;
 import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/employee")
@@ -23,6 +26,8 @@ public class EmployeeController {
     private UserServiceImpl userService;
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private BranchService branchService;
 
     @GetMapping
     public ModelAndView showAllEmployees() {
@@ -35,6 +40,9 @@ public class EmployeeController {
     @GetMapping("/add")
     public String showRegistrationForm(@ModelAttribute("employee") Employee employee, @ModelAttribute("messageType") String messageType,
                                        @ModelAttribute("message") String message, Model model) {
+        List<Branch> branches = branchService.getAllBranches().stream()
+                .filter(Branch::isActive).collect(Collectors.toList());
+        model.addAttribute("branches", branches);
         return "employee/add-employee";
     }
 
