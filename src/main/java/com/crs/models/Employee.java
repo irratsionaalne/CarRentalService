@@ -36,7 +36,8 @@ public class Employee {
     @AssertTrue
     private boolean terms;
     @NotEmpty
-    private String role;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
     //@NotNull
     @NotEmpty
     private String branch;

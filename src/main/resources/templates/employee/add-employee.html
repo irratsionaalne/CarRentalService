@@ -95,7 +95,13 @@
 
                             <label for="role" class="control-label">Role</label>
 
-                            <input id="role" class="form-control" th:field="*{role}" />
+                            <select id="role" class="form-control" name="role">
+                                <option th:each="role : ${T(com.crs.models.Role).values()}"
+                                        th:if="${role != T(com.crs.models.Role).CUSTOMER}"
+                                        th:value="${role}" th:text="${role}"></option>
+                            </select>
+
+                            <!--<input id="role" class="form-control" th:field="*{role}" />-->
 
                         </div>
 
