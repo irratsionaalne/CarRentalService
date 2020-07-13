@@ -32,7 +32,7 @@
                     <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
+                    <a class="nav-link float-right" th:href="@{/use}">Users</a>
                 </li>
             </ul>
         </div>
@@ -111,18 +111,18 @@
                         </div>
 
                         <div class="form-group"
-                             th:classappend="${#fields.hasErrors('customer')}? 'has-error':''">
+                             th:classappend="${#fields.hasErrors('user')}? 'has-error':''">
 
-                            <label for="customer_id" class="control-label">Customer</label>
+                            <label for="userID" class="control-label">Customer</label>
 
                             <input
-                                    id="customer_id" class="form-control" th:field="*{customer}"/>
+                                    id="userID" class="form-control" th:field="*{user}"/>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('customer')}"
+                               th:each="error: ${#fields.errors('user')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
-                        <div class="form-group"
+                        <!--<div class="form-group"
                              th:classappend="${#fields.hasErrors('carRental')}? 'has-error':''">
 
                             <label for="car_rental_id" class="control-label">Car rental</label>
@@ -144,11 +144,11 @@
                             <p class="error-message"
                                th:each="error: ${#fields.errors('carReturn')}"
                                th:text="${error}">Validation error</p>
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add booking</button>
-
+                            <button type="submit" class="btn btn-danger">Modify</button>
                         </div>
 
                     </form>
@@ -157,6 +157,31 @@
         </div>
     </div>
 </div>
+
+<!-- Footer -->
+<div class="fluid-container footer-container">
+    <footer class="footer fluid-block">
+        <div class="footer-sections-address">
+            <h4>Address</h4>
+            <p>Peterson 1, Dorpat Complex</p>
+            <p>6392673, Tartu</p>
+            <p>Estonia</p>
+        </div>
+        <div class="socialMediaFooter">
+            <h4>Follow us on social media for best deals</h4>
+            <ul class="footer-sections-links">
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
+</div>
+
 
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

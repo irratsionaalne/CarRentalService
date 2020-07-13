@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" >
+
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-slider/css/bootstrap-slider.css}"/>
-    <link href="../static/css/styles.css" th:href="@{../static/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
+<!--    <script src="https://use.fontawesome.com/1a734a453b.js"></script>-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     <title>Home</title>
 
@@ -20,8 +20,8 @@
         <a class="navbar-brand" th:href="@{/}">CRS</a>
         </div>
         <div class="float-right">
-        <a href="/" th:href="@{/login}" class="btn btn-primary">Login</a>
-        <a href="/" th:href="@{/registration}" class="btn btn-primary">Register</a>
+        <a th:href="@{/login}" class="btn btn-primary">Login</a>
+        <a th:href="@{/registration}" class="btn btn-primary">Register</a>
         </div>
     </nav>
     <div class="container">
@@ -29,166 +29,81 @@
             <!--            Welcome <span th:text="${user.firstName}"><strong></strong></span>-->
         </h2>
 
-        <div class="jumbotron bookings">
-            <div>
-                <form class="bookings" action="#">
-                    <h3>Search for</h3>
-                    <input type="text" placeholder="Branches" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-                <br/>
-            </div>
-        </div>
-
         <div class="jumbotron listOfCars">
-            <div>
-                <h3 class="display-3">List of cars
-                    <span class="float-right">
-                    <a th:href="@{/listofcars}" class="btn btn-success">Click here</a>
-                </span></h3>
-                <!--<div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
-                    <span th:text="${message}"></span>
+                <h3 class="display-3">List of cars</h3>
+            <!-- Section: Slider -->
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-interval="1000">
+                        <img th:src="@{/img/Mercedes-benzAMG.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Mercedes-benz AMG">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Mercedes-benz AMG</h5>
+                            <a th:href="@{/add-booking}" class="btn btn-success">Click here</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="2000">
+                        <img th:src="@{/img/LandRover.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Land Rover White">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Land Rover White</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="3000">
+                        <img th:src="@{/img/FordMustangRed.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Ford Mustang Red">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Ford Mustang Red</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="4000">
+                        <img th:src="@{/img/BMWSedan.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="BMW Sedan">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>BMW Sedan</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="5000">
+                        <img th:src="@{/img/AudiCoupe.jpg}" width="600" height="400" class="d-block w-100 img-responsive" alt="Audi Coupe">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Audi Coupe</h5>
+                        </div>
+                    </div>
                 </div>
-                <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert">
-                    <span th:text="${message}"></span>
-                </div>
-                <div class="container-fluid" th:switch="${cars.size() > 0}">
-                    <h3 th:case="false">No cars available!</h3>
-                    <table th:case="true" class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Make</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Body type</th>
-                            <th scope="col">Year</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Mileage</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Price per day</th>
-                            <th scope="col">Modify</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="car : ${cars}">
-                            <td th:text="${car.id}"></td>
-                            <td th:text="${car.make}"></td>
-                            <td th:text="${car.model}"></td>
-                            <td th:text="${car.bodyType}"></td>
-                            <td th:text="${car.year}"></td>
-                            <td th:text="${car.color}"></td>
-                            <td th:text="${car.mileage}"></td>
-                            <td th:text="${car.status}"></td>
-                            <td th:text="${car.pricePerDay}"></td>
-                            <td>
-                                <a th:if="${car.isActive()} == true"  th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Modify</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br/>
-                </div>-->
-            </div>
-        </div>
-                <!--dropdown for cars OR  Slider -->
-                <!-- Section: Slider -->
-                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                         <div class="carousel-inner">
-                             <div class="carousel-item active" data-interval="1000">>
-                                 <img src="../static/img/Mercedes-benzAMG.jpg" width="600" height="400" class="d-block w-100 img-responsive" alt="Mercedes-benz AMG">
-                                 <div class="carousel-caption d-none d-md-block">
-                                     <h5>Mercedes-benz AMG</h5>
-     <!--                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
-                                 </div>
-                             </div>
-                             <div class="carousel-item" data-interval="2000">>
-                                 <img src="../static/img/LandRover.jpg" width="600" height="400" class="d-block w-100 img-responsive" alt="Land Rover Whit">
-                                 <div class="carousel-caption d-none d-md-block">
-                                     <h5>Land Rover White</h5>
-     <!--                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
-                                 </div>
-                             </div>
-                             <div class="carousel-item" data-interval="3000">>
-                                 <img src="../static/img/FordMustangRed.jpg" width="600" height="400" class="d-block w-100 img-responsive" alt="Land Rover White">
-                                 <div class="carousel-caption d-none d-md-block">
-                                     <h5>Ford Mustang Red</h5>
-     <!--                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
-                                 </div>
-                             </div>
-                             <div class="carousel-item" data-interval="4000">>
-                                 <img src="../static/img/BMWSedan.jpg" width="600" height="400" class="d-block w-100 img-responsive" alt="BMW Sedan">
-                                 <div class="carousel-caption d-none d-md-block">
-                                     <h5>BMW Sedan</h5>
-     <!--                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sunt ipsum molestias.</p>-->
-                                 </div>
-                             </div>
-                             <div class="carousel-item" data-interval="5000">>
-                                 <img src="../static/img/AudiCoupe.jpg" width="600" height="400" class="d-block w-100 img-responsive" alt="Audi Coupe">
-                                 <div class="carousel-caption d-none d-md-block">
-                                     <h5>Audi Coupe</h5>
-     <!--                                <p>Amet consectetur adipisicing elituub iudnis uakin isbu nsectetur.</p>-->
-                                 </div>
-                             </div>
-                         </div>
-                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-
-        <div class="jumbotron socialMedia">
-            <div class="row">
-                <div class="col s12">
-                    <h4>Follow us on social media for best deals</h4>
-                    <a href="#" class="white-text"><i class="fab fa-facebook fa-3x"></i></a>
-                    <a href="#" class="white-text"><i class="fab fa-twitter fa-3x"></i></a>
-                    <a href="#" class="white-text"><i class="fab fa-linkedin fa-3x"></i></a>
-                    <a href="#" class="white-text"><i class="fab fa-instagram fa-3x"></i></a>
-                    <a href="#" class="white-text"><i class="fab fa-pinterest fa-3x"></i></a>
-                    <a href="#" class="white-text"><i class="fab fa-youtube fa-3x"></i></a>
-                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="center">
-    <p class="flow-text"><strong> &copy; CRS OÜ - 2020 </strong></p>
-</footer>
-
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
-        <div class="footer-sections">
-            <h4>Site map</h4>
-            <ul class="footer-sections-links">
-                <li><a href="../../login.html">Login</a></li>
-                <li><a href="../../register.html">Register</a></li>
-            </ul>
+        <div class="footer-sections-address">
+            <h5><strong>Address</strong></h5>
+            <p>Peterson 1, Dorpat Complex</p>
+            <p>6392673, Tartu</p>
+            <p>Estonia</p>
         </div>
-        <div>
+        <div class="socialMediaFooter">
             <h4>Follow us on social media for best deals</h4>
             <ul class="footer-sections-links">
-                <li><a href="#" class="white-text"><i class="fab fa-facebook fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fab fa-twitter fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fab fa-linkedin fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fab fa-instagram fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fab fa-pinterest fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fab fa-youtube fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
             </ul>
         </div>
     </footer>
     <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
 </div>
 
-<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" crossorigin="anonymous"
-        integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link href="../../resources/static/css/styles.css" th:href="@{/resources/static/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Index</title>
+    <title>Bo-home</title>
 
 </head>
 <body>
@@ -25,34 +25,6 @@
                 <li class="nav-item ">
                     <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/customer"  th:href="@{/user}">Customers</a>
-                </li>
-
-                <li class="nav-item float-right">
-                    <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
-                </li>
-               <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle float-right" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Manage DB
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/car">Cars</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/branch">Branches</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/employee">Employees</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/customer">Customers</a>
-                    </div>
-                </li>-->
             </ul>
         </div>
         <div class="floatRight">
@@ -64,15 +36,6 @@
         <h2 class="display-4">
            <!--  Welcome <span th:text="${user.firstName}"><strong></strong></span> -->
         </h2>
-        <br/>
-        <br/>
-        <div class="jumbotron bookings">
-            <div>
-                <h3>Search for</h3>
-                <br/>
-            </div>
-        </div>
-
         <div class="jumbotron bookings">
             <div>
                 <h3>Booking List</h3>
@@ -90,6 +53,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 <!--<tr th:each="booking : ${bookings}">
                     <th scope="row" th:text="${booking.id}></th>
                     <td th:text="${booking.dateOfBooking}></td>
@@ -117,11 +81,29 @@
     </div>
 </div>
 
-
 <!-- Footer -->
-<footer class="center">
-    <p class="flow-text"><strong> &copy; CRS OÜ - 2020 </strong></p>
-</footer>
+<div class="fluid-container footer-container">
+    <footer class="footer fluid-block">
+        <div class="footer-sections-address">
+            <h5><strong>Address</strong></h5>
+            <p>Peterson 1, Dorpat Complex</p>
+            <p>6392673, Tartu</p>
+            <p>Estonia</p>
+        </div>
+        <div class="socialMediaFooter">
+            <h4>Follow us on social media for best deals</h4>
+            <ul class="footer-sections-links">
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
+</div>
 
 
 <script type="text/javascript"
