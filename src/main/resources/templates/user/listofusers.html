@@ -20,6 +20,7 @@
         <div class="float-left">
             <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+            <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
         <div class="floatRight">
             <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
@@ -28,7 +29,7 @@
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron listOfUsers">
             <h3 class="display-3">List of users
                 <span class="float-right">
                     <a th:href="@{/user/add}" class="btn btn-success">Add User</a>
