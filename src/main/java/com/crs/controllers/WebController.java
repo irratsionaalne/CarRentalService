@@ -17,37 +17,24 @@ public class WebController {
     @Autowired
     private  UserServiceImpl userService;
 
-    @GetMapping("/bo-home")
-    public String index() {
-        return "bo-home";
-    }
-
     @GetMapping
     public String home() {
         return "home";
     }
 
-
-    /*@GetMapping
-    public String login(){
-        return "home";
+    @GetMapping("/bo-home")
+    public String index() {
+        return "bo-home";
     }
-   /* @GetMapping
-    public ModelAndView index() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("bo-home");
-        modelAndView.addObject(user);
-        return modelAndView;
-    }*/
-
-
-
 
     @GetMapping("login")
     public String showLoginForm(Model model) {
         return "login";
+    }
+
+    @GetMapping("office")
+    public String showOfficeView() {
+        return "office";
     }
 
     @GetMapping("registration")
@@ -55,35 +42,6 @@ public class WebController {
                                        @ModelAttribute("message") String message, Model model) {
         return "registration";
     }
-
-
-    /*@GetMapping("office")
-    public String showOfficeForm(Model model) {
-        return "office";
-    }*/
-
-    /* @GetMapping("branch")
-    public String showBranchForm(Model model) {
-        return "branch";
-    }*/
-
-    /*@GetMapping("car")
-    public String showCarForm(Model model) {
-        return "car";
-    }*/
-
-    /*@GetMapping("rental")
-    public String showRentalForm(Model model) {
-        return "rental";
-    }
-
-    @GetMapping("return")
-    public String showReturnForm(Model model) {
-        return "return";
-    }*/
-
-    //office
-    //branch
 
     @PostMapping("registration")
     public String registerCustomer(@ModelAttribute("user") User user,
