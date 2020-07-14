@@ -32,7 +32,7 @@
 
             <h3 class="display-3">List of cars
                 <span class="float-right">
-                    <a href="/" th:href="@{/add-car}" class="btn btn-success">Add Car</a>
+                    <a href="/" th:href="@{/car/add-car}" class="btn btn-success">Add Car</a>
                 </span></h3>
             <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
                 <span th:text="${message}"></span>
