@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" type="text/css"
-          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Index</title>
+    <title>Return</title>
 
 </head>
 <body>
@@ -22,6 +23,32 @@
     </h2>
     <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a></p>
 </div>
+
+
+<!-- Footer -->
+<div class="fluid-container footer-container">
+    <footer class="footer fluid-block">
+        <div class="footer-sections-address">
+            <h6><strong>Address</strong></h6>
+            <p>Peterson 1, Dorpat Complex</p>
+            <p>6392673, Tartu</p>
+            <p>Estonia</p>
+        </div>
+        <div class="socialMediaFooter">
+            <h6><strong>Follow us on social media for best deals</strong></h6>
+            <ul class="footer-sections-links">
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
+</div>
+
 
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

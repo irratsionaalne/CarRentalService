@@ -6,30 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link href="../../static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Customer</title>
+    <title>User</title>
 
 </head>
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark bg-primary">
         <a class="navbar-brand" href="#">CRS</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/booking">Bookings <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/car">Cars <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link float-right" href="/cars" th:href="@{/cars}">cars</a>
-                </li>
-            </ul>
+        <div class="float-left">
+            <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
+            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
         </div>
         <div class="floatRight">
             <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a>
@@ -94,8 +84,8 @@
                     <td>
                     <a th:if="${booking.active} == true" th:href="@{/booking/update/{id}(id=${booking.id})}" class="btn btn-warning"><i class="fa fa-edit-o fa-lg"></i>Edit</a>
                     <a th:if="${booking.active} == true" th:href="@{/booking/delete/{id}(id=${booking.id})}" class="btn btn-danger"><i class="fa fa-trash-o fa-lg">Cancel</a>
-                    </td>-->
-                </tr>
+                    </td>
+                </tr> -->
                 </tbody>
             </table>
             <br/>
@@ -108,10 +98,28 @@
 </div>
 
 <!-- Footer -->
-<footer class="center">
-    <p class="flow-text"><strong> &copy; CRS OÜ - 2020 </strong></p>
-</footer>
-
+<div class="fluid-container footer-container">
+    <footer class="footer fluid-block">
+        <div class="footer-sections-address">
+            <h6><strong>Address</strong></h6>
+            <p>Peterson 1, Dorpat Complex</p>
+            <p>6392673, Tartu</p>
+            <p>Estonia</p>
+        </div>
+        <div class="socialMediaFooter">
+            <h6><strong>Follow us on social media for best deals</strong></h6>
+            <ul class="footer-sections-links">
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
+</div>
 
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

@@ -51,24 +51,16 @@ ul {
     color: grey;
 }
 
-.navbar .float-right {
-    float: right !important;
-    padding-right: 30px !important;
-}
-.branch .float-right{
-
-}
-
-.navbar .float-left {
+.navbar .float-left, .nav-link.float-left{
     float: left !important;
+    padding-left: 5px !important;
+    flex: 2;
 }
 
-.navbar .logout{
+.navbar .logout, .navbar .float-right{
     float: right !important;
-    padding-right: 40px !important;
     margin-right: 40px !important;
     flex: 3;
-
 }
 
 .container-fluid {
@@ -99,7 +91,7 @@ ul {
 form.bookings, .bookingListOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 10px !important;
+    margin-top: 120px !important;
 }
 
 
@@ -140,8 +132,13 @@ form.bookings::after {
 
 
 .listOfCars, .socialMedia {
-    max-height: 500px !important;
-    max-width: 900px !important;
+    max-height: 900px !important;
+    width: 900px !important;
+    max-width: 1000px !important;
+}
+
+.listOfCars, .listOfUsers {
+    margin-top: 120px !important;
 }
 
 .socialMedia {
@@ -149,8 +146,14 @@ form.bookings::after {
     text-align: center !important;
 }
 
-footer {
-    position: fixed;
+input[type="checkbox"] {
+    margin-right: 10px !important;
+}
+
+.footer.fluid-block {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
     bottom: 0 !important;
     text-align: center !important;
     margin-top: 10px !important;
@@ -158,9 +161,53 @@ footer {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    height: 40px;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
     clear: both;
 }
+.footer-sections-address{
+    align-content: flex-start;
+    text-align: left;
+    float: left;
+    margin-left: 100px;
+    padding-left: 100px;
+    flex: 1;
+}
+.footer-sections-address p{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.socialMediaFooter {
+    flex: 3;
+    float: right;
+    max-width: 500px !important;
+    margin-right: 100px;
+    padding-right: 100px;
+    text-align: right;
+    align-content: flex-end;
+}
+.footer-sections-links li{
+    text-decoration: none;
+    flex: fit-content;
+    display: inline-block ;
+}
+.copyright{
+    text-align: center;
+    align-content: center;
+    background-color: rgb(33, 33, 33) !important;
+    color: whitesmoke;
+    z-index: 6 !important;
+    clear: both;
+    width: 100%;
+}
+.footer-container{
+    position: sticky;
+    position: -webkit-sticky;
+    width: 100%;
+    bottom: 0;
+    max-height: 20%;
+    font-weight: 100;
+}
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+    <title>Update car</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
+                </li>
+                <li class="nav-item float-right">
+                    <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
+                </li>
+            </ul>
+        </div>
+        <div class="floatRight">
+            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
+                                                                 th:href="@{/logout}">Logout</a>
+            </p>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron bookingsOffice">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <h3 class="display-3">Update Branch</h3>
+                    <form action="#" th:action="@{/branch/update/{id}(id=${branch.id})}" th:object="${branch}" method="post">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('streetAddress')}? 'has-error':''">
+                            <label for="streetAddress" class="control-label">Street address</label>
+                            <input id="streetAddress" class="form-control" th:field="*{streetAddress}" required="required"/>
+
+                            <p class="error-message" th:each="error: ${#fields.errors('streetAddress')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('city')}? 'has-error':''">
+                            <label for="city" class="control-label">City</label>
+                            <input id="city" class="form-control" th:field="*{city}" required="required"/>
+                            <p class="error-message" th:each="error: ${#fields.errors('city')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="center">
+    <p class="flow-text"><strong> &copy; CRS OÜ - 2020 </strong></p>
+</footer>
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"
+        type="text/javascript"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"
+        type="text/javascript"></script>
+
+</body>
+</html>
