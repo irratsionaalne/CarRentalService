@@ -3,18 +3,14 @@ package com.crs.services;
 import com.crs.models.Role;
 import com.crs.models.User;
 import com.crs.repositories.UserRepo;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -69,4 +65,5 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public User getById(UUID userId) {
         return userRepo.getOne(userId);
     }
+
 }
