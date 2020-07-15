@@ -60,8 +60,7 @@ public class CarController {
     }
 
     @GetMapping("/add-car")
-    public String showCarRegistrationForm(@ModelAttribute("messageType") String messageType,
-                              @ModelAttribute("message") String message) {
+    public String showCarRegistrationForm() {
         return "car/add-car";
     }
 

@@ -37,7 +37,7 @@
 
                     <h3 class="display-3">Add Branch</h3>
 
-                    <form th:action="@{/add-branch}" th:object="${branch}" method="post">
+                    <form action="#" th:action="@{/branch/add-branch}" th:object="${branch}" method="post">
                         <div class="form-group" th:classappend="${#fields.hasErrors('streetAddress')}? 'has-error':''">
                             <label for="streetAddress" class="control-label">Street address</label>
                             <input id="streetAddress" class="form-control" th:field="*{streetAddress}" required="required"/>
