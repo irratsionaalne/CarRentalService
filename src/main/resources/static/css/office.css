@@ -51,13 +51,13 @@ ul {
     color: grey;
 }
 
-.navbar .float-left, .nav-link.float-left{
+.navbar .float-left, .nav-link.float-left {
     float: left !important;
     padding-left: 5px !important;
     flex: 2;
 }
 
-.navbar .logout, .navbar .float-right{
+.navbar .logout, .navbar .float-right {
     float: right !important;
     margin-right: 40px !important;
     flex: 3;
@@ -84,11 +84,21 @@ ul {
     margin-right: 5px !important;
     justify-items: center;
 }
-form.bookings, .bookingListOffice, .jumbotronBranch, .carsOffice, .employeesOffice, .branchesOffice {
+
+form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffice {
     width: 80%;
     max-width: 80%;
     margin-top: 100px !important;
     height: 600px !important;
+}
+.jumbotronBranch {
+    height: 250px !important;
+    max-width: 80%;
+}
+.usersOffice {
+    margin-top: 100px !important;
+    height: 500px !important;
+    max-width: 80%;
 }
 
 form.bookings input[type=text] {
@@ -114,6 +124,10 @@ form.bookings button {
 
 .bookings, .carousel .slide, .branch {
     max-width: 900px !important;
+}
+
+.carousel-inner {
+    box-shadow: 2px 2px 5px 5px #8bd0fb !important;
 }
 
 form.bookings button:hover {
@@ -162,7 +176,8 @@ input[type="checkbox"] {
     z-index: 6 !important;
     clear: both;
 }
-.footer-sections-address{
+
+.footer-sections-address {
     align-content: flex-start;
     text-align: left;
     float: left;
@@ -170,7 +185,8 @@ input[type="checkbox"] {
     padding-left: 100px;
     flex: 1;
 }
-.footer-sections-address p{
+
+.footer-sections-address p {
     margin: 0 !important;
     padding: 0 !important;
     color: #007bff;
@@ -186,12 +202,14 @@ input[type="checkbox"] {
     text-align: right;
     align-content: flex-end;
 }
-.footer-sections-links li{
+
+.footer-sections-links li {
     text-decoration: none;
     flex: fit-content;
-    display: inline-block ;
+    display: inline-block;
 }
-.copyright{
+
+.copyright {
     text-align: center;
     align-content: center;
     background-color: rgb(33, 33, 33) !important;
@@ -200,7 +218,8 @@ input[type="checkbox"] {
     clear: both;
     width: 100%;
 }
-.footer-container{
+
+.footer-container {
     position: fixed;
     /*position: -webkit-sticky;*/
     width: 100%;

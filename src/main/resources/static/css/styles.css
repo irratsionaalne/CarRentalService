@@ -153,6 +153,9 @@ form.bookings::after {
 #carouselExampleCaptions {
     max-width: 880px !important;
 }
+.carousel-inner {
+    box-shadow: 2px 2px 5px 5px #8bd0fb !important;
+}
 
 input[type="checkbox"] {
     margin-right: 10px !important;
