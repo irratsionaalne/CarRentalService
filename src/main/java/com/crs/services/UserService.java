@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
+
     boolean createUser(User user) throws Exception;
 
     boolean updateUser(User user) throws Exception;

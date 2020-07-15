@@ -1,6 +1,6 @@
 package com.crs.controllers;
 
-import com.crs.dto.BookingDto;
+import com.crs.models.Booking;
 import com.crs.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +21,8 @@ public class AddBookingController {
     private  BookingService bookingService;
 
     @ModelAttribute("booking")
-    public BookingDto bookingDto() {
-        return new BookingDto();
+    public Booking booking() {
+        return new Booking();
     }
 
     @GetMapping
@@ -32,17 +32,17 @@ public class AddBookingController {
     }
 
     @PostMapping
-    public String createBooking(@ModelAttribute("booking") @Valid BookingDto bookingDto,
+    public String createBooking(@ModelAttribute("booking") @Valid Booking booking,
                               BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("booking", bookingDto);
+            redirectAttributes.addFlashAttribute("booking", booking);
             redirectAttributes.addFlashAttribute("message", "Error in creating a booking!");
             redirectAttributes.addFlashAttribute("messageType", "error");
             return "booking/add-booking";
         }
 
-        bookingService.createBooking(bookingDto);
+        bookingService.createBooking(booking);
         redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/booking";

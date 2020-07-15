@@ -1,6 +1,5 @@
 package com.crs.services;
 
-import com.crs.dto.BranchCreationDto;
 import com.crs.models.Branch;
 
 import java.util.List;
@@ -8,9 +7,7 @@ import java.util.UUID;
 
 public interface BranchService {
 
-    boolean createBranch(BranchCreationDto branchCreationDto) throws Exception;
-
-    //boolean setBranchStatus(UUID branchId) throws Exception;
+    boolean createBranch(Branch branch) throws Exception;
 
     List<Branch> getAllBranches();
 

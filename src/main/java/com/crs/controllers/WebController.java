@@ -64,5 +64,4 @@ public class WebController {
         return "redirect:/login";
     }
 
-
 }
