@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -20,12 +21,22 @@ public class Booking {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    @NotEmpty
     private LocalDate dateOfBooking;
     @OneToOne
+    @NotEmpty
     private User user;
     @OneToOne
+    @NotEmpty
     private Car car;
+//    @NotEmpty
+//    private CarRental carRental;
+//
+//    @NotEmpty
+//    private CarReturn carReturn;
+    @NotEmpty
     private LocalDateTime dateFrom;
+    @NotEmpty
     private LocalDateTime dateTo;
     private String carRentalComment;
     private String carReturnComment;
@@ -45,4 +56,5 @@ public class Booking {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
