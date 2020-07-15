@@ -31,12 +31,10 @@
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron jumbotronBranch" style="margin-top: 120px !important;">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-
                     <h3 class="display-3">Add Branch</h3>
-
                     <form action="#" th:action="@{/branch/add-branch}" th:object="${branch}" method="post">
                         <div class="form-group" th:classappend="${#fields.hasErrors('streetAddress')}? 'has-error':''">
                             <label for="streetAddress" class="control-label">Street address</label>

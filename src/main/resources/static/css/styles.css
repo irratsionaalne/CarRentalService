@@ -81,10 +81,7 @@ ul {
 .bookings{
     margin-top: 80px !important;
     margin-bottom: 150px !important;
-}
-
-.jumbotron.bookingsOffice {
-    margin-top: 120px !important;
+    max-width: 80%;
 }
 
 .branch {
@@ -188,6 +185,9 @@ input[type="checkbox"] {
 .footer-sections-address p{
     margin: 0 !important;
     padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
+
 }
 
 .socialMediaFooter {

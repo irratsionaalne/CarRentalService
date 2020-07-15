@@ -16,7 +16,7 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <a class="navbar-brand" th:href="@{/booking}">CRS</a>
         <div class="float-left">
         <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
         <a class="nav-link float-left" th:href="@{/car}">Cars</a>
@@ -33,12 +33,10 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h3 class="display-3">Add Booking</h3>
-                    <form action="#" th:action="@{/add-booking}" th:object="${booking}" method="post">
+                    <form action="#" th:action="@{/booking/add-booking}" th:object="${booking}" method="post">
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateOfBooking')} ? 'has-error': ''">
-
                             <label for="dateOfBooking" class="control-label">Date of booking</label>
-
                             <input
                                     id="dateOfBooking" class="form-control" th:field="*{dateOfBooking}"/>
                             <p class="error-message"
@@ -48,9 +46,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateFrom')}? 'has-error':''">
-
                             <label for="date_from" class="control-label">Start date</label>
-
                             <input
                                     id="date_from" class="form-control" th:field="*{dateFrom}"/>
                             <p class="error-message"
@@ -60,9 +56,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateTo')}? 'has-error':''">
-
                             <label for="date_to" class="control-label">End date</label>
-
                             <input
                                     id="date_to" class="form-control" th:field="*{dateTo}"/>
                             <p class="error-message"
@@ -72,9 +66,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('totalPrice')}? 'has-error':''">
-
                             <label for="total_price" class="control-label">Total price</label>
-
                             <input
                                     id="total_price" class="form-control" th:field="*{totalPrice}"/>
                             <p class="error-message"
@@ -84,9 +76,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('car')}? 'has-error':''">
-
                             <label for="car_id" class="control-label">Car</label>
-
                             <input
                                     id="car_id" class="form-control" th:field="*{car}"/>
                             <p class="error-message"
@@ -96,9 +86,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('user')}? 'has-error':''">
-
                             <label for="userID" class="control-label">Customer</label>
-
                             <input
                                     id="userID" class="form-control" th:field="*{user}"/>
                             <p class="error-message"
@@ -132,7 +120,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add booking</button>
                             <button type="submit" class="btn btn-warning">Modify</button>
-                            <button type="submit" class="btn btn-danger">Cancel</button>
+                            <button type="submit" th:href="/booking" class="btn btn-danger">Cancel</button>
                         </div>
                     </form>
                 </div>

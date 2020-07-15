@@ -34,20 +34,20 @@
         <h2 class="display-4">
             <!--            Welcome <span th:text="${user.firstName}"><strong></strong></span>-->
         </h2>
-        <div class="jumbotron branch">
+        <div class="jumbotron addBranch">
             <div class="branch float-right">
                 <h3>
                     <span class="float-right">
-                    <a href="/" th:href="@{/branch/add-branch}" class="btn btn-success">Add Branch</a>
+                    <a th:href="@{/branch/add-branch}" class="btn btn-success">Add Branch</a>
                 </span>
                 </h3>
             </div>
         </div>
 
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron addBooking">
             <div>
                     <span class="float-right">
-                    <a href="/" th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
+                    <a th:href="@{/add-booking}" class="btn btn-success">Add Booking</a>
                 </span>
                 <br/>
             </div>
@@ -97,7 +97,6 @@
             <br/>
             <br/>
         </div>
-
     </div>
 </div>
 

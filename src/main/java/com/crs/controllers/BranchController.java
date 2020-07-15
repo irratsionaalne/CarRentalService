@@ -69,7 +69,7 @@ public class BranchController {
         }
         model.addAttribute("branch", branch);
 
-        return "branch/branch-update";
+        return "update-branch";
     }
 
     @PostMapping("/update/{id}")

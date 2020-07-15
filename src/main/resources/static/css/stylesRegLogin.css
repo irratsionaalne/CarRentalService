@@ -121,6 +121,8 @@ input[type="checkbox"] {
 .footer-sections-address p{
     margin: 0 !important;
     padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
 }
 
 .socialMediaFooter {

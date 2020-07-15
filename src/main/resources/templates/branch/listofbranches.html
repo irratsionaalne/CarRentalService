@@ -31,11 +31,17 @@
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingsOffice">
-            <h3 class="display-3">List of branches
-                <span class="float-right">
-                    <a href="/" th:href="@{/branch/add-branch}" class="btn btn-success">Add Branch</a>
-                </span></h3>
+        <div class="jumbotron addEmployee">
+            <div class="float-right">
+                <h3>
+                    <span class="float-right">
+                    <a th:href="@{/branch/add-branch}" class="btn btn-success">Add Employee</a>
+                </span>
+                </h3>
+            </div>
+        </div>
+        <div class="jumbotron branchesOffice">
+            <h3 class="display-3">List of branches</h3>
             <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
                 <span th:text="${message}"></span>
             </div>
