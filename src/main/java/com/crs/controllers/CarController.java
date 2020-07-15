@@ -41,7 +41,7 @@ public class CarController {
         }
         model.addAttribute("car", car);
 
-        return "car/car-update";
+        return "update-car";
     }
 
     @PostMapping("/update/{id}")

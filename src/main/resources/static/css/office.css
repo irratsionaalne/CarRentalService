@@ -72,28 +72,24 @@ ul {
 .jumbotron {
     padding-top: 10px !important;
     padding-bottom: 20px !important;
-    margin-bottom: 20px !important;
+    max-width: 80%;
 }
 
-.jumbotron.bookingsOffice {
-    margin-top: 80px !important;
-    max-width: 80% !important;
-}
-
-.jumbotron.branch {
-    margin-top: 60px !important;
+.jumbotron.addBranch, .jumbotron.addBooking, .jumbotron.addCar, .addUser, .addEmployee {
+    margin-top: 30px !important;
     max-width: 15% !important;
     max-height: 5% !important;
     float: right;
-    padding: 5px !important;
+    padding: 10px !important;
+    margin-right: 5px !important;
     justify-items: center;
 }
-form.bookings, .bookingListOffice {
+form.bookings, .bookingListOffice, .jumbotronBranch, .carsOffice, .employeesOffice, .branchesOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 120px !important;
+    margin-top: 100px !important;
+    height: 600px !important;
 }
-
 
 form.bookings input[type=text] {
     padding: 10px;
@@ -132,7 +128,7 @@ form.bookings::after {
 
 
 .listOfCars, .socialMedia {
-    max-height: 900px !important;
+    max-height: 800px !important;
     width: 900px !important;
     max-width: 1000px !important;
 }
@@ -177,6 +173,8 @@ input[type="checkbox"] {
 .footer-sections-address p{
     margin: 0 !important;
     padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
 }
 
 .socialMediaFooter {
@@ -203,8 +201,8 @@ input[type="checkbox"] {
     width: 100%;
 }
 .footer-container{
-    position: sticky;
-    position: -webkit-sticky;
+    position: fixed;
+    /*position: -webkit-sticky;*/
     width: 100%;
     bottom: 0;
     max-height: 20%;
