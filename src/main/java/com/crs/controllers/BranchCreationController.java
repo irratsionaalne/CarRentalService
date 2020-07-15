@@ -1,12 +1,9 @@
 package com.crs.controllers;
 
-
-import com.crs.dto.BranchCreationDto;
+import com.crs.models.Branch;
 import com.crs.services.BranchService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,34 +20,33 @@ public class BranchCreationController {
     private  BranchService branchService;
 
     @ModelAttribute("branch")
-    public BranchCreationDto branchCreationDto() {
-        return new BranchCreationDto();
+    public Branch branch() {
+        return new Branch();
     }
 
     @GetMapping
-    public String showRegistrationForm(@ModelAttribute("messageType") String messageType,
-                                       @ModelAttribute("message") String message, Model model) {
+    public String showRegistrationForm() {
         return "branch/add-branch";
     }
 
     @PostMapping
-    public String registerBranch(@ModelAttribute("branch") @Valid BranchCreationDto branchCreationDto,
+    public String registerBranch(@ModelAttribute("branch") @Valid Branch branch,
                                  BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
 
-        if(branchService.doesBranchExist(branchCreationDto.getStreetAddress(),branchCreationDto.getCity())) {
+        if(branchService.doesBranchExist(branch.getStreetAddress(),branch.getCity())) {
             result.rejectValue("streetaddress", null, "There is already a branch with that address");
             result.rejectValue("city", null, "There is already a branch with that address");
         }
 
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("branch", branchCreationDto);
+            redirectAttributes.addFlashAttribute("branch", branch);
             redirectAttributes.addFlashAttribute("message", "Error in creating a branch!");
             redirectAttributes.addFlashAttribute("messageType", "error");
             return "branch/add-branch";
         }
 
-        branchService.createBranch(branchCreationDto);
+        branchService.createBranch(branch);
         redirectAttributes.addFlashAttribute("message", "Branch has been successfully created.");
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/branch";
