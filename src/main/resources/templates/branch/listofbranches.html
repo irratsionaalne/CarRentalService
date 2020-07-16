@@ -53,15 +53,14 @@
                 <table th:case="true" class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Address</th>
                         <th scope="col">City</th>
                         <th scope="col">Active</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="branch : ${branches}">
-                        <td th:text="${branch.id}"></td>
                         <td th:text="${branch.streetAddress}"></td>
                         <td th:text="${branch.city}"></td>
                         <td th:text="${branch.isActive()}"></td>

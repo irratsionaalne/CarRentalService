@@ -89,15 +89,20 @@ form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffic
     width: 80%;
     max-width: 80%;
     margin-top: 100px !important;
-    height: 600px !important;
+    height: 600px;
 }
 .jumbotronBranch {
-    height: 250px !important;
+    height: 350px;
     max-width: 80%;
 }
 .usersOffice {
     margin-top: 100px !important;
-    height: 500px !important;
+    height: 500px;
+    max-width: 80%;
+}
+.carsUpdateOffice {
+    margin-top: 110px !important;
+    max-height: 800px;
     max-width: 80%;
 }
 
