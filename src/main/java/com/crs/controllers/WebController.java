@@ -38,8 +38,7 @@ public class WebController {
     }
 
     @GetMapping("registration")
-    public String showRegistrationForm(@ModelAttribute("user") User user, @ModelAttribute("messageType") String messageType,
-                                       @ModelAttribute("message") String message, Model model) {
+    public String showRegistrationForm(@ModelAttribute("user") User user) {
         return "registration";
     }
 
