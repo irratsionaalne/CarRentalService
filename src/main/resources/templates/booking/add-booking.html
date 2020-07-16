@@ -34,16 +34,9 @@
                 <div class="col-md-6 col-md-offset-3">
                     <h3 class="display-3">Add Booking</h3>
                     <form action="#" th:action="@{/booking/add-booking}" th:object="${booking}" method="post">
-                        <div class="form-group"
-                             th:classappend="${#fields.hasErrors('dateOfBooking')} ? 'has-error': ''">
-                            <label for="dateOfBooking" class="control-label">Date of booking</label>
-                            <input
-                                    id="dateOfBooking" class="form-control" th:field="*{dateOfBooking}"/>
-                            <p class="error-message"
-                               th:each="error: ${#fields.errors('dateOfBooking')}"
-                               th:text="${error}">Validation error</p>
-                        </div>
-
+                        <span th:text="${'Date of Booking ' + booking.fullDateFormat()}"><strong></strong></span>
+                        <br>
+                        <br>
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateFrom')}? 'has-error':''">
                             <label for="date_from" class="control-label">Start date</label>
