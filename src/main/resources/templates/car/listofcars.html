@@ -53,7 +53,6 @@
                 <table th:case="true" class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Make</th>
                         <th scope="col">Model</th>
                         <th scope="col">Body type</th>
@@ -67,7 +66,6 @@
                     </thead>
                     <tbody>
                     <tr th:each="car : ${cars}">
-                        <td th:text="${car.id}"></td>
                         <td th:text="${car.make}"></td>
                         <td th:text="${car.model}"></td>
                         <td th:text="${car.bodyType}"></td>

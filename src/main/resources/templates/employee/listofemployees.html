@@ -54,7 +54,6 @@
                 <table th:case="true" class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Role</th>
                         <th scope="col">Branch</th>
                         <th scope="col">Booking</th>
@@ -62,11 +61,11 @@
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Status</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="employee : ${employees}" th:if="${employee.role != T(com.crs.models.Role).CUSTOMER}">
-                        <td th:text="${employee.id}"></td>
                         <td th:text="${employee.getRole()}"></td>
                         <td th:text="${employee.getBranch().city}"></td>
                         <td th:text="${employee.getBookings()}"></td>
@@ -74,6 +73,11 @@
                         <td th:text="${employee.getUser().getLastName()}"></td>
                         <td th:text="${employee.getUser().getEmail()}"></td>
                         <td th:text="${employee.getUser().isActive()}"></td>
+                        <td>
+                            <a th:href="@{/employee/update/{id}(id=${employee.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
+                            <a th:if="${employee.getUser().isActive()} == true" th:href="@{/employee/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+                            <a th:if="${employee.getUser().isActive()} == false" th:href="@{/employee/restore/{id}(id=${employee.id})}" class="btn btn-primary">Restore</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
