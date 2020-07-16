@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -22,7 +24,7 @@ public class Booking {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
     @NotEmpty
-    private LocalDate dateOfBooking;
+    private LocalDate dateOfBooking=LocalDate.now();
     @OneToOne
     @NotEmpty
     private User user;
@@ -55,6 +57,10 @@ public class Booking {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public String fullDateFormat(){
+        return dateOfBooking.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
 
 }
