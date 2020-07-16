@@ -71,6 +71,5 @@ public class UserController {
         return updateUserForm(model);
     }
 
-
 }
 
