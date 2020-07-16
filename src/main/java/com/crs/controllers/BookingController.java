@@ -6,6 +6,7 @@ import com.crs.services.BookingService;
 import com.crs.services.UserService;
 import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +20,9 @@ import java.util.UUID;
 public class BookingController {
     @Autowired
     private BookingService bookingService;
-    @ModelAttribute("listofbookings")
 
     @GetMapping
-    public ModelAndView showAllBookings(@ModelAttribute("user") User user) {
+    public ModelAndView showAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
         ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
         modelAndView.addObject("bookings", bookings);
@@ -76,6 +76,8 @@ public class BookingController {
         return updateBookingForm(model);
 
     }
+
+
 
    /* @PutMapping("/delete/{id}")
     public String cancelBooking(@PathVariable("id") UUID bookingId, Model model) throws Exception {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
@@ -31,7 +31,9 @@
         <div class="jumbotron bookingListOffice">
             <div>
                 <h2 class="display-4">
-                    <span th:text="${'Welcome ' + user.getFirstName()}"><strong></strong></span>
+                    <div sec:authorize="isAuthenticated()">
+                        Welcome <span sec:authentication="principal.firstName"></span>
+                    </div>
                 </h2>
                 <h3>List of Bookings</h3>
                 <span class="float-right"><a class="btn btn-success" th:href="@{/add-booking}">ADD</a></span>
