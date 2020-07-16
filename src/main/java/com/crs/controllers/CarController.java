@@ -17,6 +17,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/car")
 public class CarController {
+
     @Autowired
     private CarService carService;
     @ModelAttribute
@@ -33,15 +34,14 @@ public class CarController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateCarForm(@PathVariable("id") UUID carId, @ModelAttribute("messageType") String messageType,
-                                @ModelAttribute("message") String message, Model model) {
+    public String updateCarForm(@PathVariable("id") UUID carId, Model model) {
         Car car = carService.getById(carId);
         if (car == null) {
             throw new IllegalArgumentException("Car with this ID not found!");
         }
         model.addAttribute("car", car);
 
-        return "car/car-update";
+        return "car/update-car";
     }
 
     @PostMapping("/update/{id}")
@@ -80,4 +80,5 @@ public class CarController {
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/car";
     }
+
 }

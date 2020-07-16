@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
+
     @Autowired
     private UserServiceImpl userService;
     @Autowired
@@ -39,8 +40,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String showRegistrationForm(@ModelAttribute("employee") Employee employee, @ModelAttribute("messageType") String messageType,
-                                       @ModelAttribute("message") String message, Model model) {
+    public String showRegistrationForm(@ModelAttribute("employee") Employee employee, Model model) {
         List<Branch> branches = branchService.getAllBranches().stream()
                 .filter(Branch::isActive).collect(Collectors.toList());
         model.addAttribute("branches", branches);
@@ -48,8 +48,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user, @ModelAttribute("messageType") String messageType,
-                                   @ModelAttribute("message") String message,
+    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user,
                                    BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
         if(userService.doesUserExist(user.getEmail())) {

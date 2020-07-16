@@ -16,7 +16,7 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <a class="navbar-brand" th:href="@{/office}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
         <div class="float-left">
             <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
@@ -42,7 +42,7 @@
 
         <div class="jumbotron bookingListOffice">
             <div>
-                <h3>Booking List</h3>
+                <h3>List of Bookings</h3>
                 <span class="float-right"><a class="btn btn-success" th:href="@{/add-booking}">ADD</a></span>
             </div>
             <table class="table table-striped">

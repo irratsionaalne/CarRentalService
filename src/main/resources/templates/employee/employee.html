@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     <title>Office</title>
@@ -16,7 +16,7 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark bg-primary">
-        <a class="navbar-brand" href="#">CRS</a>
+        <a class="navbar-brand" th:href="@{#}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
         <div class="float-left">
             <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
@@ -38,9 +38,6 @@
         <div class="jumbotron">
             <div>
                 <h3>Bookings</h3>
-                <!--<form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Booking Id" aria-label="Booking Id">
-                </form>-->
                 <form class="bookings" action="#">
                     <input type="text" placeholder="Search for Bookings..." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
@@ -53,7 +50,7 @@
 
         <div class="jumbotron">
             <div>
-                <h3>Booking List</h3>
+                <h3>List of Booking</h3>
                 <h3 class="display-3"><span class="float-right"><a href="/booking/add" class="btn btn-success">ADD</a> </span>
                 </h3>
                 <br/>

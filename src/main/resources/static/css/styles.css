@@ -81,10 +81,7 @@ ul {
 .bookings{
     margin-top: 80px !important;
     margin-bottom: 150px !important;
-}
-
-.jumbotron.bookingsOffice {
-    margin-top: 120px !important;
+    max-width: 80%;
 }
 
 .branch {
@@ -156,6 +153,9 @@ form.bookings::after {
 #carouselExampleCaptions {
     max-width: 880px !important;
 }
+.carousel-inner {
+    box-shadow: 2px 2px 5px 5px #8bd0fb !important;
+}
 
 input[type="checkbox"] {
     margin-right: 10px !important;
@@ -188,6 +188,9 @@ input[type="checkbox"] {
 .footer-sections-address p{
     margin: 0 !important;
     padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
+
 }
 
 .socialMediaFooter {

@@ -16,28 +16,13 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}">CRS</a>
+        <a class="navbar-brand" th:href="@{/office}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
-                </li>
-                <li class="nav-item float-right">
-                    <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
-                </li>
-            </ul>
+            <div class="float-left">
+                <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
+                <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+                <a class="nav-link float-left" th:href="@{/user}">Users</a>
+            </div>
         </div>
         <div class="floatRight">
             <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
