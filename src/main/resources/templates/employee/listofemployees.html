@@ -62,7 +62,7 @@
                     <tr th:each="employee : ${employees}" th:if="${employee.role != T(com.crs.models.Role).CUSTOMER}">
                         <td th:text="${employee.id}"></td>
                         <td th:text="${employee.getRole()}"></td>
-                        <td th:text="${employee.getBranch()}"></td>
+                        <td th:text="${employee.getBranch().city}"></td>
                         <td th:text="${employee.getBookings()}"></td>
                         <td th:text="${employee.getUser().getFirstName()}"></td>
                         <td th:text="${employee.getUser().getLastName()}"></td>
