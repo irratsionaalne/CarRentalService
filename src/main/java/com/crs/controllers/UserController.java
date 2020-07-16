@@ -1,5 +1,7 @@
 package com.crs.controllers;
 
+import com.crs.models.Branch;
+import com.crs.models.Employee;
 import com.crs.models.User;
 import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -19,6 +22,11 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @ModelAttribute("user")
+    public User user() {
+        return new User();
+    }
 
     @GetMapping
     public ModelAndView showAllUsers() {
@@ -28,14 +36,14 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/add")
+    @GetMapping("/add-user")
     public String addUserForm(@ModelAttribute("user") User user) {
         return "user/add-user";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-user")
     public Object addUser(@ModelAttribute("user") User user,
-                          BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+                          BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("user", user);
@@ -51,25 +59,19 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateUserForm(Model model) {
-        return "update-user";
-    }
-
-    @PutMapping("/update/{id}")
-    public Object updateUser(@PathVariable("id") UUID userId, User user, Model model) throws Exception {
-        user.setId(userId);
-        boolean updateResult = userService.updateUser(user);
-
-        if (updateResult) {
-            model.addAttribute("message", "Customer has been successfully updated.");
-            model.addAttribute("messageType", "success");
-            return showAllUsers();
+    public String updateUserForm(@PathVariable("id") UUID userId, Model model) {
+        User user = userService.getById(userId);
+        if (user == null) {
+            throw new IllegalArgumentException("User with this ID not found!");
         }
-        model.addAttribute("user", user);
-        model.addAttribute("message", "Error in updating customer");
-        model.addAttribute("messageType", "error");
-        return updateUserForm(model);
+        return "user/update";
     }
+
+
+
+
+
+    //PostMapping...
 
 }
 

@@ -1,5 +1,6 @@
 package com.crs.services;
 
+import com.crs.models.Branch;
 import com.crs.models.Employee;
 
 import java.util.List;
@@ -14,5 +15,9 @@ public interface EmployeeService {
     List<Employee> getAllEmployees();
 
     Employee getById(UUID employeeId);
+
+    boolean deleteEmployeeById(UUID employeeId);
+
+    boolean restoreEmployeeById(UUID employeeId);
 
 }

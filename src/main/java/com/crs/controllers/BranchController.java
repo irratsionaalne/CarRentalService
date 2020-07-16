@@ -73,7 +73,7 @@ public class BranchController {
     }
 
     @PostMapping("/update/{id}")
-    public Object updateCar(@PathVariable("id") UUID branchId, Branch branch, Model model) {
+    public Object updateBranch(@PathVariable("id") UUID branchId, Branch branch, Model model) {
         branch.setId(branchId);
         boolean updateResult = branchService.updateBranch(branch);
         if (updateResult) {

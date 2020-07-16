@@ -10,14 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Controller
@@ -31,6 +29,11 @@ public class EmployeeController {
     @Autowired
     private BranchService branchService;
 
+    @ModelAttribute("employee")
+    public Employee employee() {
+        return new Employee();
+    }
+
     @GetMapping
     public ModelAndView showAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
@@ -39,7 +42,7 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @GetMapping("/add")
+    @GetMapping("/add-employee")
     public String showRegistrationForm(@ModelAttribute("employee") Employee employee, Model model) {
         List<Branch> branches = branchService.getAllBranches().stream()
                 .filter(Branch::isActive).collect(Collectors.toList());
@@ -47,7 +50,7 @@ public class EmployeeController {
         return "employee/add-employee";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-employee")
     public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user,
                                    BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -68,13 +71,20 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
-    /*
-
-    @GetMapping("/update")
-    public String updateEmployeeForm(Model model) {
-        return "update-employee";
+    @GetMapping("/update/{id}")
+    public String updateEmployeeForm(@PathVariable("id") UUID employeeId, Model model) {
+        Employee employee = employeeService.getById(employeeId);
+        if (employee == null) {
+            throw new IllegalArgumentException("Employee with this ID not found!");
+        }
+        model.addAttribute("employee", employee);
+        List<Branch> branches = branchService.getAllBranches().stream()
+                .filter(Branch::isActive).collect(Collectors.toList());
+        model.addAttribute("branches", branches);
+        return "employee/update";
     }
-    @PutMapping("/update/{id}")
+
+    @PostMapping("/update/{id}")
     public Object updateEmployee(@PathVariable("id") UUID employeeId, Employee employee, Model model) {
         employee.setId(employeeId);
         boolean updateResult = employeeService.updateEmployee(employee);
@@ -84,10 +94,35 @@ public class EmployeeController {
             return showAllEmployees();
         }
         model.addAttribute("employee", employee);
-        model.addAttribute("message", "Error in updating employee");
+        model.addAttribute("message", "Error in updating an Employee");
         model.addAttribute("messageType", "error");
-        return updateEmployeeForm(model);
+        return "redirect:/employee/update/{id}";
     }
-     */
+
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") UUID employeeId, RedirectAttributes redirectAttributes) {
+        boolean deleteResult = employeeService.deleteEmployeeById(employeeId);
+        if (deleteResult) {
+            redirectAttributes.addFlashAttribute("message", "Employee #" + employeeId + " has been removed.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/employee";
+    }
+
+    @GetMapping("/restore/{id}")
+    public String restoreEmployee(@PathVariable("id") UUID employeeId, RedirectAttributes redirectAttributes) {
+        boolean restoreResult = employeeService.restoreEmployeeById(employeeId);
+        if (restoreResult) {
+            redirectAttributes.addFlashAttribute("message", "Employee #" + employeeId + " has been successfully restored.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error in restoring employee #" + employeeId + "!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/employee";
+    }
 
 }
