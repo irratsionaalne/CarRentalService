@@ -27,7 +27,7 @@ public class AddBookingController {
 
     @GetMapping
     public String showBookingForm(@ModelAttribute("messageType") String messageType,
-                              @ModelAttribute("message") String message, Model model) {
+                              @ModelAttribute("message") String message) {
         return "booking/add-booking";
     }
 

@@ -29,6 +29,11 @@ public class UserController {
         return modelAndView;
     }
 
+    /*@GetMapping
+    public String userForm(@ModelAttribute("user") User user) {
+        return "user/user";
+    }*/
+
     @GetMapping("/add")
     public String addUserForm(@ModelAttribute("user") User user) {
         return "user/add-user";
@@ -71,6 +76,7 @@ public class UserController {
         model.addAttribute("messageType", "error");
         return updateUserForm(model);
     }
+
 
 }
 
