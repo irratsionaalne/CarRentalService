@@ -1,7 +1,10 @@
 package com.crs.controllers;
 
 import com.crs.models.Booking;
+import com.crs.models.User;
 import com.crs.services.BookingService;
+import com.crs.services.UserService;
+import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +19,10 @@ import java.util.UUID;
 public class BookingController {
     @Autowired
     private BookingService bookingService;
+    @ModelAttribute("listofbookings")
 
     @GetMapping
-    public ModelAndView showAllBookings() {
+    public ModelAndView showAllBookings(@ModelAttribute("user") User user) {
         List<Booking> bookings = bookingService.getAllBookings();
         ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
         modelAndView.addObject("bookings", bookings);
