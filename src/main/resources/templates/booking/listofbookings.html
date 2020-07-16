@@ -28,20 +28,11 @@
         </div>
     </nav>
     <div class="container">
-        <h2 class="display-4">
-            <!--            Welcome <span th:text="${user.firstName}"><strong></strong></span>-->
-        </h2>
-
-        <div class="jumbotron branch">
-            <div class="branch float-right">
-                <h3>Add Branch</h3>
-                <span class="float-right"><a class="btn btn-success" th:href="@{/branch/add-branch}">ADD</a> </span>
-                <br/>
-            </div>
-        </div>
-
         <div class="jumbotron bookingListOffice">
             <div>
+                <h2 class="display-4">
+                    <span th:text="${'Welcome ' + user.getFirstName()}"><strong></strong></span>
+                </h2>
                 <h3>List of Bookings</h3>
                 <span class="float-right"><a class="btn btn-success" th:href="@{/add-booking}">ADD</a></span>
             </div>
@@ -61,19 +52,19 @@
                 </thead>
                 <tbody>
                     <tr th:each="booking : ${bookings}">
-                    <th scope="row" th:text="${booking.id}></th>
-                    <td th:text="${booking.dateOfBooking}></td>
-                    <td th:text="${booking.user}></td>
-                    <td th:text="${booking.car}></td>
-                    <td th:text="${booking.dateFrom}></td>
-                    <td th:text="${booking.dateTo}></td>
-                    <td th:text="${booking.carRental}></td>
-                    <td th:text="${booking.carReturn}></td>
-                    <td th:text="${booking.totalPrice}></td>
-                    <td th:text="${booking.status}></td>
+                    <td th:text="${booking.id}"></td>
+                    <td th:text="${booking.dateOfBooking}"></td>
+                    <td th:text="${booking.getUser()}"></td>
+                    <td th:text="${booking.getCar}"></td>
+                    <td th:text="${booking.dateFrom}"></td>
+                    <td th:text="${booking.dateTo}"></td>
+                    <!--<td th:text="${booking.carRental}"></td>
+                    <td th:text="${booking.carReturn}"></td>-->
+                    <td th:text="${booking.totalPrice}"></td>
+                    <td th:text="${booking.status}"></td>
                     <td>
-                    <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                    <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
+                   <!-- <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
+                    <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>-->
                     </td>
                 </tr>
                 </tbody>
