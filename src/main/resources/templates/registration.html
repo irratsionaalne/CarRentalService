@@ -16,16 +16,21 @@
 </head>
 <body>
 <div class="container-fluid">
+
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
+        <div class="float-right">
+            <p><a class="nav-link float-right logout" th:href="@{/login}">Login</a>
+                <a class="nav-link float-right logout" th:href="@{/registration}">Register</a></p>
+        </div>
     </nav>
 
     <div class="container">
         <div class="jumbotron regisLogin">
-
-
+            <div>
+                <h3>Registration</h3>
+            </div>
                 <div class="col-md-6 col-md-offset-3">
-                    <h3 class="display-3">Registration</h3>
                     <form action="#" th:action="@{/registration}" th:object="${user}" method="post">
 
                         <div th:if="${param.error}">

@@ -21,7 +21,7 @@
     <h2>
         Welcome <span sec:authentication="principal.username">User</span>
     </h2>
-    <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary">Logout</a></p>
+    <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link float-right logout">Logout</a></p>
 </div>
 
 

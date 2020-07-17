@@ -15,9 +15,15 @@
 </head>
 <body>
 <div class="container-fluid">
+
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
+        <div class="float-right">
+            <p><a class="nav-link float-right logout" th:href="@{/login}">Login</a>
+                <a class="nav-link float-right logout" th:href="@{/registration}">Register</a></p>
+        </div>
     </nav>
+
     <div class="container">
         <div th:if="${param.registrationSuccess}">
             <div class="alert alert-info">You've successfully registered
@@ -27,9 +33,9 @@
 
         <div class="container">
             <div class="jumbotron regisLogin">
-
-
-                    <h3 class="display-3">Login</h3>
+                <div>
+                    <h3>Login</h3>
+                </div>
                     <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert">
                         <span th:text="${message}"></span>
                     </div>
