@@ -61,7 +61,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="user : ${users}">
+                    <tr th:each="user : ${users}" th:if="${user.role == T(com.crs.models.Role).CUSTOMER}">
                         <td th:text="${user.getFirstName()}"></td>
                         <td th:text="${user.getLastName()}"></td>
                         <td th:text="${user.getEmail()}"></td>

@@ -52,7 +52,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         if (user == null || !userRepo.existsById(user.getId())) {
             return false;
         }
-        userRepo.saveAndFlush(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.CUSTOMER);
+        user.setActive(true);
+        userRepo.save(user);
         return true;
     }
 
