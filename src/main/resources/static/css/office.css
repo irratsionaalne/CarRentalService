@@ -75,6 +75,15 @@ ul {
     max-width: 80%;
 }
 
+.jumbotron.regisLogin{
+    width: 800px !important;
+    max-width: 900px !important;
+    margin-top: 80px !important;
+    padding-top: 10px !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 150px !important;
+}
+
 .jumbotron.addBranch, .jumbotron.addBooking, .jumbotron.addCar, .addUser, .addEmployee {
     margin-top: 30px !important;
     max-width: 15% !important;

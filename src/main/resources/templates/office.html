@@ -25,8 +25,7 @@
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
         <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
-                                                                 th:href="@{/logout}">Logout</a>
+            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout" th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
