@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/add-booking")
+@RequestMapping("/add")
 public class AddBookingController {
     @Autowired
     private  BookingService bookingService;
@@ -28,7 +28,7 @@ public class AddBookingController {
     @GetMapping
     public String showBookingForm(@ModelAttribute("messageType") String messageType,
                               @ModelAttribute("message") String message, Model model) {
-        return "booking/add-booking";
+        return "booking/add";
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class AddBookingController {
             redirectAttributes.addFlashAttribute("booking", booking);
             redirectAttributes.addFlashAttribute("message", "Error in creating a booking!");
             redirectAttributes.addFlashAttribute("messageType", "error");
-            return "booking/add-booking";
+            return "booking/add";
         }
 
         bookingService.createBooking(booking);

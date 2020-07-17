@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h3 class="display-3">Add User</h3>
-                    <form action="#" th:action="@{/user/add-user}" th:object="${user}" method="post">
+                    <form action="#" th:action="@{/user/add}" th:object="${user}" method="post">
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
                             <label for="first_name" class="control-label">First name</label>

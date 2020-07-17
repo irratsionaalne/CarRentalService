@@ -28,17 +28,17 @@ public class UserController {
     @GetMapping
     public ModelAndView showAllUsers() {
         List<User> users = userService.getAllUsers();
-        ModelAndView modelAndView = new ModelAndView("user/listofusers");
+        ModelAndView modelAndView = new ModelAndView("user/list");
         modelAndView.addObject("users", users);
         return modelAndView;
     }
 
-    @GetMapping("/add-user")
+    @GetMapping("/add")
     public String addUserForm(@ModelAttribute("user") User user) {
-        return "user/add-user";
+        return "user/add";
     }
 
-    @PostMapping("/add-user")
+    @PostMapping("/add")
     public Object addUser(@ModelAttribute("user") User user,
                           BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -46,7 +46,7 @@ public class UserController {
             redirectAttributes.addFlashAttribute("user", user);
             redirectAttributes.addFlashAttribute("message", "Error in creating a user!");
             redirectAttributes.addFlashAttribute("messageType", "error");
-            return "user/add-user";
+            return "user/add";
         }
 
         userService.createUser(user);

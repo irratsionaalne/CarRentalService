@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h3 class="display-3">Add Car</h3>
-                    <form action="#" th:action="@{/car/add-car}" th:object="${car}" method="post">
+                    <form action="#" th:action="@{/car/add}" th:object="${car}" method="post">
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
                             <label for="make" class="control-label">Make</label>
