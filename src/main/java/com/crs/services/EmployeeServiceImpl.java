@@ -2,7 +2,9 @@ package com.crs.services;
 
 import com.crs.models.*;
 import com.crs.repositories.EmployeeRepo;
+import com.crs.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +16,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
+    @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
-    public void createEmployee(Employee employee) throws Exception {
+    public void createEmployee(Employee employee) {
+        User user = new User();
+        user.setEmail(employee.getEmail());
+        user.setFirstName(employee.getFirstName());
+        user.setLastName(employee.getLastName());
+        user.setActive(true);
+        user.setPassword(passwordEncoder.encode(employee.getPassword()));
+        user.setRole(employee.getRole());
+        userRepo.save(user);
         employee.setActive(true);
         employeeRepo.save(employee);
     }
@@ -25,7 +41,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employee == null || !employeeRepo.existsById(employee.getId())) {
             return false;
         }
-        employeeRepo.saveAndFlush(employee);
+        User user = new User();
+        user.setEmail(employee.getEmail());
+        user.setFirstName(employee.getFirstName());
+        user.setLastName(employee.getLastName());
+        user.setActive(true);
+        user.setPassword(passwordEncoder.encode(employee.getPassword()));
+        user.setRole(employee.getRole());
+        userRepo.save(user);
+        employee.setActive(true);
+        employeeRepo.save(employee);
         return true;
     }
 
