@@ -38,20 +38,20 @@ public class EmployeeController {
     @GetMapping
     public ModelAndView showAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
-        ModelAndView modelAndView = new ModelAndView("employee/listofemployees");
+        ModelAndView modelAndView = new ModelAndView("employee/list");
         modelAndView.addObject("employees", employees);
         return modelAndView;
     }
 
-    @GetMapping("/add-employee")
+    @GetMapping("/add")
     public String showRegistrationForm(@ModelAttribute("employee") Employee employee, Model model) {
         List<Branch> branches = branchService.getAllBranches().stream()
                 .filter(Branch::isActive).collect(Collectors.toList());
         model.addAttribute("branches", branches);
-        return "employee/add-employee";
+        return "employee/add";
     }
 
-    @PostMapping("/add-employee")
+    @PostMapping("/add")
     public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, User user,
                                    BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -63,7 +63,7 @@ public class EmployeeController {
             redirectAttributes.addFlashAttribute("employee", employee);
             redirectAttributes.addFlashAttribute("message", "Error in creating an employee!");
             redirectAttributes.addFlashAttribute("messageType", "error");
-            return "employee/add-employee";
+            return "employee/add";
         }
 
         employeeService.createEmployee(employee);

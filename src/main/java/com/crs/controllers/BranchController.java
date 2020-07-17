@@ -29,17 +29,17 @@ public class BranchController {
     @GetMapping
     public ModelAndView showAllBranches() {
         List<Branch> branches = branchService.getAllBranches();
-        ModelAndView modelAndView = new ModelAndView("branch/listofbranches");
+        ModelAndView modelAndView = new ModelAndView("branch/list");
         modelAndView.addObject("branches", branches);
         return modelAndView;
     }
 
-    @GetMapping("/add-branch")
+    @GetMapping("/add")
     public String showRegistrationForm() {
-        return "branch/add-branch";
+        return "branch/add";
     }
 
-    @PostMapping("/add-branch")
+    @PostMapping("/add")
     public String registerBranch(@ModelAttribute("branch") @Valid Branch branch,
                                  BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -52,7 +52,7 @@ public class BranchController {
             redirectAttributes.addFlashAttribute("branch", branch);
             redirectAttributes.addFlashAttribute("message", "Error in creating a branch!");
             redirectAttributes.addFlashAttribute("messageType", "error");
-            return "branch/add-branch";
+            return "branch/add";
         }
 
         branchService.createBranch(branch);
@@ -69,7 +69,7 @@ public class BranchController {
         }
         model.addAttribute("branch", branch);
 
-        return "branch/update-branch";
+        return "branch/update";
     }
 
     @PostMapping("/update/{id}")

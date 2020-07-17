@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h3 class="display-3">Add Booking</h3>
-                    <form action="#" th:action="@{/booking/add-booking}" th:object="${booking}" method="post">
+                    <form action="#" th:action="@{/booking/add}" th:object="${booking}" method="post">
                         <span th:text="${'Date of Booking ' + booking.fullDateFormat()}"><strong></strong></span>
                         <br>
                         <br>

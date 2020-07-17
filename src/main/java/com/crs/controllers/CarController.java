@@ -28,7 +28,7 @@ public class CarController {
     @GetMapping
     public ModelAndView showAllCars() {
         List<Car> cars = carService.getAllCars();
-        ModelAndView modelAndView = new ModelAndView("car/listofcars");
+        ModelAndView modelAndView = new ModelAndView("car/list");
         modelAndView.addObject("cars", cars);
         return modelAndView;
     }
@@ -41,7 +41,7 @@ public class CarController {
         }
         model.addAttribute("car", car);
 
-        return "car/update-car";
+        return "car/update";
     }
 
     @PostMapping("/update/{id}")
@@ -59,12 +59,12 @@ public class CarController {
         return "redirect:/car";
     }
 
-    @GetMapping("/add-car")
+    @GetMapping("/add")
     public String showCarRegistrationForm() {
-        return "car/add-car";
+        return "car/add";
     }
 
-    @PostMapping("/add-car")
+    @PostMapping("/add")
     public String registerCar(@ModelAttribute("car") @Valid Car car,
                               BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -72,7 +72,7 @@ public class CarController {
             redirectAttributes.addFlashAttribute("car", car);
             redirectAttributes.addFlashAttribute("message", "Error in creating a car!");
             redirectAttributes.addFlashAttribute("messageType", "error");
-            return "car/add-car";
+            return "car/add";
         }
 
         carService.createCar(car);

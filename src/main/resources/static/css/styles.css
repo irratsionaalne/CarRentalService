@@ -133,7 +133,7 @@ form.bookings::after {
 }
 
 
-.listOfCars {
+.list {
     min-height: 300px !important;
     max-width: 900px !important;
     margin-bottom: 150px !important;

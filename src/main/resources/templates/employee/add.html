@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h3 class="display-3">Add Employee</h3>
-                    <form action="#" th:action="@{/employee/add-employee}" th:object="${employee}" method="post">
+                    <form action="#" th:action="@{/employee/add}" th:object="${employee}" method="post">
                         <div th:if="${param.error}">
                             <div class="alert alert-danger">This email already exists.</div>
                         </div>

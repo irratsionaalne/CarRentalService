@@ -24,7 +24,7 @@ public class BookingController {
     @GetMapping
     public ModelAndView showAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
-        ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
+        ModelAndView modelAndView = new ModelAndView("booking/list");
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
     }
@@ -36,7 +36,7 @@ public class BookingController {
 
     @GetMapping("/add")
     public String addBookingForm() {
-        return "booking/add-booking";
+        return "booking/add";
     }
 
     @PostMapping("/add")
@@ -46,7 +46,7 @@ public class BookingController {
         if (createResult) {
             model.addAttribute("message", "Booking has been successfully created.");
             model.addAttribute("messageType", "success");
-            return "booking/listofbookings";
+            return "booking/list";
         }
         model.addAttribute("booking", booking);
         model.addAttribute("message", "Error in creating a booking.");
@@ -68,7 +68,7 @@ public class BookingController {
         if (updateResult) {
             model.addAttribute("message", "Booking has been successfully updated.");
             model.addAttribute("messageType", "success");
-            return "/booking/listofbookings";
+            return "/booking/list";
         }
         model.addAttribute("booking", booking);
         model.addAttribute("message", "Error in updating booking");
