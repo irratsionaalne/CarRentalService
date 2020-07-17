@@ -43,5 +43,6 @@ public class Employee {
     @OneToOne(fetch = FetchType.EAGER)
     @NotNull
     private User user;
+    private boolean isActive;
 
 }

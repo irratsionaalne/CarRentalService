@@ -11,7 +11,7 @@ public interface BranchService {
 
     List<Branch> getAllBranches();
 
-    boolean doesBranchExist(String streetAddress,String city);
+    boolean doesBranchExist(String streetAddress, String city);
 
     Branch getById(UUID branchId);
 
@@ -20,4 +20,5 @@ public interface BranchService {
     boolean deleteBranchById(UUID branchId);
 
     boolean restoreBranchById(UUID branchId);
+
 }

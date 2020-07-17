@@ -35,7 +35,7 @@
             <div class="float-right">
                 <h3>
                     <span class="float-right">
-                    <a th:href="@{/employee/add}" class="btn btn-success">Add Employee</a>
+                    <a th:href="@{/employee/add-employee}" class="btn btn-success">Add Employee</a>
                 </span>
                 </h3>
             </div>
@@ -69,14 +69,14 @@
                         <td th:text="${employee.getRole()}"></td>
                         <td th:text="${employee.getBranch().city}"></td>
                         <td th:text="${employee.getBookings()}"></td>
-                        <td th:text="${employee.getUser().getFirstName()}"></td>
-                        <td th:text="${employee.getUser().getLastName()}"></td>
-                        <td th:text="${employee.getUser().getEmail()}"></td>
-                        <td th:text="${employee.getUser().isActive()}"></td>
+                        <td th:text="${employee.getFirstName()}"></td>
+                        <td th:text="${employee.getLastName()}"></td>
+                        <td th:text="${employee.getEmail()}"></td>
+                        <td th:text="${employee.isActive()}"></td>
                         <td>
                             <a th:href="@{/employee/update/{id}(id=${employee.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
-                            <a th:if="${employee.getUser().isActive()} == true" th:href="@{/employee/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
-                            <a th:if="${employee.getUser().isActive()} == false" th:href="@{/employee/restore/{id}(id=${employee.id})}" class="btn btn-primary">Restore</a>
+                            <a th:if="${employee.isActive()} == true" th:href="@{/employee/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+                            <a th:if="${employee.isActive()} == false" th:href="@{/employee/restore/{id}(id=${employee.id})}" class="btn btn-primary">Restore</a>
                         </td>
                     </tr>
                     </tbody>

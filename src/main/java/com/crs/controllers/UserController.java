@@ -20,6 +20,11 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
+    @ModelAttribute("user")
+    public User user() {
+        return new User();
+    }
+
     @GetMapping
     public ModelAndView showAllUsers() {
         List<User> users = userService.getAllUsers();
@@ -28,14 +33,14 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/add")
+    @GetMapping("/add-user")
     public String addUserForm(@ModelAttribute("user") User user) {
         return "user/add-user";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-user")
     public Object addUser(@ModelAttribute("user") User user,
-                          BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+                          BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("user", user);
@@ -51,24 +56,54 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateUserForm(Model model) {
-        return "update-user";
+    public String updateUserForm(@PathVariable("id") UUID userId, Model model) {
+        User user = userService.getById(userId);
+        if (user == null) {
+            throw new IllegalArgumentException("User with this ID not found!");
+        }
+        model.addAttribute("user", user);
+        return "user/update";
     }
 
-    @PutMapping("/update/{id}")
-    public Object updateUser(@PathVariable("id") UUID userId, User user, Model model) throws Exception {
+    @PostMapping("/update/{id}")
+    public Object updateUser(@PathVariable("id") UUID userId, User user, Model model) {
         user.setId(userId);
         boolean updateResult = userService.updateUser(user);
-
         if (updateResult) {
-            model.addAttribute("message", "Customer has been successfully updated.");
+            model.addAttribute("message", "User has been successfully updated.");
             model.addAttribute("messageType", "success");
             return showAllUsers();
         }
         model.addAttribute("user", user);
-        model.addAttribute("message", "Error in updating customer");
+        model.addAttribute("message", "Error in updating a User");
         model.addAttribute("messageType", "error");
-        return updateUserForm(model);
+        return "redirect:/user/update/{id}";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") UUID userId, RedirectAttributes redirectAttributes) {
+        boolean deleteResult = userService.deleteUserById(userId);
+        if (deleteResult) {
+            redirectAttributes.addFlashAttribute("message", "User #" + userId + " has been removed.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/user";
+    }
+
+    @GetMapping("/restore/{id}")
+    public String restoreUser(@PathVariable("id") UUID userId, RedirectAttributes redirectAttributes) {
+        boolean restoreResult = userService.restoreUserById(userId);
+        if (restoreResult) {
+            redirectAttributes.addFlashAttribute("message", "User #" + userId + " has been successfully restored.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error in restoring user #" + userId + "!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/user";
     }
 
 }

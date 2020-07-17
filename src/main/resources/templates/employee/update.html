@@ -10,7 +10,7 @@
     <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Add Employee</title>
+    <title>Update Employee</title>
 
 </head>
 <body>
@@ -34,15 +34,16 @@
         <div class="jumbotron employeesOffice">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h3 class="display-3">Add Employee</h3>
-                    <form action="#" th:action="@{/employee/add-employee}" th:object="${employee}" method="post">
+                    <h3 class="display-3">Update Employee</h3>
+                    <form action="#" th:action="@{/employee/update/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+
                         <div th:if="${param.error}">
                             <div class="alert alert-danger">This email already exists.</div>
                         </div>
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
                             <label for="first_name" class="control-label">First Name</label>
-                            <input id="first_name" class="form-control" th:field="*{firstName}" required="required"/>
+                            <input id="first_name" class="form-control" th:field="*{firstName}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('firstName')}"
                                th:text="${error}">Validation error</p>
@@ -50,7 +51,7 @@
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
                             <label for="last_name" class="control-label">Last Name</label>
-                            <input id="last_name" class="form-control" th:field="*{lastName}" required="required"/>
+                            <input id="last_name" class="form-control" th:field="*{lastName}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('lastName')}"
                                th:text="${error}">Validation error</p>
@@ -78,7 +79,7 @@
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                             <label for="email" class="control-label">E-mail</label>
-                            <input id="email" class="form-control" th:field="*{email}" required="required"/>
+                            <input id="email" class="form-control" th:field="*{email}"/>
                             <p class="error-message"
                                th:each="error : ${#fields.errors('email')}"
                                th:text="${error}">Validation error</p>
@@ -98,8 +99,8 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Add Employee</button>
-                            <a th:href="@{/employee/}" type="reset" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-success">Update Employee</button>
+                            <button type="submit" class="btn btn-danger">Cancel</button>
                         </div>
                     </form>
                 </div>
