@@ -36,7 +36,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
 
     protected String determineTargetUrl(Authentication authentication) {
-        returnURL = "/index";
+        returnURL = "/customer";
 
         authentication.getAuthorities().forEach(grantedAuthority -> {
             if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
