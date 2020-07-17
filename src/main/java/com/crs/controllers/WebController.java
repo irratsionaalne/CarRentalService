@@ -22,9 +22,9 @@ public class WebController {
         return "home";
     }
 
-    @GetMapping("/bo-home")
+    @GetMapping("/index")
     public String index() {
-        return "bo-home";
+        return "index";
     }
 
     @GetMapping("login")

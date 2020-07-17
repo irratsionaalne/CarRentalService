@@ -43,6 +43,11 @@ public class EmployeeController {
         return modelAndView;
     }
 
+    @GetMapping("/employee")
+    public String employeeView(){
+        return "employee/employee";
+    }
+
     @GetMapping("/add")
     public String showRegistrationForm(@ModelAttribute("employee") Employee employee, Model model) {
         List<Branch> branches = branchService.getAllBranches().stream()
