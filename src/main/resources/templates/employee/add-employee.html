@@ -42,7 +42,7 @@
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
                             <label for="first_name" class="control-label">First Name</label>
-                            <input id="first_name" class="form-control" th:field="*{firstName}"/>
+                            <input id="first_name" class="form-control" th:field="*{firstName}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('firstName')}"
                                th:text="${error}">Validation error</p>
@@ -50,7 +50,7 @@
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
                             <label for="last_name" class="control-label">Last Name</label>
-                            <input id="last_name" class="form-control" th:field="*{lastName}"/>
+                            <input id="last_name" class="form-control" th:field="*{lastName}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('lastName')}"
                                th:text="${error}">Validation error</p>
@@ -78,7 +78,7 @@
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                             <label for="email" class="control-label">E-mail</label>
-                            <input id="email" class="form-control" th:field="*{email}"/>
+                            <input id="email" class="form-control" th:field="*{email}" required="required"/>
                             <p class="error-message"
                                th:each="error : ${#fields.errors('email')}"
                                th:text="${error}">Validation error</p>
@@ -99,7 +99,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add Employee</button>
-                            <button type="submit" class="btn btn-danger">Cancel</button>
+                            <a th:href="@{/employee/}" type="reset" class="btn btn-danger">Cancel</a>
                         </div>
                         <br>
                         <br>

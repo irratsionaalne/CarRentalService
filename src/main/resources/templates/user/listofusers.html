@@ -66,7 +66,7 @@
                         <td th:text="${user.getLastName()}"></td>
                         <td th:text="${user.getEmail()}"></td>
                         <td th:text="${user.getAddress()}"></td>
-                        <td th:text="${user.getDob()}"></td>
+                        <td th:text="${user.getAge()}"></td>
                         <td th:text="${user.isActive()}"></td>
                         <td>
                             <a th:href="@{/user/update/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
