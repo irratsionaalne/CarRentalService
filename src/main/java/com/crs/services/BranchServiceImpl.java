@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Service
 public class BranchServiceImpl implements BranchService {
+
     @Autowired
     private BranchRepo branchRepo;
 
@@ -31,9 +32,9 @@ public class BranchServiceImpl implements BranchService {
         return branchRepo.getOne(branchId);
     }
 
-    public boolean doesBranchExist(String streetAddress,String city){
+    public boolean doesBranchExist(String streetAddress, String city) {
 
-        return branchRepo.findByCityAndStreetAddress(city,streetAddress).isPresent();
+        return branchRepo.findByCityAndStreetAddress(city, streetAddress).isPresent();
     }
 
     @Override

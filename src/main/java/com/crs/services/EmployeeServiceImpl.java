@@ -12,7 +12,7 @@ import java.util.UUID;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private  EmployeeRepo employeeRepo;
+    private EmployeeRepo employeeRepo;
 
     @Override
     public void createEmployee(Employee employee) throws Exception {
@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepo.saveAndFlush(employee);
         return true;
     }
-    
+
     @Override
     public List<Employee> getAllEmployees() {
         return employeeRepo.findAll();
