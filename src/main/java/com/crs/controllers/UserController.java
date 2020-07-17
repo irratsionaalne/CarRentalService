@@ -1,7 +1,5 @@
 package com.crs.controllers;
 
-import com.crs.models.Branch;
-import com.crs.models.Employee;
 import com.crs.models.User;
 import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -64,14 +61,50 @@ public class UserController {
         if (user == null) {
             throw new IllegalArgumentException("User with this ID not found!");
         }
+        model.addAttribute("user", user);
         return "user/update";
     }
 
+    @PostMapping("/update/{id}")
+    public Object updateUser(@PathVariable("id") UUID userId, User user, Model model) {
+        user.setId(userId);
+        boolean updateResult = userService.updateUser(user);
+        if (updateResult) {
+            model.addAttribute("message", "User has been successfully updated.");
+            model.addAttribute("messageType", "success");
+            return showAllUsers();
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("message", "Error in updating a User");
+        model.addAttribute("messageType", "error");
+        return "redirect:/user/update/{id}";
+    }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") UUID userId, RedirectAttributes redirectAttributes) {
+        boolean deleteResult = userService.deleteUserById(userId);
+        if (deleteResult) {
+            redirectAttributes.addFlashAttribute("message", "User #" + userId + " has been removed.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/user";
+    }
 
-
-
-    //PostMapping...
+    @GetMapping("/restore/{id}")
+    public String restoreUser(@PathVariable("id") UUID userId, RedirectAttributes redirectAttributes) {
+        boolean restoreResult = userService.restoreUserById(userId);
+        if (restoreResult) {
+            redirectAttributes.addFlashAttribute("message", "User #" + userId + " has been successfully restored.");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Error in restoring user #" + userId + "!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+        return "redirect:/user";
+    }
 
 }
 

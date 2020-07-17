@@ -9,9 +9,13 @@ public interface UserService {
 
     boolean createUser(User user) throws Exception;
 
-    boolean updateUser(User user) throws Exception;
+    boolean updateUser(User user);
 
     List<User> getAllUsers();
 
     User getById(UUID userId);
+
+    boolean deleteUserById(UUID userId);
+
+    boolean restoreUserById(UUID userId);
 }

@@ -28,18 +28,18 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> optionalUser = userRepo.findByEmail(email);
-        if(!optionalUser.isPresent()){
+        if (!optionalUser.isPresent()) {
             throw new Exception("User with this email does not exist");
         }
         return optionalUser.get();
     }
 
-    public boolean doesUserExist(String email){
+    public boolean doesUserExist(String email) {
         return userRepo.findByEmail(email).isPresent();
     }
 
     @Override
-    public boolean createUser(User user){
+    public boolean createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.CUSTOMER);
         user.setActive(true);
@@ -48,9 +48,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public boolean updateUser(User user) throws Exception {
+    public boolean updateUser(User user) {
         if (user == null || !userRepo.existsById(user.getId())) {
-            throw new Exception("Invalid updating for Customer");
+            return false;
         }
         userRepo.saveAndFlush(user);
         return true;
@@ -64,6 +64,28 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User getById(UUID userId) {
         return userRepo.getOne(userId);
+    }
+
+    @Override
+    public boolean deleteUserById(UUID userId) {
+        User user = getById(userId);
+        if (userId == null) {
+            return false;
+        }
+        user.setActive(false);
+        updateUser(user);
+        return true;
+    }
+
+    @Override
+    public boolean restoreUserById(UUID userId) {
+        User user = getById(userId);
+        if (userId == null) {
+            return false;
+        }
+        user.setActive(true);
+        updateUser(user);
+        return true;
     }
 
 }
