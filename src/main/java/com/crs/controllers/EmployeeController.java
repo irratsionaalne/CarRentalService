@@ -44,7 +44,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    public String employeeView(){
+    public String employeeMainView(){
         return "employee/employee";
     }
 

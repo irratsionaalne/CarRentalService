@@ -1,17 +1,16 @@
 package com.crs.controllers;
 
 import com.crs.models.Booking;
-import com.crs.models.User;
 import com.crs.services.BookingService;
-import com.crs.services.UserService;
-import com.crs.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +19,10 @@ import java.util.UUID;
 public class BookingController {
     @Autowired
     private BookingService bookingService;
+    @ModelAttribute("booking")
+    public Booking booking() {
+        return new Booking();
+    }
 
     @GetMapping
     public ModelAndView showAllBookings() {
@@ -29,17 +32,20 @@ public class BookingController {
         return modelAndView;
     }
 
-    @GetMapping("/bookingView")
-    public String booking() {
-        return "booking/bookingView";
+    @GetMapping("/employee")
+    public String employeeBooking() {
+        return "/booking/employee";
     }
 
     @GetMapping("/add")
-    public String addBookingForm() {
+    public String addBookingForm(@ModelAttribute("messageType") String messageType,
+                                 @ModelAttribute("message") String message, Model model) {
         return "booking/add";
     }
 
-    @PostMapping("/add")
+
+
+   /* @PostMapping("/add")
     public String addBooking(Booking booking, Model model) throws Exception {
         boolean createResult = bookingService.createBooking(booking);
 
@@ -53,8 +59,24 @@ public class BookingController {
         model.addAttribute("messageType", "error");
         return "redirect:/booking";
 
-    }
+    }*/
 
+    @PostMapping
+    public String createBooking(@ModelAttribute("booking") @Valid Booking booking,
+                                BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("booking", booking);
+            redirectAttributes.addFlashAttribute("message", "Error in creating a booking!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "booking/add";
+        }
+
+        bookingService.createBooking(booking);
+        redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/booking";
+    }
     @PutMapping("/update")
     public String updateBookingForm(Model model) {
         return "update-booking";
