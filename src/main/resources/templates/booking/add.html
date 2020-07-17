@@ -40,8 +40,8 @@
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateFrom')}? 'has-error':''">
                             <label for="date_from" class="control-label">Start date</label>
-                            <input
-                                    id="date_from" class="form-control" th:field="*{dateFrom}"/>
+                            <input type="date" pattern="yyyy-MM-dd"
+                                    id="date_from" class="form-control" th:field="*{dateFrom}"required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dateFrom')}"
                                th:text="${error}">Validation error</p>
@@ -50,14 +50,14 @@
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateTo')}? 'has-error':''">
                             <label for="date_to" class="control-label">End date</label>
-                            <input
-                                    id="date_to" class="form-control" th:field="*{dateTo}"/>
+                            <input type="date" pattern="yyyy-MM-dd"
+                                    id="date_to" class="form-control" th:field="*{dateTo}"required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dateTo')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
-                        <div class="form-group"
+                 <!--       <div class="form-group"
                              th:classappend="${#fields.hasErrors('totalPrice')}? 'has-error':''">
                             <label for="total_price" class="control-label">Total price</label>
                             <input
@@ -65,9 +65,9 @@
                             <p class="error-message"
                                th:each="error: ${#fields.errors('totalPrice')}"
                                th:text="${error}">Validation error</p>
-                        </div>
+                        </div>-->
 
-                        <div class="form-group"
+                <!--        <div class="form-group"
                              th:classappend="${#fields.hasErrors('car')}? 'has-error':''">
                             <label for="car_id" class="control-label">Car</label>
                             <input
@@ -75,9 +75,9 @@
                             <p class="error-message"
                                th:each="error: ${#fields.errors('car')}"
                                th:text="${error}">Validation error</p>
-                        </div>
+                        </div>-->
 
-                        <div class="form-group"
+                       <!-- <div class="form-group"
                              th:classappend="${#fields.hasErrors('user')}? 'has-error':''">
                             <label for="userID" class="control-label">Customer</label>
                             <input
@@ -85,7 +85,7 @@
                             <p class="error-message"
                                th:each="error: ${#fields.errors('user')}"
                                th:text="${error}">Validation error</p>
-                        </div>
+                        </div>-->
 
                         <!--<div class="form-group"
                              th:classappend="${#fields.hasErrors('carRental')}? 'has-error':''">

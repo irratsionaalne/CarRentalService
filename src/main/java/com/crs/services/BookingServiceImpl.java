@@ -4,7 +4,6 @@ import com.crs.models.Booking;
 import com.crs.repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +14,7 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepo bookingRepo;
 
     @Override
-    public boolean createBooking(Booking booking) throws Exception {
+    public boolean addBooking(Booking booking) throws Exception {
         bookingRepo.save(booking);
         return true;
     }
