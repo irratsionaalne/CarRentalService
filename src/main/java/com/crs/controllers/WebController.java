@@ -18,13 +18,13 @@ public class WebController {
     private  UserServiceImpl userService;
 
     @GetMapping
-    public String home() {
-        return "home";
-    }
-
-    @GetMapping("/index")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/customer")
+    public String customer() {
+        return "customer";
     }
 
     @GetMapping("login")

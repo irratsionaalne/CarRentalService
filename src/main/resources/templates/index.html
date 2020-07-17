@@ -1,81 +1,96 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<html xmlns:th="http://www.thymeleaf.org">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>index</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
+<!--    <script src="https://use.fontawesome.com/1a734a453b.js"></script>-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+<title>index</title>
 
 </head>
 <body>
 <div class="container-fluid">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{#}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
-        <div class="float-left">
-            <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
-            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
-        </div>
-        <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="btn btn-primary float-right">Logout</a>
-            </p>
+    <nav class="navbar navbar-dark bg-dark bg-primary">
+            <a class="navbar-brand" th:href="@{/}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
+        <div class="float-right">
+            <a th:href="@{/login}" class="btn btn-primary">Login</a>
+            <a th:href="@{/registration}" class="btn btn-primary">Register</a>
         </div>
     </nav>
     <div class="container">
         <h2 class="display-4">
-           <!--  Welcome <span th:text="${user.firstName}"><strong></strong></span> -->
+            <!--            Welcome <span th:text="${user.firstName}"><strong></strong></span>-->
         </h2>
-        <div class="jumbotron bookings">
-            <div>
-                <h3>List of Bookings</h3>
-                <br/>
+        <div class="jumbotron list">
+            <h3 class="display-3">List of Cars</h3>
+            <!-- Section: Slider -->
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-interval="1000">
+                        <img th:src="@{/img/Mercedes-benzAMG.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Mercedes-benz AMG">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6>Mercedes-benz AMG</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add}" class="btn btn-success float-right">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="2000">
+                        <img th:src="@{/img/LandRover.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Land Rover White">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6>Land Rover White</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add}" class="btn btn-success float-right">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="3000">
+                        <img th:src="@{/img/FordMustangRed.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Ford Mustang Red">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6>Ford Mustang Red</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add}" class="btn btn-success float-right">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="4000">
+                        <img th:src="@{/img/BMWSedan.jpg}" width="600" height="400" class="d-block w-100 img-responsive"
+                             alt="BMW Sedan">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6>BMW Sedan</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add}" class="btn btn-success float-right">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="5000">
+                        <img th:src="@{/img/AudiCoupe.jpg}" width="600" height="400"
+                             class="d-block w-100 img-responsive" alt="Audi Coupe">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6>Audi Coupe</h6>
+                            <span>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</span>
+                            <a th:href="@{/add}" class="btn btn-success float-right">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <table class="table table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Booking Id</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">End date</th>
-                    <th scope="col">Is Active</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <!--<tr th:each="booking : ${bookings}">
-                    <th scope="row" th:text="${booking.id}></th>
-                    <td th:text="${booking.dateOfBooking}></td>
-                    <td th:text="${booking.dateOfBooking}></td>
-                    <td th:text="${booking.customer}></td>
-                    <td th:text="${booking.car}></td>
-                    <td th:text="${booking.dateFrom}></td>
-                    <td th:text="${booking.dateTo}></td>
-                    <td th:text="${booking.carRental}></td>
-                    <td th:text="${booking.carReturn}></td>
-                    <td th:text="${booking.totalPrice}></td>
-                    <td th:text="${booking.status}></td>
-                    <td>
-                    <a th:if="${booking.active} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                    <a th:if="${booking.active} == true" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
-                    </td>
-                </tr> -->
-                </tbody>
-            </table>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
@@ -99,11 +114,14 @@
     <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
 </div>
 
-
-<script type="text/javascript"
-        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
