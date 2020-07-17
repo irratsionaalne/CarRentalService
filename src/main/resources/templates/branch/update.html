@@ -6,41 +6,47 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Update car</title>
+    <title>Update Branch</title>
 
 </head>
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/office}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="float-left">
-                <a class="nav-link float-left" th:href="@{/booking}">Bookings <span class="sr-only">(current)</span></a>
-                <a class="nav-link float-left" th:href="@{/car}">Cars</a>
-                <a class="nav-link float-left" th:href="@{/user}">Users</a>
-            </div>
+        <div class="float-left">
+            <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
+            <a class="nav-link float-left" th:href="@{/booking/searchByUser}">Booking search</a>
+            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+            <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
+            <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
+            <a class="nav-link float-left" th:href="@{/employee}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
         <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
-                                                                 th:href="@{/logout}">Logout</a>
+            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
+                                                    th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron regisLogin">
+            <div>
+                <h3>Update Branch</h3>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <h3 class="display-3">Update Branch</h3>
-                    <form action="#" th:action="@{/branch/update/{id}(id=${branch.id})}" th:object="${branch}" method="post">
+                    <form action="#" th:action="@{/branch/update/{id}(id=${branch.id})}" th:object="${branch}"
+                          method="post">
                         <div class="form-group" th:classappend="${#fields.hasErrors('streetAddress')}? 'has-error':''">
                             <label for="streetAddress" class="control-label">Street address</label>
-                            <input id="streetAddress" class="form-control" th:field="*{streetAddress}" required="required"/>
-
+                            <input id="streetAddress" class="form-control" th:field="*{streetAddress}"
+                                   required="required"/>
                             <p class="error-message" th:each="error: ${#fields.errors('streetAddress')}"
                                th:text="${error}">Validation error</p>
                         </div>
@@ -51,9 +57,9 @@
                             <p class="error-message" th:each="error: ${#fields.errors('city')}"
                                th:text="${error}">Validation error</p>
                         </div>
-
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-success">Update branch</button>
+                            <a th:href="@{/branch/}" type="reset" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -61,10 +67,31 @@
         </div>
     </div>
 </div>
+
 <!-- Footer -->
-<footer class="center">
-    <p class="flow-text"><strong> &copy; CRS OÜ - 2020 </strong></p>
-</footer>
+<div class="fluid-container footer-container">
+    <footer class="footer fluid-block">
+        <div class="footer-sections-address">
+            <h6><strong>Address</strong></h6>
+            <p>Peterson 1, Dorpat Complex</p>
+            <p>6392673, Tartu</p>
+            <p>Estonia</p>
+        </div>
+        <div class="socialMediaFooter">
+            <h6><strong>Follow us on social media for best deals</strong></h6>
+            <ul class="footer-sections-links">
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
+</div>
+
 <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"
         type="text/javascript"></script>
 <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"

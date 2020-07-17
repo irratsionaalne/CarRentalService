@@ -16,24 +16,29 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}"><img src="static/img/CRSlogo1.png" alt="Logo"></a>
+        <a class="navbar-brand" th:href="@{/office}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
         <div class="float-left">
-            <a class="nav-link float-left" href="/booking">Bookings <span class="sr-only">(current)</span></a>
+            <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
+            <a class="nav-link float-left" th:href="@{/booking/searchByUser}">Booking search</a>
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+            <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
             <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
             <a class="nav-link float-left" th:href="@{/employee}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
         <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
+            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                                  th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron carsUpdateOffice">
+        <div class="jumbotron regisLogin">
+            <div>
+                <h3>Update Car</h3>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h3 class="display-3">Update Car</h3>
                     <form action="#" th:action="@{/car/update/{id}(id=${car.id})}" th:object="${car}" method="post">
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
