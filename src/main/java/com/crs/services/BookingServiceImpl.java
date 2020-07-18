@@ -1,6 +1,5 @@
 package com.crs.services;
 
-import com.crs.dto.BookingDto;
 import com.crs.models.Booking;
 import com.crs.repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +14,9 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepo bookingRepo;
 
     @Override
-    public Booking createBooking(BookingDto bookingDto) throws Exception {
-        Booking booking = new Booking();
-        booking.setDateOfBooking(bookingDto.getDateOfBooking());
-        booking.setUser(bookingDto.getUser());
-        booking.setCar(bookingDto.getCar());
-        booking.setDateFrom(bookingDto.getDateFrom());
-        booking.setDateTo(bookingDto.getDateTo());
-        booking.setStatus(bookingDto.getStatus());
-        return bookingRepo.save(booking);
-    }
-
-    @Override
-    public boolean createBooking(Booking booking) throws Exception {
-        return false;
+    public boolean createBooking(Booking booking) {
+        bookingRepo.save(booking);
+        return true;
     }
 
     @Override

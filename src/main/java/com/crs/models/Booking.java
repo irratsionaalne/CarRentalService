@@ -32,6 +32,10 @@ public class Booking {
     private String extraPayment;
     private String totalPrice;
     private String status;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Branch rentalBranch;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Branch returnBranch;
 
     @Override
     public boolean equals(Object o) {

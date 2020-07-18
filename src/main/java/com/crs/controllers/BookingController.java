@@ -5,9 +5,12 @@ import com.crs.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,28 +33,6 @@ public class BookingController {
         return "booking/bookingView";
     }
 
-    @GetMapping("/add")
-    public String addBookingForm(@ModelAttribute("booking") Booking booking, @ModelAttribute("messageType") String messageType,
-                                 @ModelAttribute("message") String message, Model model) {
-        return "booking/add-booking";
-    }
-
-    @PostMapping("/add")
-    public String addBooking(Booking booking, Model model) throws Exception {
-        boolean createResult = bookingService.createBooking(booking);
-
-        if (createResult) {
-            model.addAttribute("message", "Booking has been successfully created.");
-            model.addAttribute("messageType", "success");
-            return "booking/listofbookings";
-        }
-        model.addAttribute("booking", booking);
-        model.addAttribute("message", "Error in creating a booking.");
-        model.addAttribute("messageType", "error");
-        return "redirect:/booking";
-
-    }
-
     @PutMapping("/update")
     public String updateBookingForm(Model model) {
         return "update-booking";
@@ -72,6 +53,28 @@ public class BookingController {
         model.addAttribute("messageType", "error");
         return updateBookingForm(model);
 
+    }
+
+    @GetMapping("/add")
+    public String showBookingForm(@ModelAttribute("booking") Booking booking) {
+        return "booking/add-booking";
+    }
+
+    @PostMapping("/add")
+    public String createBooking(@ModelAttribute("booking") Booking booking,
+                                BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("booking", booking);
+            redirectAttributes.addFlashAttribute("message", "Error in creating a booking!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "booking/add-booking";
+        }
+
+        bookingService.createBooking(booking);
+        redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/booking";
     }
 
    /* @PutMapping("/delete/{id}")

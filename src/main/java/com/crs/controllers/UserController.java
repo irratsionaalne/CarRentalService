@@ -36,7 +36,7 @@ public class UserController {
 
         @PostMapping("/add")
         public Object addUser(@ModelAttribute("user") User user,
-                              BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+                              BindingResult result, RedirectAttributes redirectAttributes) {
 
             if (result.hasErrors()) {
                 redirectAttributes.addFlashAttribute("user", user);
