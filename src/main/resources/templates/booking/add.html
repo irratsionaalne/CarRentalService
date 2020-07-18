@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link th:href="@{/css/default.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -35,10 +36,13 @@
     </nav>
 
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron regisLogin">
+            <div>
+                <h3>Add Booking</h3>
+            </div>
+
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h3 class="display-3">Add Booking</h3>
                     <form action="#" th:action="@{/booking/add}" th:object="${booking}" method="post">
                         <span th:text="${'Date of Booking ' + booking.fullDateFormat()}"><strong></strong></span>
                         <br>
@@ -51,13 +55,14 @@
                                         th:value="${car.id}"
                                         th:text="${car.make + ' ' +  car.model + ' ' + car.year}"></option>
                             </select>
+
                         </div>
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateFrom')}? 'has-error':''">
                             <label for="date_from" class="control-label">Start date</label>
                             <input type="date"
-                                    id="date_from" class="form-control" th:field="*{dateFrom}"/>
+                                   id="date_from" class="form-control" th:field="*{dateFrom}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dateFrom')}"
                                th:text="${error}">Validation error</p>
@@ -67,41 +72,55 @@
                              th:classappend="${#fields.hasErrors('dateTo')}? 'has-error':''">
                             <label for="date_to" class="control-label">End date</label>
                             <input type="date"
-                                    id="date_to" class="form-control" th:field="*{dateTo}"/>
+                                   id="date_to" class="form-control" th:field="*{dateTo}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dateTo')}"
                                th:text="${error}">Validation error</p>
                         </div>
 
-<!--                        <div class="form-group"-->
-<!--                             th:classappend="${#fields.hasErrors('totalPrice')}? 'has-error':''">-->
-<!--                            <label for="total_price" class="control-label">Total price</label>-->
-<!--                            <input-->
-<!--                                    id="total_price" class="form-control" th:field="*{totalPrice}"/>-->
-<!--                            <p class="error-message"-->
-<!--                               th:each="error: ${#fields.errors('totalPrice')}"-->
-<!--                               th:text="${error}">Validation error</p>-->
-<!--                        </div>-->
 
-<!--                        <div class="form-group"-->
-<!--                             th:classappend="${#fields.hasErrors('car')}? 'has-error':''">-->
-<!--                            <label for="car_id" class="control-label">Car</label>-->
-<!--                            <input-->
-<!--                                    id="car_id" class="form-control" th:field="*{car}"/>-->
-<!--                            <p class="error-message"-->
-<!--                               th:each="error: ${#fields.errors('car')}"-->
-<!--                               th:text="${error}">Validation error</p>-->
-<!--                        </div>-->
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" onclick="renderCarPrice()">Check car price per day
+                            </button>
+                            <br>
+                            <p id="carPricePerDay"></p>
+                            <br>
+                            <button type="button" class="btn btn-success" onclick="renderTotalPrice()">Calculate total price
+                            </button>
+                            <br>
+                            <p id="totalPrice"></p>
+                            <br>
+                        </div>
+                        <!--                        <div class="form-group"-->
+                        <!--                             th:classappend="${#fields.hasErrors('totalPrice')}? 'has-error':''">-->
+                        <!--                            <label for="total_price" class="control-label">Total price</label>-->
+                        <!--                            <input-->
+                        <!--                                    id="total_price" class="form-control" th:field="*{totalPrice}"/>-->
+                        <!--                            <p class="error-message"-->
+                        <!--                               th:each="error: ${#fields.errors('totalPrice')}"-->
+                        <!--                               th:text="${error}">Validation error</p>-->
+                        <!--                        </div>-->
+
+                        <!--                        <div class="form-group"-->
+                        <!--                             th:classappend="${#fields.hasErrors('car')}? 'has-error':''">-->
+                        <!--                            <label for="car_id" class="control-label">Car</label>-->
+                        <!--                            <input-->
+                        <!--                                    id="car_id" class="form-control" th:field="*{car}"/>-->
+                        <!--                            <p class="error-message"-->
+                        <!--                               th:each="error: ${#fields.errors('car')}"-->
+                        <!--                               th:text="${error}">Validation error</p>-->
+                        <!--                        </div>-->
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
                             <label for="userID" class="control-label">User</label>
-          <input
+                            <input
                                     id="userID" class="form-control" th:field="*{username}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('username')}"
                                th:text="${error}">Validation error</p>
-                        </div>-->
+                        </div>
+                        -->
 
                         <div class="form-group" th:classappend="${#fields.hasErrors('rentalBranch')}? 'has-error':''">
                             <label for="rentalBranch" class="control-label">Rental Branch</label>
@@ -121,15 +140,15 @@
                             </select>
                         </div>
 
-<!--                        <div class="form-group"-->
-<!--                             th:classappend="${#fields.hasErrors('carReturn')}? 'has-error':''">-->
-<!--                            <label for="car_return_id" class="control-label">Car return</label>-->
-<!--                            <input-->
-<!--                                    id="car_return_id" class="form-control" th:field="*{carReturn}"/>-->
-<!--                            <p class="error-message"-->
-<!--                               th:each="error: ${#fields.errors('carReturn')}"-->
-<!--                               th:text="${error}">Validation error</p>-->
-<!--                        </div>&ndash;&gt;-->
+                        <!--                        <div class="form-group"-->
+                        <!--                             th:classappend="${#fields.hasErrors('carReturn')}? 'has-error':''">-->
+                        <!--                            <label for="car_return_id" class="control-label">Car return</label>-->
+                        <!--                            <input-->
+                        <!--                                    id="car_return_id" class="form-control" th:field="*{carReturn}"/>-->
+                        <!--                            <p class="error-message"-->
+                        <!--                               th:each="error: ${#fields.errors('carReturn')}"-->
+                        <!--                               th:text="${error}">Validation error</p>-->
+                        <!--                        </div>&ndash;&gt;-->
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add booking</button>
                             <button type="submit" class="btn btn-warning">Modify</button>
@@ -171,6 +190,60 @@
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cars = /*[[${cars}]]*/ null;
+
+    /*]]>*/
+    function getCarPrice(id) {
+        for (car of cars) {
+            if (car.id === id) {
+                return car.pricePerDay;
+            }
+        }
+    }
+
+    function renderCarPrice() {
+        var pricePerDay = getCarPrice(document.getElementById('car').value);
+        document.getElementById('carPricePerDay').innerText = pricePerDay;
+    }
+
+
+    function calculateTotalPrice(startDate, endDate) {
+        var differenceInDays = Math.round(((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1);
+
+        var pricePerDay = getCarPrice(document.getElementById('car').value);
+
+        return pricePerDay * differenceInDays;
+    }
+
+    function renderTotalPrice() {
+        var start = document.getElementById('date_from').value;
+        var startDateArr = start.split("-");
+
+        var end = document.getElementById('date_to').value;
+        var endDateArr = end.split("-");
+
+        // converting day-month-year to month/day/year
+        var startDate = new Date(startDateArr[1] + "/" + startDateArr[2] + "/" + startDateArr[0]);
+        var endDate = new Date(endDateArr[1] + "/" + endDateArr[2] + "/" + endDateArr[0]);
+        var currentDate = new Date();
+
+        if (startDate.getTime() < currentDate.getTime()) {
+            document.getElementById('totalPrice').innerText = "Start date can't be before current date!";
+        }
+
+        if (startDate.getTime() <= endDate.getTime()) {
+            document.getElementById('totalPrice').innerText = calculateTotalPrice(startDate, endDate);
+        } else {
+            document.getElementById('totalPrice').innerText = "Start date can't be after end date!";
+        }
+
+    }
+
+
+</script>
 
 </body>
 </html>
