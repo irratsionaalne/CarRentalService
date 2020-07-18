@@ -3,6 +3,7 @@ package com.crs.models;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -23,6 +24,7 @@ public class Booking {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
     private LocalDate dateOfBooking=LocalDate.now();
     @OneToOne
@@ -36,8 +38,10 @@ public class Booking {
 //
 //    @NotEmpty
 //    private CarReturn carReturn;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
     private LocalDateTime dateFrom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
     private LocalDateTime dateTo;
     private String carRentalComment;
