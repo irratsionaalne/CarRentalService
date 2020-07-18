@@ -44,7 +44,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             }
 
             if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
-                returnURL = "/employee/employee";
+                returnURL = "/employee";
             }
         });
 

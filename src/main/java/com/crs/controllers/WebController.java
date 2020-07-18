@@ -27,6 +27,11 @@ public class WebController {
         return "user";
     }
 
+    @GetMapping("/employee")
+    public String employee() {
+        return "employee";
+    }
+
     @GetMapping("login")
     public String showLoginForm(Model model) {
         return "login";
