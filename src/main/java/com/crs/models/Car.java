@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +18,9 @@ public class Car {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    @NotBlank
     private String make;
+    @NotBlank
     private String model;
     private String bodyType;
     private String year;
