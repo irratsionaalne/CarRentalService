@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,15 +39,12 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     protected String determineTargetUrl(Authentication authentication) {
         returnURL = "/customer";
 
-        authentication.getAuthorities().forEach(grantedAuthority -> {
-            if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
-                returnURL = "/office";
-            }
-
-            if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
-                returnURL = "/employee/employee";
-            }
-        });
+        GrantedAuthority grantedAuthority = new ArrayList<GrantedAuthority>(authentication.getAuthorities()).get(0);
+        if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
+            returnURL = "/office";
+        }else if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
+            returnURL = "/employee/employee";
+        }
 
         return returnURL;
     }
