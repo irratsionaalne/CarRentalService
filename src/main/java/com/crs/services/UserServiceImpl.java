@@ -3,6 +3,7 @@ package com.crs.services;
 import com.crs.models.Role;
 import com.crs.models.User;
 import com.crs.repositories.UserRepo;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,15 +15,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserDetailsService, UserService {
 
-    @Autowired
-    private UserRepo userRepo;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private final UserRepo userRepo;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @SneakyThrows
     @Override

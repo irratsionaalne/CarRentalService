@@ -27,5 +27,7 @@ public class Branch {
     private List<Employee> employees;
     @OneToMany
     private List<Car> cars;
+    @OneToMany
+    private List<Booking> bookings;
     private boolean isActive;
 }

@@ -36,18 +36,13 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
 
     protected String determineTargetUrl(Authentication authentication) {
-        returnURL = "/customer";
-
-        authentication.getAuthorities().forEach(grantedAuthority -> {
-            if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
-                returnURL = "/office";
-            }
-
-            if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
-                returnURL = "/employee";
-            }
-        });
-
+        returnURL = "/userView";
+        GrantedAuthority grantedAuthority = new ArrayList<GrantedAuthority>(authentication.getAuthorities()).get(0);
+        if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
+            returnURL = "/office";
+        }else if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
+            returnURL = "/employee";
+        }
         return returnURL;
     }
 }
