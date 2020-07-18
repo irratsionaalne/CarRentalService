@@ -56,7 +56,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 )
                 .permitAll()
                 // Must add customer pages
-                .antMatchers(("/**")).hasAnyAuthority(("OWNER,EMPLOYEE,CUSTOMER"))
+                .antMatchers(("/**")).hasAnyAuthority(("OWNER"))
+                .antMatchers(("/")).hasAnyAuthority(("EMPLOYEE"))
+                .antMatchers(("/**")).hasAnyAuthority(("USER"))
                 .anyRequest()
                 .authenticated()
                 .and()
