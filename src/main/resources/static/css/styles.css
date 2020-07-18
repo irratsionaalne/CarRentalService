@@ -3,6 +3,54 @@ body {
     margin: 0;
 }
 
+h1 {
+    font-family: Raleway;
+    font-size: 44px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+}
+
+h3 {
+    font-family: Raleway;
+    font-size: 33px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 15.4px;
+}
+
+p, h6 {
+    font-family: Raleway, serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+blockquote {
+    font-family: Raleway, serif;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+pre {
+    font-family: Raleway, serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
+}
+
+
 ul {
     list-style-type: none;
 }

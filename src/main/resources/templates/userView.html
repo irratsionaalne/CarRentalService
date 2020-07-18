@@ -20,8 +20,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{#}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
         <div class="float-left">
-            <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
-            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+            <a class="nav-link float-left" th:href="@{/booking}">Create Booking</a>
         </div>
         <div class="floatRight">
             <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link float-right logout">Logout</a>
@@ -40,7 +39,6 @@
             <table class="table table-striped">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Booking Id</th>
                     <th scope="col">Date</th>
                     <th scope="col">End date</th>
