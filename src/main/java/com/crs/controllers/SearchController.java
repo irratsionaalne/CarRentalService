@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -25,7 +26,7 @@ public class SearchController {
     }
 
     @PostMapping
-    public String search(LocalDateTime fromDate, LocalDateTime toDate, Car car, RedirectAttributes redirectAttributes) throws Exception {
+    public String search(LocalDate fromDate, LocalDate toDate, Car car, RedirectAttributes redirectAttributes) throws Exception {
         if (!searchService.searchForBooking(fromDate, toDate, car)) {
             redirectAttributes.addFlashAttribute("search", searchService);
             redirectAttributes.addFlashAttribute("message", "Car is not available for the selected dates. ");

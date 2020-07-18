@@ -26,29 +26,32 @@ public class Booking {
     private UUID id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
-    private LocalDate dateOfBooking=LocalDate.now();
-    @OneToOne
+    private LocalDate dateOfBooking;
     @NotEmpty
-    private User user;
+    private String username;
     @OneToOne
     @NotEmpty
     private Car car;
-//    @NotEmpty
+    //    @NotEmpty
 //    private CarRental carRental;
 //
 //    @NotEmpty
 //    private CarReturn carReturn;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
-    private LocalDateTime dateFrom;
+    private LocalDate dateFrom;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
-    private LocalDateTime dateTo;
+    private LocalDate dateTo;
     private String carRentalComment;
     private String carReturnComment;
     private String extraPayment;
     private String totalPrice;
     private String status;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Branch rentalBranch;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Branch returnBranch;
 
     @Override
     public boolean equals(Object o) {
@@ -64,8 +67,8 @@ public class Booking {
     }
 
     public String fullDateFormat() {
-        return dateOfBooking.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+        return LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
 
 
-    }
+}
