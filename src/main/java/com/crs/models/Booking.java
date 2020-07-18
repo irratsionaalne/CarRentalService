@@ -24,6 +24,7 @@ public class Booking {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
     private LocalDate dateOfBooking;
     @NotEmpty

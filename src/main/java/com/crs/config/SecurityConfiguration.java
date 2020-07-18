@@ -2,6 +2,7 @@ package com.crs.config;
 
 import com.crs.services.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@Slf4j
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -41,11 +43,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .authorizeRequests()
                 .antMatchers(
-                        "/registration/**",
-                        "/login/**",
+                        "/registration**",
+                        "/login**",
                         "/",
                         "/js/**",
                         "/css/**",
@@ -55,15 +58,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 )
                 .permitAll()
-                // Must add customer pages
-                .antMatchers(("/**")).hasAnyAuthority(("OWNER,EMPLOYEE,CUSTOMER"))
+                .and()
+                .authorizeRequests()
+                .antMatchers("/branch**","/office**").hasAuthority("OWNER")
+                .antMatchers("/branch**","/office**").hasAuthority("EMPLOYEE")
+                .antMatchers("/**").hasAnyAuthority("OWNER","EMPLOYEE","CUSTOMER")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .csrf().disable().formLogin()
                 .loginPage("/login")
                 .successHandler(customLoginSuccessHandler)
-
                 .and()
                 .logout()
                 .invalidateHttpSession(true)

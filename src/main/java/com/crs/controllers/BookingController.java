@@ -4,7 +4,13 @@ import com.crs.models.Booking;
 import com.crs.models.Branch;
 import com.crs.models.Car;
 import com.crs.services.*;
+import com.crs.models.User;
+import com.crs.services.BookingService;
+import com.crs.services.BookingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +26,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/booking")
 public class BookingController {
+
     @Autowired
     private BookingService bookingService;
     @Autowired
@@ -28,6 +35,7 @@ public class BookingController {
     private BranchService branchService;
     @Autowired
     private SearchService searchService;
+
 
     @ModelAttribute("booking")
     public Booking booking() {
@@ -41,6 +49,17 @@ public class BookingController {
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
     }
+
+    @GetMapping("/employee")
+    public ModelAndView showAllEmployeeBookings() {
+        List<Booking> bookings = bookingService.getAllBookings();
+        ModelAndView modelAndView = new ModelAndView("booking/employee");
+        modelAndView.addObject("bookings", bookings);
+        return modelAndView;
+    }
+
+
+
 
     @GetMapping("/employee")
     public String employeeBooking() {
@@ -67,6 +86,13 @@ public class BookingController {
    /* @PostMapping("/add")
     public String addBooking(Booking booking, Model model) throws Exception {
         boolean createResult = bookingService.createBooking(booking);
+
+    public String addBookingForm() {
+        return "booking/add";
+    }
+    @PostMapping("/add")
+    public String addBooking(@Valid Booking booking, Model model) throws Exception {
+        boolean createResult = bookingService.addBooking(booking);
         if (createResult) {
             model.addAttribute("message", "Booking has been successfully created.");
             model.addAttribute("messageType", "success");
@@ -78,7 +104,9 @@ public class BookingController {
         return "redirect:/booking";
     }*/
 
-    @PostMapping("/add")
+
+
+    @PostMapping
     public String createBooking(@ModelAttribute("booking") @Valid Booking booking,
                                 BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -95,7 +123,7 @@ public class BookingController {
             return "booking/add";
         }
 
-        bookingService.createBooking(booking);
+        bookingService.addBooking(booking);
         redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/booking";
@@ -120,9 +148,7 @@ public class BookingController {
         model.addAttribute("message", "Error in updating booking");
         model.addAttribute("messageType", "error");
         return updateBookingForm(model);
-
     }
-
 
 
    /* @PutMapping("/delete/{id}")
