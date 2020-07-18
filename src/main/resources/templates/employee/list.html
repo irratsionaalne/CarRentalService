@@ -23,7 +23,7 @@
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
             <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
             <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
-            <a class="nav-link float-left" th:href="@{/employee}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
         <div class="floatRight">
@@ -78,9 +78,9 @@
                         <td th:text="${employee.getEmail()}"></td>
                         <td th:text="${employee.isActive()}"></td>
                         <td>
-                            <a th:href="@{/employee/update/{id}(id=${employee.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
-                            <a th:if="${employee.isActive()} == true" th:href="@{/employee/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
-                            <a th:if="${employee.isActive()} == false" th:href="@{/employee/restore/{id}(id=${employee.id})}" class="btn btn-primary">Restore</a>
+                            <a th:href="@{/employee/list/update/{id}(id=${employee.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
+                            <a th:if="${employee.isActive()} == true" th:href="@{/employee/list/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+                            <a th:if="${employee.isActive()} == false" th:href="@{/employee/list/restore/{id}(id=${employee.id})}" class="btn btn-primary">Restore</a>
                         </td>
                     </tr>
                     </tbody>

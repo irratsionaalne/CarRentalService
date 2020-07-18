@@ -23,7 +23,7 @@
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
             <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
             <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
-            <a class="nav-link float-left" th:href="@{/employee}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
         <div class="floatRight">
@@ -103,7 +103,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add Employee</button>
-                            <a th:href="@{/employee/}" type="reset" class="btn btn-danger">Cancel</a>
+                            <a th:href="@{/employee/list/}" type="reset" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
                 </div>
