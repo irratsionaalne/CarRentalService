@@ -14,6 +14,7 @@ ul {
 
 .navbar-custom, #navbarSupportedContent, .dropdown-menu {
     background-color: rgb(33, 33, 33) !important;
+    flex: 1;
 }
 
 .navbar {
@@ -25,6 +26,7 @@ ul {
     background-color: rgb(33, 33, 33) !important;
     z-index: 5 !important;
     margin-bottom: 30px !important;
+    display: flex;
 }
 
 .navbar a {
@@ -54,13 +56,15 @@ ul {
     padding-right: 40px;
 }
 
-.navbar .float-left {
+.navbar .float-left, .nav-link.float-left{
     float: left !important;
+    padding-left: 5px !important;
+    flex: 2;
 }
 
-.navbar .logout{
+.navbar .logout, .navbar .float-right, .float-right{
     float: right !important;
-    padding-right: 40px !important;
+    margin-right: 40px !important;
     flex: 3;
 }
 
@@ -78,10 +82,7 @@ ul {
 .bookings{
     margin-top: 80px !important;
     margin-bottom: 150px !important;
-}
-
-.bookingsOffice {
-    margin-top: 80px !important;
+    max-width: 80%;
 }
 
 .branch {
@@ -94,7 +95,7 @@ ul {
 form.bookings, .bookingListOffice, .bookingsOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 10px !important;
+    margin-top: 100px !important;
 }
 
 form.bookings input[type=text] {
@@ -133,11 +134,14 @@ form.bookings::after {
 }
 
 
-.listOfCars {
+.list {
     min-height: 300px !important;
     max-width: 900px !important;
     margin-bottom: 150px !important;
     margin-top: 80px !important;
+}
+.carousel-caption{
+    background-color: rgba(9, 9, 9, 0.44);
 }
 
 .socialMedia {
@@ -149,6 +153,9 @@ form.bookings::after {
 
 #carouselExampleCaptions {
     max-width: 880px !important;
+}
+.carousel-inner {
+    box-shadow: 2px 2px 5px 5px #8bd0fb !important;
 }
 
 input[type="checkbox"] {
@@ -166,7 +173,6 @@ input[type="checkbox"] {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    max-height: 20%;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
@@ -181,7 +187,11 @@ input[type="checkbox"] {
     flex: 1;
 }
 .footer-sections-address p{
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
+
 }
 
 .socialMediaFooter {
@@ -211,6 +221,8 @@ input[type="checkbox"] {
     position: fixed;
     width: 100%;
     bottom: 0;
+    max-height: 20%;
+    font-weight: 100;
 }
 
 

@@ -6,58 +6,45 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <title>Update car</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <title>Add Car</title>
 
 </head>
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}">CRS</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/customer"  th:href="@{/customer}">Customers</a>
-                </li>
-                <li class="nav-item float-right">
-                    <a class="nav-link" href="/revenue" th:href="@{/templates/revenue}">Revenue</a>
-                </li>
-            </ul>
+        <a class="navbar-brand" th:href="@{/office}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
+        <div class="float-left">
+            <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
+            <a class="nav-link float-left" th:href="@{/booking/searchByUser}">Booking search</a>
+            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+            <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
+            <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
+            <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
         <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
+            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                                  th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron regisLogin">
+            <div>
+                <h3>Add Car</h3>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-
-                    <h3 class="display-3">Update Car</h3>
-                    <form action="#" th:action="@{/car/update/{id}(id=${car.id})}" th:object="${car}" method="post">
-
+                    <form action="#" th:action="@{/car/add}" th:object="${car}" method="post">
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('make')}? 'has-error':''">
-
                             <label for="make" class="control-label">Make</label>
-
-                            <input id="make" class="form-control" type="text" th:field="*{make}" aria-describedby="nameHelp" required>
+                            <input
+                                    id="make" class="form-control" th:field="*{make}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('make')}"
                                th:text="${error}">Validation error</p>
@@ -65,11 +52,9 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('model')}? 'has-error':''">
-
                             <label for="model" class="control-label">Model</label>
-
                             <input
-                                    id="model" class="form-control" th:field="*{model}"/>
+                                    id="model" class="form-control" th:field="*{model}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('model')}"
                                th:text="${error}">Validation error</p>
@@ -77,11 +62,9 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('bodyType')}? 'has-error':''">
-
                             <label for="bodyType" class="control-label">Body Type</label>
-
                             <input
-                                    id="bodyType" class="form-control" th:field="*{bodyType}"/>
+                                    id="bodyType" class="form-control" th:field="*{bodyType}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('bodyType')}"
                                th:text="${error}">Validation error</p>
@@ -89,11 +72,9 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('year')}? 'has-error':''">
-
                             <label for="year" class="control-label">Year</label>
-
                             <input
-                                    id="year" class="form-control" th:field="*{year}"/>
+                                    id="year" class="form-control" th:field="*{year}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('year')}"
                                th:text="${error}">Validation error</p>
@@ -101,11 +82,9 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('color')}? 'has-error':''">
-
                             <label for="color" class="control-label">Color</label>
-
                             <input
-                                    id="color" class="form-control" th:field="*{color}"/>
+                                    id="color" class="form-control" th:field="*{color}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('color')}"
                                th:text="${error}">Validation error</p>
@@ -113,11 +92,9 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('mileage')}? 'has-error':''">
-
                             <label for="mileage" class="control-label">Mileage</label>
-
                             <input
-                                    id="mileage" class="form-control" th:field="*{mileage}"/>
+                                    id="mileage" class="form-control" th:field="*{mileage}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('mileage')}"
                                th:text="${error}">Validation error</p>
@@ -125,11 +102,9 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('pricePerDay')}? 'has-error':''">
-
                             <label for="pricePerDay" class="control-label">Price per day</label>
-
                             <input
-                                    id="pricePerDay" class="form-control" th:field="*{pricePerDay}"/>
+                                    id="pricePerDay" class="form-control" th:field="*{pricePerDay}" required="required"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('pricePerDay')}"
                                th:text="${error}">Validation error</p>
@@ -137,32 +112,28 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('status')}? 'has-error':''">
-
                             <label for="status" class="control-label">Status</label>
-
                             <select id="status" class="form-control" name="status">
                                 <option th:each="status : ${T(com.crs.models.CarStatus).values()}"
-                                        th:value="${status}" th:text="${status.displayValue}"></option>
+                                        th:value="${status}"
+                                        th:text="${status.displayValue}"></option>
                             </select>
-
                             <p class="error-message"
                                th:each="error: ${#fields.errors('status')}"
                                th:text="${error}">Validation error</p>
                         </div>
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('imageUrl')}? 'has-error':''">
-
                             <label for="imageUrl" class="control-label">Image URL</label>
-
                             <input
                                     id="imageUrl" class="form-control" th:field="*{imageUrl}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('imageUrl')}"
                                th:text="${error}">Validation error</p>
                         </div>
-
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-success">Add car</button>
+                            <a th:href="@{/car/}" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -175,20 +146,20 @@
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
-            <h5><strong>Address</strong></h5>
+            <h6><strong>Address</strong></h6>
             <p>Peterson 1, Dorpat Complex</p>
             <p>6392673, Tartu</p>
             <p>Estonia</p>
         </div>
         <div class="socialMediaFooter">
-            <h4>Follow us on social media for best deals</h4>
+            <h6><strong>Follow us on social media for best deals</strong></h6>
             <ul class="footer-sections-links">
-                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
             </ul>
         </div>
     </footer>

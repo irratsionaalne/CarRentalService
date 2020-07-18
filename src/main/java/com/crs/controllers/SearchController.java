@@ -16,12 +16,11 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("/search")
 public class SearchController {
+
     @Autowired
     private SearchService searchService;
     @GetMapping
-    public String showRegistrationForm(@ModelAttribute("car")
-    Car car, @ModelAttribute("messageType") String messageType,
-    @ModelAttribute("message") String message, Model model)  {
+    public String showRegistrationForm(@ModelAttribute("car") Car car)  {
         return "searchView";
     }
 

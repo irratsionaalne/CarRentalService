@@ -15,6 +15,6 @@ import java.util.UUID;
 public interface BookingRepo extends JpaRepository<Booking, UUID> {
 
     @Query("SELECT b from Booking b where b.dateFrom >= :startTime and b.dateTo <= :endTime and b.car = :car")
-    public List<Booking> findBookingByDateAndCar(@Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime, @Param("car") Car car);
+    List<Booking> findBookingByDateAndCar(@Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime, @Param("car") Car car);
 
 }

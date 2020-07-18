@@ -54,15 +54,17 @@ ul {
     padding-right: 40px;
 }
 
-.navbar .float-left {
+.navbar .float-left, .nav-link.float-left{
     float: left !important;
+    padding-left: 5px !important;
 }
 
-.navbar .logout{
+.navbar .logout, .navbar .float-right{
     float: right !important;
-    padding-right: 40px !important;
+    margin-right: 40px !important;
     flex: 3;
 }
+
 .container-fluid {
     margin: 0;
     padding: 0;
@@ -70,7 +72,17 @@ ul {
     clear: both;
 }
 
+.btn-primary, .btn-success:hover {
+    color: #fff;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+form{
+    max-width: 400px !important;
+}
+
 .jumbotron.regisLogin{
+    width: 800px !important;
     max-width: 900px !important;
     margin-top: 80px !important;
     padding-top: 10px !important;
@@ -80,6 +92,7 @@ ul {
 input[type="checkbox"] {
     margin-right: 10px !important;
 }
+
 
 .footer.fluid-block {
     display: -ms-flexbox;
@@ -92,7 +105,6 @@ input[type="checkbox"] {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    max-height: 20%;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
@@ -107,7 +119,10 @@ input[type="checkbox"] {
     flex: 1;
 }
 .footer-sections-address p{
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
 }
 
 .socialMediaFooter {
@@ -137,6 +152,8 @@ input[type="checkbox"] {
     position: fixed;
     width: 100%;
     bottom: 0;
+    max-height: 20%;
+    font-weight: 100;
 }
 
 

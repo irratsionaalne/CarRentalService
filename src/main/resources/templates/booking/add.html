@@ -6,39 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../static/css/office.css" rel="stylesheet" th:href="@{/static/css/office.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Add booking</title>
+    <title>Add Booking</title>
 
 </head>
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/home}">CRS</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link float-right" href="/booking">Bookings <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/car" th:href="@{/car}">Cars</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/branch"  th:href="@{/branch}">Branches</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" href="/employee"  th:href="@{/employee}">Employees</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link float-right" th:href="@{/use}">Users</a>
-                </li>
-            </ul>
+        <a class="navbar-brand" th:href="@{/office}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
+        <div class="float-left">
+            <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
+            <a class="nav-link float-left" th:href="@{/booking/searchByUser}">Booking search</a>
+            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
+            <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
+            <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
+            <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
         <div class="floatRight">
-            <p class="my-5" sec:authorize="isAuthenticated()"><a class="btn btn-primary float-right logout"
-                                                                 th:href="@{/logout}">Logout</a>
+            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
+                                                    th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
@@ -47,27 +37,15 @@
         <div class="jumbotron bookingsOffice">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-
                     <h3 class="display-3">Add Booking</h3>
-                    <form action="#" th:action="@{/add-booking}" th:object="${booking}" method="post">
-                        <div class="form-group"
-                             th:classappend="${#fields.hasErrors('dateOfBooking')} ? 'has-error': ''">
-
-                            <label for="dateOfBooking" class="control-label">Date of booking</label>
-
-                            <input type="date"
-                                    id="dateOfBooking" class="form-control" th:field="*{dateOfBooking}"/>
-                            <p class="error-message"
-                               th:each="error: ${#fields.errors('dateOfBooking')}"
-                               th:text="${error}">Validation error</p>
-                        </div>
-
+                    <form action="#" th:action="@{/booking/add}" th:object="${booking}" method="post">
+                        <span th:text="${'Date of Booking ' + booking.fullDateFormat()}"><strong></strong></span>
+                        <br>
+                        <br>
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateFrom')}? 'has-error':''">
-
                             <label for="date_from" class="control-label">Start date</label>
-
-                            <input type="date"
+                            <input
                                     id="date_from" class="form-control" th:field="*{dateFrom}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dateFrom')}"
@@ -76,10 +54,8 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('dateTo')}? 'has-error':''">
-
                             <label for="date_to" class="control-label">End date</label>
-
-                            <input type="date"
+                            <input
                                     id="date_to" class="form-control" th:field="*{dateTo}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('dateTo')}"
@@ -88,9 +64,7 @@
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('totalPrice')}? 'has-error':''">
-
                             <label for="total_price" class="control-label">Total price</label>
-
                             <input
                                     id="total_price" class="form-control" th:field="*{totalPrice}"/>
                             <p class="error-message"
@@ -98,38 +72,19 @@
                                th:text="${error}">Validation error</p>
                         </div>
 
-                        <div class="form-group" th:classappend="${#fields.hasErrors('rentalBranch')}? 'has-error':''">
-                            <label for="car" class="control-label">Car</label>
-                            <select th:field="*{car.id}" id="car" class="form-control">
-                                <option th:each="car : ${cars}"
-                                        th:value="${car.id}"
-                                        th:text="${car.city}"></option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" th:classappend="${#fields.hasErrors('rentalBranch')}? 'has-error':''">
-                            <label for="rentalBranch" class="control-label">Rental Branch</label>
-                            <select th:field="*{rentalBranch.id}" id="rentalBranch" class="form-control">
-                                <option th:each="branch : ${branches}"
-                                        th:value="${branch.id}"
-                                        th:text="${branch.city}"></option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" th:classappend="${#fields.hasErrors('returnBranch')}? 'has-error':''">
-                            <label for="returnBranch" class="control-label">Return Branch</label>
-                            <select th:field="*{rentalBranch.id}" id="returnBranch" class="form-control">
-                                <option th:each="branch : ${branches}"
-                                        th:value="${branch.id}"
-                                        th:text="${branch.city}"></option>
-                            </select>
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('car')}? 'has-error':''">
+                            <label for="car_id" class="control-label">Car</label>
+                            <input
+                                    id="car_id" class="form-control" th:field="*{car}"/>
+                            <p class="error-message"
+                               th:each="error: ${#fields.errors('car')}"
+                               th:text="${error}">Validation error</p>
                         </div>
 
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('user')}? 'has-error':''">
-
                             <label for="userID" class="control-label">Customer</label>
-
                             <input
                                     id="userID" class="form-control" th:field="*{user}"/>
                             <p class="error-message"
@@ -139,33 +94,27 @@
 
                         <!--<div class="form-group"
                              th:classappend="${#fields.hasErrors('carRental')}? 'has-error':''">
-
                             <label for="car_rental_id" class="control-label">Car rental</label>
-
                             <input
                                     id="car_rental_id" class="form-control" th:field="*{carRental}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('carRental')}"
                                th:text="${error}">Validation error</p>
                         </div>
-
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('carReturn')}? 'has-error':''">
-
                             <label for="car_return_id" class="control-label">Car return</label>
-
                             <input
                                     id="car_return_id" class="form-control" th:field="*{carReturn}"/>
                             <p class="error-message"
                                th:each="error: ${#fields.errors('carReturn')}"
                                th:text="${error}">Validation error</p>
                         </div>-->
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add booking</button>
-                            <button type="submit" class="btn btn-danger">Modify</button>
+                            <button type="submit" class="btn btn-warning">Modify</button>
+                            <a th:href="@{/booking/}" type="reset" class="btn btn-danger">Cancel</a>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -177,20 +126,20 @@
 <div class="fluid-container footer-container">
     <footer class="footer fluid-block">
         <div class="footer-sections-address">
-            <h4>Address</h4>
+            <h6><strong>Address</strong></h6>
             <p>Peterson 1, Dorpat Complex</p>
             <p>6392673, Tartu</p>
             <p>Estonia</p>
         </div>
         <div class="socialMediaFooter">
-            <h4>Follow us on social media for best deals</h4>
+            <h6><strong>Follow us on social media for best deals</strong></h6>
             <ul class="footer-sections-links">
-                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-3x"></i></a></li>
-                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-3x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-instagram fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                <li><a href="#" class="white-text"><i class="fa fa-youtube fa-2x"></i></a></li>
             </ul>
         </div>
     </footer>

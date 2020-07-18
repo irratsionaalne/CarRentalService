@@ -19,20 +19,62 @@ import java.util.UUID;
 public class BookingController {
     @Autowired
     private BookingService bookingService;
+    @ModelAttribute("booking")
+    public Booking booking() {
+        return new Booking();
+    }
 
     @GetMapping
     public ModelAndView showAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
-        ModelAndView modelAndView = new ModelAndView("booking/listofbookings");
+        ModelAndView modelAndView = new ModelAndView("booking/list");
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
     }
 
-    @GetMapping("/bookingView")
-    public String booking() {
-        return "booking/bookingView";
+    @GetMapping("/employee")
+    public String employeeBooking() {
+        return "/booking/employee";
     }
 
+    @GetMapping("/add")
+    public String addBookingForm(@ModelAttribute("messageType") String messageType,
+                                 @ModelAttribute("message") String message, Model model) {
+        return "booking/add";
+    }
+
+
+
+   /* @PostMapping("/add")
+    public String addBooking(Booking booking, Model model) throws Exception {
+        boolean createResult = bookingService.createBooking(booking);
+        if (createResult) {
+            model.addAttribute("message", "Booking has been successfully created.");
+            model.addAttribute("messageType", "success");
+            return "booking/list";
+        }
+        model.addAttribute("booking", booking);
+        model.addAttribute("message", "Error in creating a booking.");
+        model.addAttribute("messageType", "error");
+        return "redirect:/booking";
+    }*/
+
+    @PostMapping
+    public String createBooking(@ModelAttribute("booking") @Valid Booking booking,
+                                BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("booking", booking);
+            redirectAttributes.addFlashAttribute("message", "Error in creating a booking!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "booking/add";
+        }
+
+        bookingService.createBooking(booking);
+        redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/booking";
+    }
     @PutMapping("/update")
     public String updateBookingForm(Model model) {
         return "update-booking";
@@ -46,7 +88,7 @@ public class BookingController {
         if (updateResult) {
             model.addAttribute("message", "Booking has been successfully updated.");
             model.addAttribute("messageType", "success");
-            return "/booking/listofbookings";
+            return "/booking/list";
         }
         model.addAttribute("booking", booking);
         model.addAttribute("message", "Error in updating booking");
@@ -55,39 +97,17 @@ public class BookingController {
 
     }
 
-    @GetMapping("/add")
-    public String showBookingForm(@ModelAttribute("booking") Booking booking) {
-        return "booking/add-booking";
-    }
 
-    @PostMapping("/add")
-    public String createBooking(@ModelAttribute("booking") Booking booking,
-                                BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
-
-        if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("booking", booking);
-            redirectAttributes.addFlashAttribute("message", "Error in creating a booking!");
-            redirectAttributes.addFlashAttribute("messageType", "error");
-            return "booking/add-booking";
-        }
-
-        bookingService.createBooking(booking);
-        redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
-        redirectAttributes.addFlashAttribute("messageType", "success");
-        return "redirect:/booking";
-    }
 
    /* @PutMapping("/delete/{id}")
     public String cancelBooking(@PathVariable("id") UUID bookingId, Model model) throws Exception {
         boolean deleteResult = bookingService.cancelBooking(bookingId);
-
         if (deleteResult) {
             model.addAttribute("message", "Booking has been successfully cancelled");
             model.addAttribute("messageType", "success");
         }
         model.addAttribute("message", "Error in cancelling booking.");
         model.addAttribute("messageType", "error");
-
         return showAllBookings(model);
     }*/
 

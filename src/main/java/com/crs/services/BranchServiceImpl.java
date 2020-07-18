@@ -1,10 +1,8 @@
 
 package com.crs.services;
 
-import com.crs.dto.BranchCreationDto;
 import com.crs.models.*;
 import com.crs.repositories.BranchRepo;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +11,12 @@ import java.util.UUID;
 
 @Service
 public class BranchServiceImpl implements BranchService {
+
     @Autowired
     private BranchRepo branchRepo;
 
     @Override
-    public boolean createBranch(BranchCreationDto branchCreationDto) throws Exception {
-        Branch branch = new Branch();
-        branch.setStreetAddress(branchCreationDto.getStreetAddress());
-        branch.setCity(branchCreationDto.getCity());
+    public boolean createBranch(Branch branch) {
         branch.setActive(true);
         branchRepo.save(branch);
         return true;
@@ -36,9 +32,9 @@ public class BranchServiceImpl implements BranchService {
         return branchRepo.getOne(branchId);
     }
 
-    public boolean doesBranchExist(String streetAddress,String city){
+    public boolean doesBranchExist(String streetAddress, String city) {
 
-        return branchRepo.findByCityAndStreetAddress(city,streetAddress).isPresent();
+        return branchRepo.findByCityAndStreetAddress(city, streetAddress).isPresent();
     }
 
     @Override

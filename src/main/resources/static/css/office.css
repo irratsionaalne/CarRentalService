@@ -51,24 +51,16 @@ ul {
     color: grey;
 }
 
-.navbar .float-right {
-    float: right !important;
-    padding-right: 30px !important;
-}
-.branch .float-right{
-
-}
-
-.navbar .float-left {
+.navbar .float-left, .nav-link.float-left {
     float: left !important;
+    padding-left: 5px !important;
+    flex: 2;
 }
 
-.navbar .logout{
+.navbar .logout, .navbar .float-right {
     float: right !important;
-    padding-right: 40px !important;
     margin-right: 40px !important;
     flex: 3;
-
 }
 
 .container-fluid {
@@ -80,28 +72,48 @@ ul {
 .jumbotron {
     padding-top: 10px !important;
     padding-bottom: 20px !important;
-    margin-bottom: 20px !important;
+    max-width: 80%;
 }
 
-.jumbotron.bookingsOffice {
+.jumbotron.regisLogin{
+    width: 800px !important;
+    max-width: 900px !important;
     margin-top: 80px !important;
-    max-width: 80% !important;
+    padding-top: 10px !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 150px !important;
 }
 
-.jumbotron.branch {
-    margin-top: 60px !important;
+.jumbotron.addBranch, .jumbotron.addBooking, .jumbotron.addCar, .addUser, .addEmployee {
+    margin-top: 30px !important;
     max-width: 15% !important;
     max-height: 5% !important;
     float: right;
-    padding: 5px !important;
+    padding: 10px !important;
+    margin-right: 5px !important;
     justify-items: center;
 }
-form.bookings, .bookingListOffice {
+
+form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 10px !important;
+    margin-top: 100px !important;
+    height: 600px;
 }
-
+.jumbotronBranch {
+    height: 350px;
+    max-width: 80%;
+}
+.usersOffice {
+    margin-top: 100px !important;
+    height: 500px;
+    max-width: 80%;
+}
+.carsUpdateOffice {
+    margin-top: 110px !important;
+    max-height: 800px;
+    max-width: 80%;
+}
 
 form.bookings input[type=text] {
     padding: 10px;
@@ -128,6 +140,10 @@ form.bookings button {
     max-width: 900px !important;
 }
 
+.carousel-inner {
+    box-shadow: 2px 2px 5px 5px #8bd0fb !important;
+}
+
 form.bookings button:hover {
     background: #0b7dda;
 }
@@ -139,14 +155,14 @@ form.bookings::after {
 }
 
 
-.listOfCars, .socialMedia {
-    max-height: 500px !important;
-    max-width: 900px !important;
+.list, .socialMedia {
+    max-height: 800px !important;
+    width: 900px !important;
+    max-width: 1000px !important;
 }
 
-.listOfCars {
-    margin-top: 80px !important;
-
+.list, .listOfUsers {
+    margin-top: 120px !important;
 }
 
 .socialMedia {
@@ -169,13 +185,13 @@ input[type="checkbox"] {
     padding-bottom: -10px !important;
     width: 100%;
     max-width: 100%;
-    max-height: 20%;
     background-color: rgb(33, 33, 33) !important;
     color: whitesmoke;
     z-index: 6 !important;
     clear: both;
 }
-.footer-sections-address{
+
+.footer-sections-address {
     align-content: flex-start;
     text-align: left;
     float: left;
@@ -183,8 +199,12 @@ input[type="checkbox"] {
     padding-left: 100px;
     flex: 1;
 }
-.footer-sections-address p{
-    margin: 0;
+
+.footer-sections-address p {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #007bff;
+    font-weight: bold !important;
 }
 
 .socialMediaFooter {
@@ -196,12 +216,14 @@ input[type="checkbox"] {
     text-align: right;
     align-content: flex-end;
 }
-.footer-sections-links li{
+
+.footer-sections-links li {
     text-decoration: none;
     flex: fit-content;
-    display: inline-block ;
+    display: inline-block;
 }
-.copyright{
+
+.copyright {
     text-align: center;
     align-content: center;
     background-color: rgb(33, 33, 33) !important;
@@ -210,9 +232,13 @@ input[type="checkbox"] {
     clear: both;
     width: 100%;
 }
-.footer-container{
+
+.footer-container {
     position: fixed;
+    /*position: -webkit-sticky;*/
     width: 100%;
     bottom: 0;
+    max-height: 20%;
+    font-weight: 100;
 }
 

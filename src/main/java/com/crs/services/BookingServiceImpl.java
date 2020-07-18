@@ -10,11 +10,12 @@ import java.util.UUID;
 
 @Service
 public class BookingServiceImpl implements BookingService {
+
     @Autowired
     private BookingRepo bookingRepo;
 
     @Override
-    public boolean createBooking(Booking booking) {
+    public boolean createBooking(Booking booking) throws Exception {
         bookingRepo.save(booking);
         return true;
     }
@@ -42,6 +43,5 @@ public class BookingServiceImpl implements BookingService {
     public Booking getById(UUID bookingId) {
         return bookingRepo.getOne(bookingId);
     }
-
 
 }

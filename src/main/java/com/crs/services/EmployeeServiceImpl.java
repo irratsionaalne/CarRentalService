@@ -12,25 +12,27 @@ import java.util.UUID;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+
     @Autowired
-    private  UserRepo userRepo;
+    private EmployeeRepo employeeRepo;
+
     @Autowired
-    private  EmployeeRepo employeeRepo;
+    private UserRepo userRepo;
+
     @Autowired
-    private  BCryptPasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public void createEmployee(Employee employee) throws Exception {
+    public void createEmployee(Employee employee) {
         User user = new User();
+        user.setEmail(employee.getEmail());
         user.setFirstName(employee.getFirstName());
         user.setLastName(employee.getLastName());
-        user.setEmail(employee.getEmail());
-        user.setPassword(passwordEncoder.encode(employee.getPassword()));
-        user.setRole(user.getRole());
         user.setActive(true);
+        user.setPassword(passwordEncoder.encode(employee.getPassword()));
+        user.setRole(employee.getRole());
         userRepo.save(user);
-
-        employee.setUser(user);
+        employee.setActive(true);
         employeeRepo.save(employee);
     }
 
@@ -39,11 +41,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employee == null || !employeeRepo.existsById(employee.getId())) {
             return false;
         }
-
-        employeeRepo.saveAndFlush(employee);
+        User user = new User();
+        user.setEmail(employee.getEmail());
+        user.setFirstName(employee.getFirstName());
+        user.setLastName(employee.getLastName());
+        user.setActive(true);
+        user.setPassword(passwordEncoder.encode(employee.getPassword()));
+        user.setRole(employee.getRole());
+        userRepo.save(user);
+        employee.setActive(true);
+        employeeRepo.save(employee);
         return true;
     }
-    
+
     @Override
     public List<Employee> getAllEmployees() {
         return employeeRepo.findAll();
@@ -52,6 +62,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getById(UUID employeeId) {
         return employeeRepo.getOne(employeeId);
+    }
+
+    @Override
+    public boolean deleteEmployeeById(UUID employeeId) {
+        Employee employee = getById(employeeId);
+        if (employeeId == null) {
+            return false;
+        }
+        employee.setActive(false);
+        updateEmployee(employee);
+        return true;
+    }
+
+    @Override
+    public boolean restoreEmployeeById(UUID employeeId) {
+        Employee employee = getById(employeeId);
+        if (employeeId == null) {
+            return false;
+        }
+        employee.setActive(true);
+        updateEmployee(employee);
+        return true;
     }
 
 }

@@ -36,7 +36,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
 
     protected String determineTargetUrl(Authentication authentication) {
-        returnURL = "/bo-home";
+        returnURL = "/customer";
 
         authentication.getAuthorities().forEach(grantedAuthority -> {
             if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
@@ -44,7 +44,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             }
 
             if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
-                returnURL = "/booking/bookingView";
+                returnURL = "/employee";
             }
         });
 

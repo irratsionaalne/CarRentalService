@@ -1,12 +1,11 @@
 package com.crs.models;
 
-
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,9 +19,9 @@ public class Branch {
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-    @NotBlank
+    @NotEmpty
     private String streetAddress;
-    @NotBlank
+    @NotEmpty
     private String city;
     @OneToMany
     private List<Employee> employees;

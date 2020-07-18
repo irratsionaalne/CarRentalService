@@ -2,34 +2,64 @@ package com.crs.controllers;
 
 import com.crs.models.Branch;
 import com.crs.services.BranchService;
-import com.crs.services.BranchServiceImpl;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 @RequestMapping("/branch")
 public class BranchController {
+
     @Autowired
     private  BranchService branchService;
+
+    @ModelAttribute("branch")
+    public Branch branch() {
+        return new Branch();
+    }
 
     @GetMapping
     public ModelAndView showAllBranches() {
         List<Branch> branches = branchService.getAllBranches();
-        ModelAndView modelAndView = new ModelAndView("branch/listofbranches");
+        ModelAndView modelAndView = new ModelAndView("branch/list");
         modelAndView.addObject("branches", branches);
         return modelAndView;
     }
 
+    @GetMapping("/add")
+    public String showRegistrationForm() {
+        return "branch/add";
+    }
 
-    //add branch here
+    @PostMapping("/add")
+    public String registerBranch(@ModelAttribute("branch") @Valid Branch branch,
+                                 BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
+
+        if(branchService.doesBranchExist(branch.getStreetAddress(),branch.getCity())) {
+            result.rejectValue("streetaddress", null, "There is already a branch with that address");
+            result.rejectValue("city", null, "There is already a branch with that address");
+        }
+
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("branch", branch);
+            redirectAttributes.addFlashAttribute("message", "Error in creating a branch!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "branch/add";
+        }
+
+        branchService.createBranch(branch);
+        redirectAttributes.addFlashAttribute("message", "Branch has been successfully created.");
+        redirectAttributes.addFlashAttribute("messageType", "success");
+        return "redirect:/branch";
+    }
 
     @GetMapping("/update/{id}")
     public String updateBranchForm(@PathVariable("id") UUID branchId, Model model) {
@@ -39,11 +69,11 @@ public class BranchController {
         }
         model.addAttribute("branch", branch);
 
-        return "branch/branch-update";
+        return "branch/update";
     }
 
     @PostMapping("/update/{id}")
-    public Object updateCar(@PathVariable("id") UUID branchId, Branch branch, Model model) {
+    public Object updateBranch(@PathVariable("id") UUID branchId, Branch branch, Model model) {
         branch.setId(branchId);
         boolean updateResult = branchService.updateBranch(branch);
         if (updateResult) {

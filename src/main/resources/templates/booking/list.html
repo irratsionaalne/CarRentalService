@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Office</title>
+    <title>Booking</title>
 
 </head>
 <body>
 <div class="container-fluid">
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
+        <a class="navbar-brand" th:href="@{/office}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
+
         <div class="float-left">
             <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
             <a class="nav-link float-left" th:href="@{/booking/searchByUser}">Booking search</a>
@@ -27,36 +28,22 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Customers</a>
         </div>
-
         <div class="floatRight">
-            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout" th:href="@{/logout}">Logout</a>
+            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
+                                                                 th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
-
-        <div class="jumbotron addBranch">
-            <div class="branch float-right">
-                <h3>
-                    <span class="float-right">
-                    <a th:href="@{/branch/add}" class="btn btn-success">Add Branch</a>
-                    </span>
-                </h3>
-            </div>
-        </div>
-
-        <div class="jumbotron addBooking">
+        <div class="jumbotron bookingListOffice">
             <div>
-                <span class="float-right">
-                    <a th:href="@{/add}" class="btn btn-success">Add Booking</a>
-                </span>
-                <br/>
-            </div>
-        </div>
-
-        <div class="jumbotron regisLogin">
-            <div>
+                <h2 class="display-4">
+                    <div sec:authorize="isAuthenticated()">
+                        Welcome <span sec:authentication="principal.firstName"></span>
+                    </div>
+                </h2>
                 <h3>List of Bookings</h3>
+                <span class="float-right"><a class="btn btn-success" th:href="@{/add}">ADD</a></span>
             </div>
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -73,23 +60,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--<tr th:each="booking : ${bookings}">
-                    <th scope="row" th:text="${booking.id}></th>
-                    <td th:text="${booking.dateOfBooking}></td>
-                    <td th:text="${booking.dateOfBooking}></td>
-                    <td th:text="${booking.customer}></td>
-                    <td th:text="${booking.car}></td>
-                    <td th:text="${booking.dateFrom}></td>
-                    <td th:text="${booking.dateTo}></td>
-                    <td th:text="${booking.carRental}></td>
-                    <td th:text="${booking.carReturn}></td>
-                    <td th:text="${booking.totalPrice}></td>
-                    <td th:text="${booking.status}></td>
+                    <tr th:each="booking : ${bookings}">
+                    <td th:text="${booking.id}"></td>
+                    <td th:text="${booking.dateOfBooking}"></td>
+                    <td th:text="${booking.getUser()}"></td>
+                    <td th:text="${booking.getCar}"></td>
+                    <td th:text="${booking.dateFrom}"></td>
+                    <td th:text="${booking.dateTo}"></td>
+                    <!--<td th:text="${booking.carRental}"></td>
+                    <td th:text="${booking.carReturn}"></td>-->
+                    <td th:text="${booking.totalPrice}"></td>
+                    <td th:text="${booking.status}"></td>
                     <td>
-                    <a th:if="${booking.active} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                    <a th:if="${booking.active} == true" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
+                   <!-- <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
+                    <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>-->
                     </td>
-                </tr> -->
+                </tr>
                 </tbody>
             </table>
             <br/>
@@ -97,6 +83,7 @@
             <br/>
             <br/>
         </div>
+
     </div>
 </div>
 
@@ -123,7 +110,6 @@
     </footer>
     <div class="copyright fluid-block "><strong>Copyright &copy; CRS OÜ - 2020 </strong></div>
 </div>
-
 
 <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"
         type="text/javascript"></script>

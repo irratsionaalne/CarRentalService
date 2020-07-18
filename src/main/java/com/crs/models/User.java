@@ -1,6 +1,5 @@
 package com.crs.models;
 
-
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -10,8 +9,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -44,6 +45,8 @@ public class User implements UserDetails {
     private boolean isActive;
     @NotEmpty
     private String password;
+    @AssertTrue
+    private Boolean terms;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -76,4 +79,9 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isActive;
     }
+    public int getAge(){
+        Period p=Period.between(this.dob,LocalDate.now());
+        return p.getYears();
+    }
+
 }

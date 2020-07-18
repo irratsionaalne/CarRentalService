@@ -50,10 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/js/**",
                         "/css/**",
                         "/img/**",
-                        "/static/css/**",
-                        "/static/img/**",
                         "/webjars/**",
-                        "/home**"
+                        "/index**"
 
                 )
                 .permitAll()

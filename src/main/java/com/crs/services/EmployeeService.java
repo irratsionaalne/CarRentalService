@@ -15,4 +15,8 @@ public interface EmployeeService {
 
     Employee getById(UUID employeeId);
 
+    boolean deleteEmployeeById(UUID employeeId);
+
+    boolean restoreEmployeeById(UUID employeeId);
+
 }
