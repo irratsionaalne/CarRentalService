@@ -30,22 +30,29 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
-        <div class="floatRight">
+        <div class="float-right">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                                  th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
+        <h4 class="display-4">
+            <div sec:authorize="isAuthenticated()">
+<!--                Welcome <span sec:authentication="principal.firstName"></span>-->
+            </div>
+        </h4>
+        <div class="jumbotron addBookingEmployee">
+            <div>
+                    <span class="float-right">
+                    <a th:href="@{/booking/add}" class="btn btn-success">Add Booking</a>
+                </span>
+                <br/>
+            </div>
+        </div>
         <div class="jumbotron bookingListOffice">
             <div>
-                <h2 class="display-4">
-                    <div sec:authorize="isAuthenticated()">
-                        Welcome <span sec:authentication="principal.firstName"></span>
-                    </div>
-                </h2>
                 <h3>List of Bookings</h3>
-                <span class="float-right"><a class="btn btn-success" th:href="@{/booking/add}">ADD</a></span>
             </div>
             <table class="table table-striped">
                 <thead class="thead-dark">

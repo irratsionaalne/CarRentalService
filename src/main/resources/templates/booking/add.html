@@ -28,7 +28,7 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
-        <div class="floatRight">
+        <div class="float-right">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                     th:href="@{/logout}">Logout</a>
             </p>
@@ -36,10 +36,10 @@
     </nav>
 
     <div class="container">
-        <div class="jumbotron bookingsOffice">
+        <div class="jumbotron addbookingsOffice">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h3 class="display-3">Add Booking</h3>
+                    <h6 class="display-4">Add Booking</h6>
                     <form action="#" th:action="@{/booking/add}" th:object="${booking}" method="post">
                         <span th:text="${'Date of Booking ' + booking.fullDateFormat()}"><strong></strong></span>
                         <br>

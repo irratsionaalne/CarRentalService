@@ -28,7 +28,7 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
-        <div class="floatRight">
+        <div class="float-right">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                                  th:href="@{/logout}">Logout</a>
             </p>
@@ -37,7 +37,7 @@
     <div class="container">
         <div class="jumbotron regisLogin">
             <div>
-                <h3>Add Car</h3>
+                <h6 class="display-4">Add Car</h6>
             </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">

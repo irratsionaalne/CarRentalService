@@ -23,8 +23,8 @@ h3 {
     line-height: 15.4px;
 }
 
-p, h6 {
-    font-family: Raleway, serif;
+p, h6, .navbar a {
+    font-family: Raleway;
     font-size: 14px;
     font-style: normal;
     font-variant: normal;
@@ -33,7 +33,7 @@ p, h6 {
 }
 
 blockquote {
-    font-family: Raleway, serif;
+    font-family: Raleway;
     font-size: 21px;
     font-style: normal;
     font-variant: normal;
@@ -42,7 +42,7 @@ blockquote {
 }
 
 pre {
-    font-family: Raleway, serif;
+    font-family: Raleway;
     font-size: 13px;
     font-style: normal;
     font-variant: normal;
@@ -75,6 +75,7 @@ ul {
     z-index: 5 !important;
     margin-bottom: 30px !important;
     display: flex;
+    padding: 0;
 }
 
 .navbar a {
@@ -102,10 +103,10 @@ ul {
 .navbar .float-left, .nav-link.float-left {
     float: left !important;
     padding-left: 5px !important;
-    flex: 2;
+    /*flex: 2;*/
 }
 
-.navbar .logout, .navbar .float-right {
+.navbar .logout, .navbar .float-right,.navbar .floatRight {
     float: right !important;
     margin-right: 40px !important;
     flex: 3;
@@ -120,11 +121,9 @@ ul {
 .jumbotron {
     padding-top: 10px !important;
     padding-bottom: 20px !important;
-    /*max-width: 80%;*/
 }
 
 .jumbotron.regisLogin {
-    /*width: 800px !important;*/
     max-width: 900px !important;
     margin-top: 80px !important;
     padding-top: 10px !important;
@@ -132,7 +131,7 @@ ul {
     margin-bottom: 150px !important;
 }
 
-.jumbotron.addBranch, .jumbotron.addBooking, .jumbotron.addCar, .addUser, .addEmployee {
+.jumbotron.addBranch, .jumbotron.addBooking, .jumbotron.addCar, .addEmployee, .addBookingEmployee {
     margin-top: 30px !important;
     max-width: 15% !important;
     max-height: 5% !important;
@@ -141,12 +140,41 @@ ul {
     margin-right: 5px !important;
     justify-items: center;
 }
+.addUser, .addlistEmployee {
+    margin-top: 60px !important;
+    margin-bottom: 10px !important;
+    max-width: 15% !important;
+    max-height: 5% !important;
+    float: right;
+    padding: 10px !important;
+    justify-items: center;
+    margin-left: 50px;
+}
 
-form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffice {
+.addButtonsOffice {
+    max-width: 15% !important;
+    max-height: 10% !important;
+    float: right;
+    padding: 1px !important;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.addBookingOffice, .addBranchOffice{
+    flex-direction: row;
+}
+
+form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffice, .bookingsListOffice,.addbookingsOffice {
     width: 80%;
     max-width: 80%;
-    margin-top: 100px !important;
-    height: 600px;
+    /*margin-top: 80px !important;*/
+    height: 600px !important;
+    overflow: auto !important;
+    margin-bottom: 20px !important;
+}
+.bookingListOffice, .bookingsListOffice, .addbookingsOffice{
+    margin-top: 80px !important;
 }
 
 .jumbotronBranch {
@@ -155,9 +183,17 @@ form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffic
 }
 
 .usersOffice {
-    margin-top: 100px !important;
+    margin-top: 80px !important;
+    height: 600px;
+    overflow: auto !important;
+    margin-bottom: 20px !important;
+}
+.employeeOffice {
+    width: 100% !important;
+    margin-top: 50px !important;
     height: 500px;
-    max-width: 80%;
+    overflow: auto !important;
+    margin-bottom: 20px !important;
 }
 
 .carsUpdateOffice {

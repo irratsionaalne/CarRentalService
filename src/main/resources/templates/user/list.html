@@ -39,7 +39,7 @@
                 </h3>
             </div>
         </div>
-        <div class="jumbotron regisLogin">
+        <div class="jumbotron usersOffice">
             <div>
                 <h3>List of Users</h3>
             </div>
@@ -50,7 +50,7 @@
                 <span th:text="${message}"></span>
             </div>
             <div class="container-fluid" th:switch="${users.size() > 0}">
-                <h3 th:case="false">No customers available!</h3>
+                <h3 th:case="false">No users available!</h3>
                 <table th:case="true" class="table table-striped">
                     <thead>
                     <tr>

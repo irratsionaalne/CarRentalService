@@ -73,6 +73,7 @@ ul {
     background-color: rgb(33, 33, 33) !important;
     z-index: 5 !important;
     margin-bottom: 30px !important;
+    padding: 0;
 }
 
 .navbar a {

@@ -29,15 +29,14 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
-
-        <div class="floatRight">
+        <div class="float-right">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout" th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
-
-        <div class="jumbotron addBranch">
+        <div class="addButtonsOffice">
+            <div class="jumbotron addBranchOffice">
             <div class="branch float-right">
                 <h3>
                     <span class="float-right">
@@ -47,16 +46,18 @@
             </div>
         </div>
 
-        <div class="jumbotron addBooking">
-            <div>
+        <div class="jumbotron addBookingOffice">
+            <div class="bookings float-right">
+                <h3>
                 <span class="float-right">
                     <a th:href="@{/add}" class="btn btn-success">Add Booking</a>
                 </span>
-                <br/>
+                </h3>
             </div>
         </div>
+        </div>
 
-        <div class="jumbotron regisLogin">
+        <div class="jumbotron bookingsListOffice">
             <div>
                 <h3>List of Bookings</h3>
             </div>
