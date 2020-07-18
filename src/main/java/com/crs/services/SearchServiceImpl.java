@@ -18,6 +18,11 @@ public class SearchServiceImpl implements SearchService{
         return bookingRepo.findBookingByDateAndCar(dayFrom, dateTo, car).size() < 1;
     }
 
+    @Override
+    public Integer revenue(){
+        return revenue();
+    }
+
 }
 
 

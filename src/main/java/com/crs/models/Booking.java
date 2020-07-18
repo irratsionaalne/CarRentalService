@@ -45,8 +45,8 @@ public class Booking {
     private LocalDate dateTo;
     private String carRentalComment;
     private String carReturnComment;
-    private String extraPayment;
-    private String totalPrice;
+    private Integer extraPayment;
+    private Integer totalPrice;
     private String status;
     @OneToOne(fetch = FetchType.EAGER)
     private Branch rentalBranch;
