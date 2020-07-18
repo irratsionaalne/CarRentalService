@@ -24,7 +24,7 @@
             <a class="nav-link float-left" th:href="@{/car}">Cars</a>
             <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car Search</a>
             <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
-            <a class="nav-link float-left" th:href="@{/employee}">Employees</a>
+            <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
         <div class="floatRight">
@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <form action="#" th:action="@{/employee/update/{id}(id=${employee.id})}" th:object="${employee}"
+                    <form action="#" th:action="@{/employee/list/update/{id}(id=${employee.id})}" th:object="${employee}"
                           method="post">
 
                         <div th:if="${param.error}">
