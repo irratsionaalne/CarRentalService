@@ -33,6 +33,14 @@ public class CarController {
         return modelAndView;
     }
 
+    @GetMapping("/userList")
+    public ModelAndView showAllCarsForUser() {
+        List<Car> cars = carService.getAllCars();
+        ModelAndView modelAndView = new ModelAndView("car/userList");
+        modelAndView.addObject("cars", cars);
+        return modelAndView;
+    }
+
     @GetMapping("/update/{id}")
     public String updateCarForm(@PathVariable("id") UUID carId, Model model) {
         Car car = carService.getById(carId);

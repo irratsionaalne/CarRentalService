@@ -18,9 +18,10 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{#}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
+        <a class="navbar-brand" th:href="@{/userView}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
         <div class="float-left">
             <a class="nav-link float-left" th:href="@{/booking}">Create Booking</a>
+            <a class="nav-link float-left" th:href="@{/car/userList}">Cars</a>
         </div>
         <div class="floatRight">
             <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link float-right logout">Logout</a>
