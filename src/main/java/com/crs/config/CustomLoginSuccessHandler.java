@@ -36,7 +36,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
 
     protected String determineTargetUrl(Authentication authentication) {
-        returnURL = "/customer";
+        returnURL = "/userView";
         GrantedAuthority grantedAuthority = new ArrayList<GrantedAuthority>(authentication.getAuthorities()).get(0);
         if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
             returnURL = "/office";
