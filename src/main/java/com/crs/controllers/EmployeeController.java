@@ -34,7 +34,7 @@ public class EmployeeController {
         return new Employee();
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public ModelAndView showAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         ModelAndView modelAndView = new ModelAndView("employee/list");
@@ -42,10 +42,6 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @GetMapping("/employee")
-    public String employeeMainView(){
-        return "employee/employee";
-    }
 
     @GetMapping("/add")
     public String showRegistrationForm(@ModelAttribute("employee") Employee employee, Model model) {
@@ -73,10 +69,10 @@ public class EmployeeController {
         employeeService.createEmployee(employee);
         redirectAttributes.addFlashAttribute("message", "Employee has been successfully created.");
         redirectAttributes.addFlashAttribute("messageType", "success");
-        return "redirect:/employee";
+        return "redirect:/employee/list";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/list/update/{id}")
     public String updateEmployeeForm(@PathVariable("id") UUID employeeId, Model model) {
         Employee employee = employeeService.getById(employeeId);
         if (employee == null) {
@@ -89,7 +85,7 @@ public class EmployeeController {
         return "employee/update";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/list/update/{id}")
     public Object updateEmployee(@PathVariable("id") UUID employeeId, Employee employee, Model model) {
         employee.setId(employeeId);
         boolean updateResult = employeeService.updateEmployee(employee);
@@ -101,7 +97,7 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         model.addAttribute("message", "Error in updating an Employee");
         model.addAttribute("messageType", "error");
-        return "redirect:/employee/update/{id}";
+        return "redirect:/employee/list/update/{id}";
     }
 
     @GetMapping("/delete/{id}")
