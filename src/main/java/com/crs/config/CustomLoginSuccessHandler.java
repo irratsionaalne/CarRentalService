@@ -43,7 +43,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         if (grantedAuthority.getAuthority().contains(Role.OWNER.name())) {
             returnURL = "/office";
         }else if (grantedAuthority.getAuthority().contains(Role.EMPLOYEE.name())) {
-            returnURL = "/employee/employee";
+            returnURL = "/employee";
         }
 
         return returnURL;
