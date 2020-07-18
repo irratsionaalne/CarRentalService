@@ -49,14 +49,14 @@ public class BookingController {
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
     }
-//
-//    @GetMapping("/employee")
-//    public ModelAndView showAllEmployeeBookings() {
-//        List<Booking> bookings = bookingService.getAllBookings();
-//        ModelAndView modelAndView = new ModelAndView("booking/employee");
-//        modelAndView.addObject("bookings", bookings);
-//        return modelAndView;
-//    }
+
+    @GetMapping("/employee")
+    public ModelAndView showAllEmployeeBookings() {
+        List<Booking> bookings = bookingService.getAllBookings();
+        ModelAndView modelAndView = new ModelAndView("booking/employee");
+        modelAndView.addObject("bookings", bookings);
+        return modelAndView;
+    }
 
 
 
