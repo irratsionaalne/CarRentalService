@@ -24,7 +24,7 @@ public class WebController {
 
     @GetMapping("/customer")
     public String customer() {
-        return "customer";
+        return "user";
     }
 
     @GetMapping("login")
