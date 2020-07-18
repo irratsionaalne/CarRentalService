@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface BookingService {
 
-    boolean addBooking(Booking booking) throws Exception;
+    boolean createBooking(Booking booking) throws Exception;
 
     boolean updateBooking(Booking booking) throws Exception;
 

@@ -49,22 +49,22 @@ public class BookingController {
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
     }
-
-    @GetMapping("/employee")
-    public ModelAndView showAllEmployeeBookings() {
-        List<Booking> bookings = bookingService.getAllBookings();
-        ModelAndView modelAndView = new ModelAndView("booking/employee");
-        modelAndView.addObject("bookings", bookings);
-        return modelAndView;
-    }
-
-
+//
+//    @GetMapping("/employee")
+//    public ModelAndView showAllEmployeeBookings() {
+//        List<Booking> bookings = bookingService.getAllBookings();
+//        ModelAndView modelAndView = new ModelAndView("booking/employee");
+//        modelAndView.addObject("bookings", bookings);
+//        return modelAndView;
+//    }
 
 
-    @GetMapping("/employee")
-    public String employeeBooking() {
-        return "/booking/employee";
-    }
+
+
+//    @GetMapping("/employee")
+//    public String employeeBooking() {
+//        return "/booking/employee";
+//    }
 
     @GetMapping("/add")
     public String addBookingForm(@ModelAttribute("messageType") String messageType,
@@ -86,7 +86,6 @@ public class BookingController {
    /* @PostMapping("/add")
     public String addBooking(Booking booking, Model model) throws Exception {
         boolean createResult = bookingService.createBooking(booking);
-
     public String addBookingForm() {
         return "booking/add";
     }
@@ -106,7 +105,7 @@ public class BookingController {
 
 
 
-    @PostMapping
+    @PostMapping("/add")
     public String createBooking(@ModelAttribute("booking") @Valid Booking booking,
                                 BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -123,7 +122,7 @@ public class BookingController {
             return "booking/add";
         }
 
-        bookingService.addBooking(booking);
+        bookingService.createBooking(booking);
         redirectAttributes.addFlashAttribute("message", "Booking has been successfully created.");
         redirectAttributes.addFlashAttribute("messageType", "success");
         return "redirect:/booking";
