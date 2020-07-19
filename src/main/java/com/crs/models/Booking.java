@@ -33,11 +33,6 @@ public class Booking {
     @OneToOne
     @NotEmpty
     private Car car;
-    //    @NotEmpty
-//    private CarRental carRental;
-//
-//    @NotEmpty
-//    private CarReturn carReturn;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
     private LocalDate dateFrom;
@@ -46,7 +41,7 @@ public class Booking {
     private LocalDate dateTo;
     private String carRentalComment;
     private String carReturnComment;
-    private String extraPayment;
+    private double extraPayment;
     private double totalPrice;
     private String status;
     @OneToOne(fetch = FetchType.EAGER)
@@ -74,7 +69,5 @@ public class Booking {
         Period p=Period.between(this.dateFrom,this.dateTo);
         return pricePerDay * (p.getDays() + 1);
     }
-
-
 
 }
