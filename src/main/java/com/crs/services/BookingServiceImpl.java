@@ -42,6 +42,16 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public List<Booking> getAllBookingsByBranch() {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getAllBookingsByUser() {
+        return null;
+    }
+
+    @Override
     public Booking getById(UUID bookingId) {
         return bookingRepo.getOne(bookingId);
     }

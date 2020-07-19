@@ -4,13 +4,8 @@ import com.crs.models.Booking;
 import com.crs.models.Branch;
 import com.crs.models.Car;
 import com.crs.services.*;
-import com.crs.models.User;
 import com.crs.services.BookingService;
-import com.crs.services.BookingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,14 +44,22 @@ public class BookingController {
         modelAndView.addObject("bookings", bookings);
         return modelAndView;
     }
-//
-//    @GetMapping("/employee")
-//    public ModelAndView showAllEmployeeBookings() {
-//        List<Booking> bookings = bookingService.getAllBookings();
-//        ModelAndView modelAndView = new ModelAndView("booking/employee");
-//        modelAndView.addObject("bookings", bookings);
-//        return modelAndView;
-//    }
+
+    @GetMapping("/employee")
+    public ModelAndView showAllEmployeeBookings() {
+        List<Booking> bookings = bookingService.getAllBookings();
+        ModelAndView modelAndView = new ModelAndView("booking/employee");
+        modelAndView.addObject("bookings", bookings);
+        return modelAndView;
+    }
+
+    @GetMapping("/user")
+    public ModelAndView showAllUsersBookings() {
+        List<Booking> bookings = bookingService.getAllBookings();
+        ModelAndView modelAndView = new ModelAndView("booking/user");
+        modelAndView.addObject("bookings", bookings);
+        return modelAndView;
+    }
 
 
 
