@@ -75,6 +75,7 @@ ul {
     z-index: 5 !important;
     margin-bottom: 30px !important;
     display: flex;
+    padding: 0;
 }
 
 .navbar a {
@@ -125,6 +126,14 @@ ul {
 .jumbotron {
     padding-top: 10px !important;
     padding-bottom: 20px !important;
+}
+
+.jumbotron.userviewCars {
+    max-width: 900px !important;
+    margin-top: 80px !important;
+    padding-top: 10px !important;
+    padding-bottom: 20px !important;
+    /*margin-bottom: 100px !important;*/
 }
 
 .bookings{
