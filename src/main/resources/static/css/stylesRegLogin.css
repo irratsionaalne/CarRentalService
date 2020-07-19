@@ -205,5 +205,10 @@ input[type="checkbox"] {
     font-weight: 100;
 }
 
-
+.alertMessage{
+    padding: 5px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    letter-spacing: 2px;
+}
 
