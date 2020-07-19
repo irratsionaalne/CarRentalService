@@ -9,7 +9,7 @@ public interface BookingService {
 
     boolean createBooking(Booking booking) throws Exception;
 
-    boolean updateBooking(Booking booking) throws Exception;
+    boolean modifyBooking(UUID id, Booking booking) throws Exception;
 
     boolean cancelBooking(UUID bookingId) throws Exception;
 /*
