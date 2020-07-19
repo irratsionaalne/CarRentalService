@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Objects;
@@ -32,11 +33,6 @@ public class Booking {
     @OneToOne
     @NotEmpty
     private Car car;
-    //    @NotEmpty
-//    private CarRental carRental;
-//
-//    @NotEmpty
-//    private CarReturn carReturn;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotEmpty
     private LocalDate dateFrom;
@@ -45,8 +41,8 @@ public class Booking {
     private LocalDate dateTo;
     private String carRentalComment;
     private String carReturnComment;
-    private Integer extraPayment;
-    private Integer totalPrice;
+    private double extraPayment;
+    private double totalPrice;
     private String status;
     @OneToOne(fetch = FetchType.EAGER)
     private Branch rentalBranch;
@@ -69,6 +65,9 @@ public class Booking {
     public String fullDateFormat() {
         return LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
-
+    public double getTotalPrice(double pricePerDay){
+        Period p=Period.between(this.dateFrom,this.dateTo);
+        return pricePerDay * (p.getDays() + 1);
+    }
 
 }
