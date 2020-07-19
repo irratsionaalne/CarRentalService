@@ -39,7 +39,7 @@
     <div class="container">
         <h4 class="display-4">
             <div sec:authorize="isAuthenticated()">
-<!--                Welcome <span sec:authentication="principal.firstName"></span>-->
+                Welcome <span sec:authentication="principal.firstName"></span>
             </div>
         </h4>
         <div class="jumbotron addBookingEmployee">
@@ -62,8 +62,10 @@
                     <th scope="col">Car</th>
                     <th scope="col">Rental date</th>
                     <th scope="col">Return date</th>
-<!--                    <th scope="col">End date</th>-->
                     <th scope="col">Status</th>
+                    <th scope="col">Rental Comment</th>
+                    <th scope="col">Return Comment</th>
+                    <th scope="col">Extra payment</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -74,13 +76,13 @@
                     <td th:text="${booking.car.make + ' ' + booking.car.model + ' ' + booking.car.year}"></td>
                     <td th:text="${booking.dateFrom}"></td>
                     <td th:text="${booking.dateTo}"></td>
-                    <!--<td th:text="${booking.carRental}"></td>
-                    <td th:text="${booking.carReturn}"></td>-->
-<!--                    <td th:text="${booking.totalPrice}"></td>-->
                     <td th:text="${booking.status}"></td>
+                    <td th:text="${booking.carRentalComment}"></td>
+                    <td th:text="${booking.carReturnComment}"></td>
+                    <td th:text="${booking.extraPayment}"></td>
                     <td>
-                   <!-- <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                    <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>-->
+                        <a th:href="@{/booking/modify/{id}(id=${booking.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Modify</a>
+                        <a th:href="@{/booking/cancel/{id}(id=${booking.id})}" class="btn btn-danger"><i class="fa fa-edit"></i> Cancel</a>
                     </td>
                 </tr>
                 </tbody>
