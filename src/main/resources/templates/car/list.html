@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link th:href="@{/css/default.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     <title>Cars</title>
@@ -27,7 +28,7 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
-        <div class="floatRight">
+        <div class="float-right">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                                  th:href="@{/logout}">Logout</a>
             </p>
