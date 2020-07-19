@@ -67,6 +67,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Price per day</th>
                         <th scope="col">Modify</th>
+                        <th scope="col">Booking</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -81,6 +82,7 @@
                         <td th:text="${car.pricePerDay}"></td>
                         <td>
                             <a th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Modify</a>
+                            <a th:href="@{/booking/add/{id}(id=${car.id})}" class="btn btn-success"><i class="fa fa-plus"></i> Add Booking</a>
                         </td>
                     </tr>
                     </tbody>

@@ -1,5 +1,6 @@
 package com.crs.models;
 
+import com.crs.constraint.FieldMatch;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -20,6 +21,9 @@ import java.util.UUID;
 
 @Entity
 @Data
+@FieldMatch.List({
+        @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match")
+})
 public class User implements UserDetails {
 
     @Id
@@ -45,6 +49,8 @@ public class User implements UserDetails {
     private boolean isActive;
     @NotEmpty
     private String password;
+    @NotEmpty
+    private String confirmPassword;
     @AssertTrue
     private Boolean terms;
 
