@@ -17,16 +17,12 @@
 <div class="container-fluid">
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/office}"><img src="../img/CRSlogo1.png" alt="Logo"></a>
+        <a class="navbar-brand" th:href="@{/userView}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
 
         <div class="float-left">
-            <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
-            <a class="nav-link float-left" th:href="@{/booking/searchByUser}">Booking search</a>
-            <a class="nav-link float-left" th:href="@{/car}">Cars</a>
-            <a class="nav-link float-left" th:href="@{/car/searchByModel}">Car search</a>
-            <a class="nav-link float-left" th:href="@{/branch}">Branches</a>
-            <a class="nav-link float-left" th:href="@{/employee}">Employees</a>
-            <a class="nav-link float-left" th:href="@{/user}">Customers</a>
+            <a class="nav-link float-left" th:href="@{/booking/add}">Create booking</a>
+            <a class="nav-link float-left" th:href="@{/car/userList}">Cars</a>
+
         </div>
         <div class="floatRight">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
@@ -60,22 +56,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="booking : ${bookings}">
+                <!--<tr th:each="booking : ${bookings}">
                     <td th:text="${booking.id}"></td>
                     <td th:text="${booking.dateOfBooking}"></td>
-                    <!--                    <td th:text="${booking.getUser()}"></td>-->
+                    &lt;!&ndash;                    <td th:text="${booking.getUser()}"></td>&ndash;&gt;
                     <td th:text="${booking.getCar}"></td>
                     <td th:text="${booking.dateFrom}"></td>
                     <td th:text="${booking.dateTo}"></td>
-                    <!--<td th:text="${booking.carRental}"></td>
-                    <td th:text="${booking.carReturn}"></td>-->
+                    &lt;!&ndash;<td th:text="${booking.carRental}"></td>
+                    <td th:text="${booking.carReturn}"></td>&ndash;&gt;
                     <td th:text="${booking.totalPrice}"></td>
                     <td th:text="${booking.status}"></td>
                     <td>
-                        <!-- <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                         <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>-->
+                        &lt;!&ndash; <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
+                         <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>&ndash;&gt;
                     </td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
             <br/>
