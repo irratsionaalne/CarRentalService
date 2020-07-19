@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link th:href="@{/css/default.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     <title>Employees</title>
@@ -26,14 +27,14 @@
             <a class="nav-link float-left" th:href="@{/employee/list}">Employees</a>
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
-        <div class="floatRight">
+        <div class="float-right">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
                                                                  th:href="@{/logout}">Logout</a>
             </p>
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron addEmployee">
+        <div class="jumbotron addlistEmployee">
             <div class="float-right">
                 <h3>
                     <span class="float-right">
@@ -42,7 +43,7 @@
                 </h3>
             </div>
         </div>
-        <div class="jumbotron regisLogin">
+        <div class="jumbotron employeeOffice">
             <div>
                 <h3>List of Employees</h3>
             </div>

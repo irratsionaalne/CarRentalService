@@ -45,3 +45,8 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+.table td, .table th {
+    padding: .5rem !important;
+    vertical-align: baseline;
+
+}
