@@ -106,7 +106,7 @@ ul {
     /*flex: 2;*/
 }
 
-.navbar .logout, .navbar .float-right,.navbar .floatRight {
+.navbar .logout, .navbar .float-right, .nav-link.logout {
     float: right !important;
     margin-right: 40px !important;
     flex: 3;
@@ -116,6 +116,12 @@ ul {
     margin: 0;
     padding: 0;
     border-radius: 0;
+}
+.backgroundImageOffice, .backgroundIMAGE{
+    background-image: url("../img/crs-office1.jpg") !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-size: cover;*/
 }
 
 .jumbotron {
@@ -140,6 +146,7 @@ ul {
     margin-right: 5px !important;
     justify-items: center;
 }
+
 .addUser, .addlistEmployee {
     margin-top: 60px !important;
     margin-bottom: 10px !important;
@@ -161,19 +168,20 @@ ul {
     flex-direction: column;
 }
 
-.addBookingOffice, .addBranchOffice{
+.addBookingOffice, .addBranchOffice {
     flex-direction: row;
 }
 
-form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffice, .bookingsListOffice,.addbookingsOffice {
-    width: 80%;
-    max-width: 80%;
+form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffice, .bookingsListOffice, .addbookingsOffice, .listCars {
+    width: 85%;
+    max-width: 85%;
     /*margin-top: 80px !important;*/
     height: 600px !important;
     overflow: auto !important;
     margin-bottom: 20px !important;
 }
-.bookingListOffice, .bookingsListOffice, .addbookingsOffice{
+
+.bookingListOffice, .bookingsListOffice, .addbookingsOffice, .listCars {
     margin-top: 80px !important;
 }
 
@@ -188,6 +196,7 @@ form.bookings, .bookingListOffice, .carsOffice, .employeesOffice, .branchesOffic
     overflow: auto !important;
     margin-bottom: 20px !important;
 }
+
 .employeeOffice {
     width: 100% !important;
     margin-top: 50px !important;
