@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 public interface SearchService {
 
     boolean searchForBooking(LocalDate dateFrom, LocalDate dateTo, Car car ) throws Exception;
-    Integer revenue();
+    Double revenue();
 
 }
