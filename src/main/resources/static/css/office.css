@@ -117,11 +117,9 @@ ul {
     padding: 0;
     border-radius: 0;
 }
-.backgroundImageOffice, .backgroundIMAGE{
-    background-image: url("../img/crs-office1.jpg") !important;
-    background-repeat: no-repeat;
-    background-position: center;
-    /*background-size: cover;*/
+.backgroundImageOffice {
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
 }
 
 .jumbotron {
