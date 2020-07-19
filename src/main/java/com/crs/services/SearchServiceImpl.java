@@ -20,7 +20,7 @@ public class SearchServiceImpl implements SearchService{
 
     @Override
     public Integer revenue(){
-        return revenue();
+        return bookingRepo.revenue();
     }
 
 }
