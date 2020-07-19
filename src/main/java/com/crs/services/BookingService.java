@@ -17,6 +17,8 @@ public interface BookingService {
 */
 
     List<Booking> getAllBookings();
+    List<Booking> getAllBookingsByBranch();
+    List<Booking> getAllBookingsByUser();
 
     Booking getById(UUID bookingId);
     

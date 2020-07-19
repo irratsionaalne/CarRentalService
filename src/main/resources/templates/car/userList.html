@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/default.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/office.css}" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <title>Booking</title>
+    <title>Cars</title>
 
 </head>
 <body>
 <div class="container-fluid">
-
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/userView}"><img th:src="@{/img/CRSlogo1.png}" alt="Logo"></a>
-
         <div class="float-left">
-            <a class="nav-link float-left" th:href="@{/booking/add}">Create booking</a>
+            <a class="nav-link float-left" th:href="@{/booking}">Create booking</a>
             <a class="nav-link float-left" th:href="@{/car/userList}">Cars</a>
-
         </div>
         <div class="floatRight">
             <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
@@ -30,53 +29,47 @@
         </div>
     </nav>
     <div class="container">
-        <div class="jumbotron bookingListOffice">
+        <div class="jumbotron addCar">
+
+        </div>
+        <div class="jumbotron regisLogin">
             <div>
-                <h2 class="display-4">
-                    <div sec:authorize="isAuthenticated()">
-                        Welcome <span sec:authentication="principal.firstName"></span>
-                    </div>
-                </h2>
-                <h3>List of Bookings</h3>
-                <span class="float-right"><a class="btn btn-success" th:href="@{booking/add}">ADD</a></span>
+                <h3>List of Cars</h3>
             </div>
-            <table class="table table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Booking Id</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Car</th>
-                    <th scope="col">Start date</th>
-                    <th scope="col">End date</th>
-                    <th scope="col">Is Active</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <!--<tr th:each="booking : ${bookings}">
-                    <td th:text="${booking.id}"></td>
-                    <td th:text="${booking.dateOfBooking}"></td>
-                    &lt;!&ndash;                    <td th:text="${booking.getUser()}"></td>&ndash;&gt;
-                    <td th:text="${booking.getCar}"></td>
-                    <td th:text="${booking.dateFrom}"></td>
-                    <td th:text="${booking.dateTo}"></td>
-                    &lt;!&ndash;<td th:text="${booking.carRental}"></td>
-                    <td th:text="${booking.carReturn}"></td>&ndash;&gt;
-                    <td th:text="${booking.totalPrice}"></td>
-                    <td th:text="${booking.status}"></td>
-                    <td>
-                        &lt;!&ndash; <a th:if="${booking.getStatus()} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
-                         <a th:if="${booking.getStatus()} == false" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>&ndash;&gt;
-                    </td>
-                </tr>-->
-                </tbody>
-            </table>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+
+            <div class="container-fluid" th:switch="${cars.size() > 0}">
+                <h3 th:case="false">No cars available!</h3>
+                <table th:case="true" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Make</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Body type</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Mileage</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Price per day</th>
+                        <th scope="col">Modify</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="car : ${cars}">
+                        <td th:text="${car.make}"></td>
+                        <td th:text="${car.model}"></td>
+                        <td th:text="${car.bodyType}"></td>
+                        <td th:text="${car.year}"></td>
+                        <td th:text="${car.color}"></td>
+                        <td th:text="${car.mileage}"></td>
+                        <td th:text="${car.status}"></td>
+                        <td th:text="${car.pricePerDay}"></td>
+                        <td>
+                            <a th:href="@{/booking/customer/{id}(id=${car.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Booking</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
