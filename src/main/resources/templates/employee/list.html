@@ -80,8 +80,8 @@
                         <td th:text="${employee.isActive()}"></td>
                         <td>
                             <a th:href="@{/employee/list/update/{id}(id=${employee.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
-                            <a th:if="${employee.isActive()} == true" th:href="@{/employee/list/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
-                            <a th:if="${employee.isActive()} == false" th:href="@{/employee/list/restore/{id}(id=${employee.id})}" class="btn btn-primary">Restore</a>
+                            <a th:if="${employee.isActive()} == true" th:href="@{/employee/list/delete/{id}(id=${employee.id})}" class="btn btn-danger fa fa-trash"> Delete</a>
+                            <a th:if="${employee.isActive()} == false" th:href="@{/employee/list/restore/{id}(id=${employee.id})}" class="btn btn-primary fa fa-undo"> Restore</a>
                         </td>
                     </tr>
                     </tbody>

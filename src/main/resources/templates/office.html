@@ -35,7 +35,7 @@
             </p>
         </div>
     </nav>
-    <div class="container">
+    <div class="container backgroundImageOffice">
         <div class="addButtonsOffice">
             <div class="jumbotron addBranchOffice">
             <div class="branch float-right">
@@ -51,7 +51,7 @@
             <div class="bookings float-right">
                 <h3>
                 <span class="float-right">
-                    <a th:href="@{/add}" class="btn btn-success fa fa-plus">Add Booking</a>
+                    <a th:href="@{/add}" class="btn btn-success"> Add Booking</a>
                 </span>
                 </h3>
             </div>
@@ -59,7 +59,8 @@
         </div>
 
         <div class="jumbotron bookingsListOffice">
-            <div>
+            <img src="../img/crs-office1.jpg" class="backgroundIMAGE" alt="CRS Office">
+            <!--<div>
                 <h3>List of Bookings</h3>
             </div>
             <table class="table table-striped">
@@ -77,7 +78,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--<tr th:each="booking : ${bookings}">
+                &lt;!&ndash;<tr th:each="booking : ${bookings}">
                     <th scope="row" th:text="${booking.id}></th>
                     <td th:text="${booking.dateOfBooking}></td>
                     <td th:text="${booking.dateOfBooking}></td>
@@ -93,13 +94,13 @@
                     <a th:if="${booking.active} == true" th:href="@{/rental/create/{id}(id=${rental.id})}" class="btn btn-primary">Rental</a>
                     <a th:if="${booking.active} == true" th:href="@{/return/create/{id}(id=${return.id})}" class="btn btn-primary">Return</a>
                     </td>
-                </tr> -->
+                </tr> &ndash;&gt;
                 </tbody>
             </table>
             <br/>
             <br/>
             <br/>
-            <br/>
+            <br/>-->
         </div>
     </div>
 </div>

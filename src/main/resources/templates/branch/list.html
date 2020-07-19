@@ -72,8 +72,8 @@
                         <td th:text="${branch.isActive()}"></td>
                         <td>
                             <a th:href="@{/branch/update/{id}(id=${branch.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
-                            <a th:if="${branch.active} == true" th:href="@{/branch/delete/{id}(id=${branch.id})}" class="btn btn-danger">Delete</a>
-                            <a th:if="${branch.active} == false" th:href="@{/branch/restore/{id}(id=${branch.id})}" class="btn btn-primary">Restore</a>
+                            <a th:if="${branch.active} == true" th:href="@{/branch/delete/{id}(id=${branch.id})}" class="btn btn-danger fa fa-trash"> Delete</a>
+                            <a th:if="${branch.active} == false" th:href="@{/branch/restore/{id}(id=${branch.id})}" class="btn btn-primary fa fa-undo"> Restore</a>
                         </td>
                     </tr>
                     </tbody>

@@ -29,9 +29,7 @@
             <a class="nav-link float-left" th:href="@{/user}">Users</a>
         </div>
         <div class="float-right">
-            <p sec:authorize="isAuthenticated()"><a class="nav-link float-right logout"
-                                                                 th:href="@{/logout}">Logout</a>
-            </p>
+            <span sec:authorize="isAuthenticated()"><a class="nav-link float-right logout" th:href="@{/logout}">Logout</a></span>
         </div>
     </nav>
     <div class="container">
@@ -43,7 +41,7 @@
                 <br/>
             </div>
         </div>
-        <div class="jumbotron regisLogin">
+        <div class="jumbotron listCars">
             <div>
                 <h3>List of Cars</h3>
             </div>
@@ -82,7 +80,9 @@
                         <td th:text="${car.pricePerDay}"></td>
                         <td>
                             <a th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Modify</a>
-                            <a th:href="@{/booking/add/{id}(id=${car.id})}" class="btn btn-success"><i class="fa fa-plus"></i> Add Booking</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/booking/add/{id}(id=${car.id})}" class="btn btn-success"><i class="fa fa-plus"></i> Booking</a>
                         </td>
                     </tr>
                     </tbody>

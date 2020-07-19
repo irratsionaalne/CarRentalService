@@ -73,8 +73,8 @@
                         <td th:text="${user.isActive()}"></td>
                         <td>
                             <a th:href="@{/user/update/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
-                            <a th:if="${user.isActive()} == true" th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
-                            <a th:if="${user.isActive()} == false" th:href="@{/user/restore/{id}(id=${user.id})}" class="btn btn-primary">Restore</a>
+                            <a th:if="${user.isActive()} == true" th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger fa fa-trash"> Delete</a>
+                            <a th:if="${user.isActive()} == false" th:href="@{/user/restore/{id}(id=${user.id})}" class="btn btn-primary fa fa-undo"> Restore</a>
                         </td>
                     </tr>
                     </tbody>
