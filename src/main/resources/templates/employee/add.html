@@ -96,11 +96,21 @@
                                th:each="error : ${#fields.errors('password')}"
                                th:text="${error}">Validation error</p>
                         </div>
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+                            <label for="confirmPassword" class="control-label">Confirm
+                                password</label> <input id="confirmPassword" class="form-control"
+                                                        type="password" th:field="*{user.confirmPassword}"
+                                                        required="required"/>
+                            <p class="error-message"
+                               th:each="error : ${#fields.errors('confirmPassword')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
 
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label for="confirmPassword" class="control-label">Confirm password</label>
                             <input id="confirmPassword" class="form-control" type="password" />
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Add Employee</button>
