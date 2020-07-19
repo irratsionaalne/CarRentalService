@@ -35,7 +35,7 @@
             </p>
         </div>
     </nav>
-    <div class="container backgroundImageOffice">
+    <div class="container regisLogin">
         <div class="addButtonsOffice">
             <div class="jumbotron addBranchOffice">
             <div class="branch float-right">
@@ -51,15 +51,18 @@
             <div class="bookings float-right">
                 <h3>
                 <span class="float-right">
-                    <a th:href="@{/add}" class="btn btn-success"> Add Booking</a>
+                    <a th:href="@{/booking/add}" class="btn btn-success"> Add Booking</a>
                 </span>
                 </h3>
             </div>
         </div>
         </div>
 
-        <div class="jumbotron bookingsListOffice">
-            <img src="../img/crs-office1.jpg" class="backgroundIMAGE" alt="CRS Office">
+        <div class="jumbotron regisLogin">
+            <div>
+                <img src="../img/crs-office1.jpg" class="backgroundIMAGE" alt="CRS Office" style="width: 100%;max-height: 100%">
+            </div>
+
             <!--<div>
                 <h3>List of Bookings</h3>
             </div>
