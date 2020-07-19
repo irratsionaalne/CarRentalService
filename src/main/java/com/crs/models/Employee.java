@@ -27,6 +27,8 @@ public class Employee {
     private String lastName;
     @NotEmpty
     private String password;
+    @NotEmpty
+    private String confirmPassword;
     //@Email
     @NotEmpty
     private String email;
