@@ -18,13 +18,16 @@
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2 class="display-4">
-                    Welcome <span sec:authentication="principal.username">User</span>
-                </h2>
+                <h1 class="display-4">
+                    <div sec:authorize="isAuthenticated()">
+                        Welcome <span sec:authentication="principal.firstName"></span>
+                    </div>
+                    <span th:text="${'Your earnings so far  ' + key }"><strong></strong></span>
+                </h1>
                 <div class="jumbotron">
                     <div class="container">
-                        <h1 class="display-3">This is the REVENUE SECTION...</h1>
-                        <p class="lead">Some tables here...</p>
+                        <h2 class="display-3">This is the REVENUE SECTION...</h2>
+                        <!--<p class="lead">Some tables here...</p>
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -36,7 +39,7 @@
                                 <th scope="col">Is Active</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody>-->
                             <!--<tr>
                                 <th scope="row">1</th>
                                 <td>Tartu</td>

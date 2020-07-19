@@ -17,5 +17,7 @@ public interface BookingRepo extends JpaRepository<Booking, UUID> {
 
     @Query("SELECT b from Booking b where b.dateFrom >= :startTime and b.dateTo <= :endTime and b.car = :car")
     List<Booking> findBookingByDateAndCar(@Param("startTime") LocalDate startTime, @Param("endTime") LocalDate endTime, @Param("car") Car car);
+    @Query("SELECT SUM(b.totalPrice)+SUM(b.extraPayment) from Booking b ")
+            Integer revenue();
 
 }
