@@ -1,6 +1,7 @@
 package com.crs.services;
 
 import com.crs.models.Booking;
+import com.crs.models.Car;
 import com.crs.repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,16 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingRepo bookingRepo;
 
+    @Autowired
+    private CarService carService;
+
     @Override
     public boolean createBooking(Booking booking) throws Exception {
+        Car car = carService.getById(booking.getCar().getId());
         booking.setStatus("UPCOMING");
         booking.setDateOfBooking(LocalDate.now());
+        booking.setTotalPrice(booking.getTotalPrice(car.getPricePerDay()));
+        System.out.println(booking.getTotalPrice());
         bookingRepo.save(booking);
         return true;
     }

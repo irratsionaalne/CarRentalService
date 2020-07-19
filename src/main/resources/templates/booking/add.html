@@ -80,15 +80,17 @@
 
 
                         <div class="form-group">
-                            <button type="button" class="btn btn-success" onclick="renderCarPrice()">Check car price per day
+                            <label for="date_to" class="control-label">Check car price per day</label>
+                            <button type="button" class="btn btn-success" onclick="renderCarPrice()">Click
                             </button>
                             <br>
-                            <p id="carPricePerDay"></p>
+                            <h3 id="carPricePerDay"></h3>
                             <br>
-                            <button type="button" class="btn btn-success" onclick="renderTotalPrice()">Calculate total price
+                            <label for="date_to" class="control-label">Calculate total price</label>
+                            <button type="button" class="btn btn-success" onclick="renderTotalPrice()">Click
                             </button>
                             <br>
-                            <p id="totalPrice"></p>
+                            <h3 id="totalPrice"></h3>
                             <br>
                         </div>
                         <!--                        <div class="form-group"-->
@@ -191,6 +193,7 @@
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
+
 <script th:inline="javascript">
     /*<![CDATA[*/
     var cars = /*[[${cars}]]*/ null;
@@ -239,10 +242,7 @@
         } else {
             document.getElementById('totalPrice').innerText = "Start date can't be after end date!";
         }
-
     }
-
-
 </script>
 
 </body>
