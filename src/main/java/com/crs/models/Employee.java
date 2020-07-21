@@ -28,7 +28,7 @@ public class Employee {
     @OneToMany
     private List<Booking> bookings;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @NotNull
     private User user;
     @NotEmpty
     private String firstName;

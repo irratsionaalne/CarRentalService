@@ -31,11 +31,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         user.setPassword(passwordEncoder.encode(employee.getPassword()));
         user.setRole(employee.getRole());
         user.setActive(true);
-        user = userRepo.save(user);
+        userRepo.save(user);
 
-        employee.setId(user.getId());
-        employee.setBranch(employee.getBranch());
-        employee.setRole(employee.getRole());
+        employee.setUser(user);
         employeeRepo.save(employee);
     }
 
