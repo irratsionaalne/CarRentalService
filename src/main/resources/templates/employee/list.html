@@ -74,10 +74,10 @@
                         <td th:text="${employee.getRole()}"></td>
                         <td th:text="${employee.getBranch().city}"></td>
                         <td th:text="${employee.getBookings()}"></td>
-                        <td th:text="${employee.getFirstName()}"></td>
-                        <td th:text="${employee.getLastName()}"></td>
-                        <td th:text="${employee.getEmail()}"></td>
-                        <td th:text="${employee.isActive()}"></td>
+                        <td th:text="${employee.getUser().getFirstName()}"></td>
+                        <td th:text="${employee.getUser().getLastName()}"></td>
+                        <td th:text="${employee.getUser().getEmail()}"></td>
+                        <td th:text="${employee.getUser().isActive()}"></td>
                         <td>
                             <a th:href="@{/employee/list/update/{id}(id=${employee.id})}" class="btn btn-warning"><i class="fa fa-edit"></i> Update</a>
                             <a th:if="${employee.isActive()} == true" th:href="@{/employee/list/delete/{id}(id=${employee.id})}" class="btn btn-danger fa fa-trash"> Delete</a>
