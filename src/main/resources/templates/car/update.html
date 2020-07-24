@@ -64,10 +64,13 @@
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('bodyType')}? 'has-error':''">
                             <label for="bodyType" class="control-label">Body Type</label>
-                            <input
-                                    id="bodyType" class="form-control" th:field="*{bodyType}"/>
+                            <select id="bodyType" class="form-control" name="bodyType">
+                                <option th:each="bodyType : ${T(com.crs.models.BodyType).values()}"
+                                        th:value="${bodyType}"
+                                        th:text="${bodyType.bodyTypeValue}"></option>
+                            </select>
                             <p class="error-message"
-                               th:each="error: ${#fields.errors('bodyType')}"
+                               th:each="error: ${#fields.errors('status')}"
                                th:text="${error}">Validation error</p>
                         </div>
 

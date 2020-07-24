@@ -1,7 +1,5 @@
 package com.crs.models;
 
-
-
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -22,19 +20,6 @@ public class Employee {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
     @NotEmpty
-    private String firstName;
-    @NotEmpty
-    private String lastName;
-    @NotEmpty
-    private String password;
-    @NotEmpty
-    private String confirmPassword;
-    //@Email
-    @NotEmpty
-    private String email;
-    @AssertTrue
-    private boolean terms;
-    @NotEmpty
     @Enumerated(value = EnumType.STRING)
     private Role role;
     @OneToOne(fetch = FetchType.EAGER)
@@ -45,6 +30,18 @@ public class Employee {
     @OneToOne(fetch = FetchType.EAGER)
     @NotNull
     private User user;
-    private boolean isActive;
+    @NotEmpty
+    private String firstName;
+    @NotEmpty
+    private String lastName;
+    @NotEmpty
+    private String password;
+    @NotEmpty
+    private String confirmPassword;
+    @Email
+    @NotEmpty
+    private String email;
+    @AssertTrue
+    private Boolean terms;
 
 }

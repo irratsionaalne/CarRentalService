@@ -25,14 +25,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void createEmployee(Employee employee) {
         User user = new User();
-        user.setEmail(employee.getEmail());
         user.setFirstName(employee.getFirstName());
         user.setLastName(employee.getLastName());
-        user.setActive(true);
+        user.setEmail(employee.getEmail());
         user.setPassword(passwordEncoder.encode(employee.getPassword()));
         user.setRole(employee.getRole());
+        user.setActive(true);
         userRepo.save(user);
-        employee.setActive(true);
+
+        employee.setUser(user);
         employeeRepo.save(employee);
     }
 
@@ -42,15 +43,16 @@ public class EmployeeServiceImpl implements EmployeeService {
             return false;
         }
         User user = new User();
-        user.setEmail(employee.getEmail());
         user.setFirstName(employee.getFirstName());
         user.setLastName(employee.getLastName());
-        user.setActive(true);
+        user.setEmail(employee.getEmail());
         user.setPassword(passwordEncoder.encode(employee.getPassword()));
         user.setRole(employee.getRole());
-        userRepo.save(user);
-        employee.setActive(true);
-        employeeRepo.save(employee);
+        user.setActive(true);
+        userRepo.saveAndFlush(user);
+
+        employee.setUser(user);
+        employeeRepo.saveAndFlush(employee);
         return true;
     }
 
@@ -70,7 +72,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeId == null) {
             return false;
         }
-        employee.setActive(false);
+        User user = new User();
+        user.setActive(false);
         updateEmployee(employee);
         return true;
     }
@@ -81,7 +84,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeId == null) {
             return false;
         }
-        employee.setActive(true);
+        User user = new User();
+        user.setActive(false);
         updateEmployee(employee);
         return true;
     }
